@@ -42,10 +42,7 @@ export const createVineyard= async () => {
 export const getOneVineyard= async (vineyardId: any) => {
     try {
       const vineyard = await axios.get(
-        `${REACT_APP_API_URI}/api/vineyards/${vineyardId}`,
-        // {
-        //   withCredentials: true,
-        // }
+        `${REACT_APP_API_URI}/api/vineyards/${vineyardId}`
       );
       return vineyard.data;
     } catch (error) {
@@ -86,18 +83,21 @@ export const getOneVineyard= async (vineyardId: any) => {
 
   export const searchVineyards = async (query: any) => {
     try {
+    
       const vineyard = await axios.get(
-        `${REACT_APP_API_URI}/api/vineyards/search/results?city=${query.city}&grapes=${query.grapes}`,
-        // {
-        //   withCredentials: true,
-        // }
+        `${REACT_APP_API_URI}/api/vineyards/search/results?` 
+        + (query.grapes) && (`&grapes=${query.grapes}`) 
+        + (query.date) && (`&date=${query.date}`) 
+        + (query.city) && (`&city=${query.city}`)
       );
+   
       return vineyard.data;
     } catch (error) {
       console.log(error);
       return null;
     }
   };
+
 
 
 export const likeAVineyard = async (vineyardId: string) => {
