@@ -81,14 +81,24 @@ export const getOneVineyard= async (vineyardId: any) => {
     }
   };
 
-  export const searchVineyards = async (query: any) => {
+  type SearchQuery {
+      grapes?: string
+      date?: Date
+      city?: string
+  }
+
+  export const searchVineyards = async (query: SearchQuery) => {
     try {
+    const {grapes, date, city} = query
+
+    if (!grapes && !date && !city) throw new Error("You need to specify a query.")
+//wrap with try catch as need to handle error!!!! make sure user selects one query
     
       const vineyard = await axios.get(
         `${REACT_APP_API_URI}/api/vineyards/search/results?` 
-        + (query.grapes) && (`&grapes=${query.grapes}`) 
-        + (query.date) && (`&date=${query.date}`) 
-        + (query.city) && (`&city=${query.city}`)
+        + (grapes) && (`&grapes=${grapes}`) 
+        + (date) && (`&date=${date}`) 
+        + (city) && (`&city=${city}`)
       );
    
       return vineyard.data;
