@@ -1,7 +1,8 @@
 import axios from "axios";
 const { REACT_APP_API_URI } = process.env;
+import {Credentials, UserData} from "../interfaces"
 
-export const registerUser = async (credentials: any) => {
+export const registerUser = async (credentials: Credentials) => {
   try {
     const user = await axios.post(
       `${REACT_APP_API_URI}/api/users/register`,
@@ -88,7 +89,7 @@ export const searchUser = async (query: string) => {
 //   }
 // };
 
-export const editProfile = async (data: any) => {
+export const editProfile = async (data: UserData) => {
   try {
     const user = await axios.put(`${REACT_APP_API_URI}/api/users/me`, data, {
       withCredentials: true,

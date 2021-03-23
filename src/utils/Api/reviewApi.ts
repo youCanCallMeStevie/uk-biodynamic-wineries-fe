@@ -1,7 +1,9 @@
 import axios from "axios";
 const { REACT_APP_API_URI } = process.env;
+import { Review } from "../interfaces";
+import { ReviewData } from "../../store/types";
 
-export const getVineyardReviews= async (vineyardId: any) => {
+export const getVineyardReviews = async (vineyardId: string) => {
   try {
     const reviews = await axios.get(
       `${REACT_APP_API_URI}/api/vineyards/reviews/${vineyardId}`,
@@ -16,32 +18,31 @@ export const getVineyardReviews= async (vineyardId: any) => {
   }
 };
 
-export const newReview = async (data: any) => {
+export const newReview = async (data: ReviewData, vineyardId: string) => {
   try {
-    console.log("text api", data.text)
-    console.log("postId api", data.vineyardId)
+    console.log("text api", data.text);
+    console.log("postId api", vineyardId);
 
     const review = await axios.post(
-      `${REACT_APP_API_URI}/api/vineyards/reviews/${data.vineyardId}`,
-      {text: data.text},
+      `${REACT_APP_API_URI}/api/vineyards/reviews/${vineyardId}`,
+      { text: data.text },
       {
         withCredentials: true,
       }
     );
-  console.log("did this go through", review)
+    console.log("did this go through", review);
     return review.data;
-    
   } catch (error) {
     console.log(error);
     return null;
   }
 };
 
-export const editReview = async (data: any, vineyardId: any ) => {
+export const editReview = async (data: Review, vineyardId: string) => {
   try {
     const review = await axios.put(
       `${REACT_APP_API_URI}/api/vineyards/reviews/${data._id}`,
-      {text: data.text, vineyardId: vineyardId},
+      { text: data.text, vineyardId },
       {
         withCredentials: true,
       }
@@ -53,10 +54,10 @@ export const editReview = async (data: any, vineyardId: any ) => {
   }
 };
 
-export const deleteReview = async (data: any, vineyardId: any) => {
+export const deleteReview = async (reviewData: Review, vineyardId: string) => {
   try {
     const review = await axios.delete(
-      `${REACT_APP_API_URI}/api/vineyards/reviews/${vineyardId}/${data._id}`,
+      `${REACT_APP_API_URI}/api/vineyards/reviews/${vineyardId}/${reviewData._id}`,
       {
         withCredentials: true,
       }
@@ -68,10 +69,10 @@ export const deleteReview = async (data: any, vineyardId: any) => {
   }
 };
 
-export const likeAReview = async (reviewId: any) => {
+export const likeAReview = async (reviewData: Review) => {
   try {
     const review = await axios.post(
-      `${REACT_APP_API_URI}/api/vineyards/reviews/${reviewId}/like`,
+      `${REACT_APP_API_URI}/api/vineyards/reviews/${reviewData._id}/like`,
       {
         withCredentials: true,
       }
@@ -83,10 +84,10 @@ export const likeAReview = async (reviewId: any) => {
   }
 };
 
-export const unlikeAReview = async (reviewId: any) => {
+export const unlikeAReview = async (reviewData: Review) => {
   try {
     const review = await axios.put(
-      `${REACT_APP_API_URI}/api/vineyards/reviews/${reviewId}/unlike`,
+      `${REACT_APP_API_URI}/api/vineyards/reviews/${reviewData._id}/unlike`,
       {
         withCredentials: true,
       }

@@ -1,114 +1,112 @@
-// import {
-//     getPostComments,
-//     newComment,
-//     editComment,
-//     deleteComment,
-//   } from "../Api/commentApi.js";
-  
-//   import {getPostsFromCurrentUser, getPostsFromFollowers} from "../Api/postApi.js";
-//   import { COMMENT_ERROR, COMMENT_LOADING, COMMENT_SUCCESS } from "./types.js";
-  
-  
-//   export const getPostCommentsAction = (data) => async dispatch => {
-  
-//     try {
-//       dispatch({
-//         type: COMMENT_LOADING,
-//       });
-//       const postComments = await getPostComments(data);
-//       if (postComments) {
-//         dispatch({
-//           type: COMMENT_SUCCESS,
-//           payload: postComments,
-//         });
-//         return postComments
-//       } else throw Error;
-//     } catch (error) {
-//       dispatch({
-//         type: COMMENT_ERROR,
-//         payload: {
-//           error_msg: "No comments for this post",
-//         },
-//       });
-//     }
-//   };
-  
-//   export const writeCommentOnFeedsAction = (data) => async dispatch => {
-//     try {
-//       dispatch({
-//         type: COMMENT_LOADING,
-//       });
-//       const comment = await newComment(data);
-//       console.log("commentXXXX", comment)
-//       if (comment) {
-//         dispatch(getPostsFromFollowers(getPostComments(data.postId)));
-//       } else throw new Error();
-//     } catch (error) {
-//       dispatch({
-//         type: COMMENT_ERROR,
-//         payload: {
-//           error_msg: "Error posting this comment",
-//         },
-//       });
-//     }
-//   };
-  
-//   export const writeCommentOnProfileAction = (data) => async dispatch => {
-//     try {
-//       dispatch({
-//         type: COMMENT_LOADING,
-//       });
-//       const comment = await newComment(data);
-//       if (comment) {
-//         dispatch(getPostsFromCurrentUser(getPostComments(data.postId)));
-//       } else throw new Error();
-//     } catch (error) {
-//       dispatch({
-//         type: COMMENT_ERROR,
-//         payload: {
-//           error_msg: "Error posting this comment",
-//         },
-//       });
-//     }
-//   };
-  
-  
-//   export const editCommentAction = (data, postId) => async dispatch => {
-//     try {
-//       dispatch({
-//         type: COMMENT_LOADING,
-//       });
-//       const comment = await editComment(data, postId);
-//       if (comment) {
-//         dispatch(getPostComments(postId));
-//       } else throw new Error();
-//     } catch (error) {
-//       dispatch({
-//         type: COMMENT_ERROR,
-//         payload: {
-//           error_msg: "Error editing this comment",
-//         },
-//       });
-//     }
-//   };
-  
-//   export const deleteCommentAction = (data, postId) => async dispatch => {
-//     try {
-//       dispatch({
-//         type: COMMENT_LOADING,
-//       });
-//       const comment = await deleteComment(data, postId);
-//       if (comment) {
-//         dispatch(getPostComments(postId));
-//       } else throw new Error();
-//     } catch (error) {
-//       dispatch({
-//         type: COMMENT_ERROR,
-//         payload: {
-//           error_msg: "Error deleting this comment",
-//         },
-//       });
-//     }
-//   };
-  
-  
+import { Dispatch } from "redux";
+
+
+import {
+  getVineyardReviews,
+  newReview,
+  editReview,
+  deleteReview,
+//   likeAReview,
+//   unlikeAReview,
+} from "../../utils/Api/reviewApi";
+
+import {
+  REVIEW_SUCCESS,
+  REVIEW_LOADING,
+  REVIEW_ERROR,
+//   REVIEW_LIKE_SUCCESS,
+  ReviewDispatchTypes,
+  ReviewData,
+} from "../types";
+
+import { Review } from "../../utils/interfaces";
+
+
+export const getVineyardReviewsAction = (vineyardId: string) => async (
+  dispatch: Dispatch<ReviewDispatchTypes>
+) => {
+  try {
+    dispatch({
+      type: REVIEW_LOADING,
+    });
+    const vineyardReviews = await getVineyardReviews(vineyardId);
+    if (vineyardReviews) {
+      dispatch({
+        type: REVIEW_SUCCESS,
+        payload: vineyardReviews,
+      });
+      return vineyardReviews;
+    } else throw Error;
+  } catch (error) {
+    dispatch({
+      type: REVIEW_ERROR,
+      payload: {
+        error_msg: "No reviews for this vineyard",
+      },
+    });
+  }
+};
+
+export const newReviewAction = (data: ReviewData, vineyardId: string) => async (
+  dispatch: Dispatch<ReviewDispatchTypes>
+) => {
+  try {
+    dispatch({
+      type: REVIEW_LOADING,
+    });
+    const review = await newReview(data, vineyardId);
+    console.log("newReviewAction review", review);
+    if (review) {
+      dispatch(await getVineyardReviews(vineyardId));
+    } else throw new Error();
+  } catch (error) {
+    dispatch({
+      type: REVIEW_ERROR,
+      payload: {
+        error_msg: "Error posting this review",
+      },
+    });
+  }
+};
+
+export const editReviewAction = (data: Review, vineyardId: string) => async (
+  dispatch: Dispatch<ReviewDispatchTypes>
+) => {
+  try {
+    dispatch({
+      type: REVIEW_LOADING,
+    });
+    const review = await editReview(data, vineyardId);
+    if (review) {
+      dispatch(await getVineyardReviews(vineyardId));
+    } else throw new Error();
+  } catch (error) {
+    dispatch({
+      type: REVIEW_ERROR,
+      payload: {
+        error_msg: "Error editing this review",
+      },
+    });
+  }
+};
+
+export const deleteReviewAction = (data: Review, vineyardId: string) => async (
+  dispatch: Dispatch<ReviewDispatchTypes>
+) => {
+  try {
+    dispatch({
+      type: REVIEW_LOADING,
+    });
+    const review = await deleteReview(data, vineyardId);
+    if (review) {
+      dispatch(await getVineyardReviews(vineyardId));
+    } else throw new Error();
+  } catch (error) {
+    dispatch({
+      type: REVIEW_ERROR,
+      payload: {
+        error_msg: "Error deleting this review",
+      },
+    });
+  }
+};

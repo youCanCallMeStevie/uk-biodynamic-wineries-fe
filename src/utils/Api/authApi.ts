@@ -1,8 +1,10 @@
 //I'm using a modified version of axios imported from authAxios which check for acessToken validity and use refreshToken to refresh it
 import axios from "./authAxios";
 const { REACT_APP_API_URI } = process.env;
+import {Credentials} from "../interfaces"
 
-export const userLoginApi = async (credentials:any) => {
+
+export const userLoginApi = async (credentials: Credentials) => {
   try {
     const login = await axios.post(
       `${REACT_APP_API_URI}/api/auth/login`,

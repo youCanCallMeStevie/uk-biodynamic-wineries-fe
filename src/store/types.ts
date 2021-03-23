@@ -1,4 +1,3 @@
-
 export const SET_LOADING = "SET_LOADING";
 export const SET_ERROR = "SET_ERROR";
 export const SET_DARKMODE = "SET_DARKMODE";
@@ -29,49 +28,132 @@ export const REVIEW_LOADING = "REVIEW_LOADING";
 export const REVIEW_ERROR = "REVIEW_ERROR";
 export const REVIEW_LIKE_SUCCESS = "REVIEW_LIKE_SUCCESS";
 
-// export const SELECTED_USER_LOADING = "SELECTED_USER_LOADING";
-// export const SELECTED_USER_SUCCESS = "SELECTED_USER_SUCCESS";
-// export const SELECTED_USER_ERROR = "SELECTED_USER_ERROR";
+export const SELECTED_USER_LOADING = "SELECTED_USER_LOADING";
+export const SELECTED_USER_SUCCESS = "SELECTED_USER_SUCCESS";
+export const SELECTED_USER_ERROR = "SELECTED_USER_ERROR";
 
-
-
+ 
 //USER
 
-export interface UserState{
-    profile: UserData | null;
-    loading: boolean;
-    error: string;
-    isLoggedIn: boolean;
-  }
-  
-  
-   export interface UserData {
-    name: string | null;
-    surname:  string  | null;
-    username: string | null;
-    email: string | null;
-    favVineyards: Array<string|undefined>;
-   }
-  
-  
-  //  export interface Favorite{
-  //   city: string;
-  // }
-  
-  export interface UserError{
-    message: string;
-  }
-
-  // ALERTS
-
-export interface AlertAction{
-    type: typeof SET_ALERT;
-    payload: string;
+export interface UserState {
+  profile: UserProfile | null;
+  loading: boolean;
+  error: string;
+  isLoggedIn: boolean;
 }
 
-export interface AlertState{
-    message: string;
+export interface UserProfile {
+  publicProfile: boolean;
+  followers: Array<string | null>;
+  following: Array<string | null>;
+  reviewsGiven: Array<string | null>;
+  likedReviews: Array<string | null>;
+  likedVineyards: Array<string | null>;
+  vistedVineyards: Array<string | null>;
+  _id: string;
+  name: string;
+  lastname: string;
+  username: string;
+  email: string;
+  createdAt: Date;
+  updatedAt: Date;
+  __v?: number;
+  refreshToken: string;
+  imageUrl?: string | null;
 }
+
+export interface UserError {
+  message: string;
+}
+
+export interface RegisterLoading {
+  type: typeof REGISTER_LOADING;
+}
+export interface RegisterSuccess {
+  type: typeof REGISTER_SUCCESS;
+  payload: any;
+}
+export interface RegisterFail {
+  type: typeof REGISTER_FAIL;
+}
+
+export type RegisterDispatchTypes =
+  | RegisterLoading
+  | RegisterSuccess
+  | RegisterFail;
+
+export interface ProfileLoading {
+  type: typeof PROFILE_LOADING;
+}
+export interface ProfileSuccess {
+  type: typeof PROFILE_SUCCESS;
+  payload: any;
+}
+export interface ProfileError {
+  type: typeof PROFILE_ERROR;
+}
+
+export type ProfileDispatchTypes =
+  | ProfileLoading
+  | ProfileSuccess
+  | ProfileError;
+
+
+  export interface SelectedUserLoading {
+    type: typeof SELECTED_USER_LOADING;
+  }
+  export interface SelectedUserSuccess {
+    type: typeof SELECTED_USER_SUCCESS;
+    payload: any;
+  }
+  export interface SelectedUserError {
+    type: typeof SELECTED_USER_ERROR;
+  }
+  
+  export type SelectedUserDispatchTypes =
+    | SelectedUserLoading
+    | SelectedUserSuccess
+    | SelectedUserError;
+  
+
+// ALERTS
+
+export interface AlertAction {
+  type: typeof SET_ALERT;
+  payload: string;
+}
+
+export interface AlertState {
+  message: string;
+}
+
+//REVIEW
+
+export interface ReviewData {
+  text: string | null;
+  rating: number | null;
+}
+
+export interface ReviewLoading {
+  type: typeof REVIEW_LOADING;
+}
+export interface ReviewSuccess {
+  type: typeof REVIEW_SUCCESS;
+  payload: any;
+}
+export interface ReviewError {
+  type: typeof REVIEW_ERROR;
+}
+
+export interface ReviewLikeSuccess {
+  type: typeof REVIEW_LIKE_SUCCESS;
+}
+
+export type ReviewDispatchTypes =
+  | ReviewLoading
+  | ReviewSuccess
+  | ReviewError
+  | ReviewLikeSuccess;
 
 //LOGIN
 
@@ -88,97 +170,182 @@ export interface LoginFail {
 
 export type LoginDispatchTypes = LoginLoading | LoginSuccess | LoginFail;
 
+// //VINEYARDS
+
+export interface VineyardData {
+  images: Array<string | undefined>;
+  grapes: Array<string | undefined>;
+  styles: Array<string | undefined>;
+  likes: Array<string | undefined>;
+  reviews: Array<string | undefined>;
+  prevEmailed: Array<string | undefined>;
+  _id: string;
+  name: string;
+  address: Address;
+  description: string;
+  bio: string;
+  region: string;
+  guidedTours?: boolean;
+  guidedTastings?: boolean;
+  biodynamic: boolean;
+  organic?: boolean;
+  email: string;
+  website: string;
+  rooms: boolean;
+  food?: boolean;
+  instagram?: string;
+  phone: string;
+  fullAddress: string;
+  details: Details;
+  createdAt: Date;
+  updatedAt: Date;
+  __v: number;
+}
+
+export interface Address {
+  addressLine1: string;
+  addressLine2: string | null;
+  locality: string | null;
+  city: string;
+  region: string;
+  country: string;
+  postal_code: string;
+}
+
+export interface Details {
+  latitude: number;
+  longitude: number;
+  type: string;
+  name: string;
+  number: number | null;
+  postal_code: string | null;
+  street: string | null;
+  confidence: number;
+  region: string;
+  region_code: string | null;
+  county: string;
+  locality: string;
+  administrative_area: string;
+  neighbourhood: string | null;
+  country: string;
+  country_code: string;
+  continent: string;
+  label: string;
+  country_module?: CountryModule;
+  sun_module?: SunModule;
+  map_url?: string;
+}
+
+export interface CountryModule {
+  latitude: number;
+  longitude: number;
+  common_name: string;
+  official_name: string;
+  capital: string;
+  flag: string;
+  area: number;
+  landlocked: boolean;
+  independent: boolean;
+  global: Global;
+  dial: Dial;
+  currencies?: Currency[];
+  languages: LanguageObj;
+}
+
+export interface Currency {
+  symbol: string;
+  code: string;
+  name: string;
+  numeric: number;
+  minor_unit: number;
+}
+
+export interface Dial {
+  calling_code: string;
+  national_prefix: string;
+  international_prefix: string;
+}
+
+export interface Global {
+  alpha2: string;
+  alpha3: string;
+  numeric_code: string;
+  region: string;
+  subregion: string;
+  region_code: string;
+  subregion_code: string;
+  world_region: string;
+  continent_name: string;
+  continent_code: string;
+}
+
+export interface LanguageObj {
+  [key: string]: string;
+}
+
+export interface SunModule {
+  rise: Rise;
+  set: Rise;
+  transit: number;
+}
+
+export interface Rise {
+  time: number;
+  astronomical: number;
+  civil: number;
+  nautical: number;
+}
 
 
+export interface VineyardState {
+  data: VineyardData | null;
+  loading: boolean;
+  error: string;
+}
+
+// interface GetVineyardAction {
+//   type: typeof GET_VINEYARD;
+//   payload: VineyardData;
+// }
+
+// interface SetLoadingAction {
+//   type: typeof SET_LOADING;
+// }
+
+// interface SetErrorAction {
+//   type: typeof SET_ERROR;
+//   payload: string;
+// }
+
+// export type VineyardAction =
+//   | GetVineyardAction
+//   | SetLoadingAction
+//   | SetErrorAction;
 
 
-// //WEATHER
+  export interface VineyardLoading {
+    type: typeof VINEYARD_LOADING;
+  }
+  export interface VineyardSuccess {
+    type: typeof VINEYARD_SUCCESS;
+    payload: any;
+  }
+  export interface VineyardError {
+    type: typeof VINEYARD_ERROR;
+  }
+  
+  export type VineyardDispatchTypes =
+    | VineyardLoading
+    | VineyardSuccess
+    | VineyardError;
 
-// export interface Weather {
-//     description: string;
-//     icon: string;
-//     id: number;
-//     main: string;
-//   }
-  
-//   export interface WeatherData {
-//     data: {
-//     coord: {
-//       lon: number;
-//       lat: number;
-//     };
-//     weather: Weather[];
-//     base: string;
-//     main: {
-//       temp: number;
-//       feels_like: number;
-//       temp_min: number;
-//       temp_max: number;
-//       pressure: number;
-//       humidity: number;
-//     };
-//     visibility: number;
-//     wind: {
-//       speed: number;
-//       deg: number;
-//     };
-//     clouds: {
-//       all: number;
-//     };
-//     dt: number;
-//     sys: {
-//       type: number;
-//       id: number;
-//       message: number;
-//       country: string;
-//       sunrise: number;
-//       sunset: number;
-//     };
-//     timezone: number;
-//     id: number;
-//     name: string;
-//     cod: number;
-//   }
-//   }
-  
-  
-//   export interface WeatherError{
-//       cod: string;
-//       message: string;
-//   }
-  
-  
-//   export interface WeatherState{
-//       data: WeatherData | null;
-//       loading: boolean;
-//       error: string;
-//   }
-  
-//   interface GetWeatherAction {
-//       type: typeof GET_WEATHER;
-//       payload: WeatherData;
-//   }
-  
-//   interface SetLoadingAction {
-//       type: typeof SET_LOADING;
-//   }
-  
-  
-//   interface SetErrorAction {
-//       type: typeof SET_ERROR;
-//       payload: string
-//   }
-  
-//   export type WeatherAction = GetWeatherAction | SetLoadingAction | SetErrorAction
-
-  
 //FAVS
 export interface AddToFavs {
-  type: typeof ADD_TO_FAVORITES
+  type: typeof ADD_TO_FAVORITES;
 }
 
 export interface RemoveFromFavs {
-  type: typeof REMOVE_FROM_FAVORITES
+  type: typeof REMOVE_FROM_FAVORITES;
 }
 
 export type FavDispatchTypes = AddToFavs | RemoveFromFavs;
