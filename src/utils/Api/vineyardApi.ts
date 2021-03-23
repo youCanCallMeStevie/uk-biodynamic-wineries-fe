@@ -81,11 +81,7 @@ export const getOneVineyard= async (vineyardId: any) => {
     }
   };
 
-  type SearchQuery {
-      grapes?: string
-      date?: Date
-      city?: string
-  }
+ 
 
   export const searchVineyards = async (query: SearchQuery) => {
     try {
