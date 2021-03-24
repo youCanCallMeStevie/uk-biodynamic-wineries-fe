@@ -30,7 +30,7 @@ dispatch(getVineyardAction())
 {alertMsg && <Alert message={alertMsg} onClose={()=> dispatch(setAlert(""))}/>}
 {error && <Alert message={error} onClose={()=> dispatch(setError())}/>}
 
-{loading? <Loader />: vineyardData && <Map data={vineyardData}/>}
+{loading? <Loader />: vineyardData && <Map data={vineyardData} />}
 
   </div>
   );

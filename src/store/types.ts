@@ -185,6 +185,10 @@ export type LoginDispatchTypes = LoginLoading | LoginSuccess | LoginFail | LogOu
 // //VINEYARDS
 
 export interface VineyardData {
+vineyards: Array<VineyardInfo>
+}
+
+export interface VineyardInfo {
   images: Array<string | undefined>;
   grapes: Array<string | undefined>;
   styles: Array<string | undefined>;
