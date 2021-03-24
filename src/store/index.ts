@@ -2,14 +2,17 @@ import {createStore, applyMiddleware, combineReducers} from "redux";
 import {composeWithDevTools} from "redux-devtools-extension";
 import thunk from "redux-thunk";
 
-// import vineyardReducer from "./reducers/vineyardReducer";
+import vineyardReducer from "./reducers/vineyardReducer";
 import alertReducer from "./reducers/alertReducer";
 import userReducer from "./reducers/userReducer";
+import nightModeReducer from "./reducers/nightModeReducer";
+
 
 const rootReducer= combineReducers({
-    // vineyard: vineyardReducer,
+    vineyard: vineyardReducer,
     alert: alertReducer,
-    user: userReducer
+    user: userReducer,
+    nightMode: nightModeReducer
 })
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));

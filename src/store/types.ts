@@ -40,6 +40,7 @@ export interface UserState {
   loading: boolean;
   error: string;
   isLoggedIn: boolean;
+  selectedUser: UserProfile | null
 }
 
 export interface UserProfile {
@@ -87,7 +88,7 @@ export interface ProfileLoading {
 }
 export interface ProfileSuccess {
   type: typeof PROFILE_SUCCESS;
-  payload: any;
+  payload: UserProfile;
 }
 export interface ProfileError {
   type: typeof PROFILE_ERROR;
@@ -127,6 +128,15 @@ export interface AlertState {
   message: string;
 }
 
+// DARK MODE
+
+export interface DarkModeAction {
+  type: typeof SET_DARKMODE;
+}
+
+export interface DarkState {
+  on: boolean;
+}
 //REVIEW
 
 export interface ReviewData {
@@ -162,13 +172,15 @@ export interface LoginLoading {
 }
 export interface LoginSuccess {
   type: typeof LOGIN_SUCCESS;
-  payload: any;
+  payload: UserProfile;
 }
 export interface LoginFail {
   type: typeof LOGIN_FAIL;
 }
-
-export type LoginDispatchTypes = LoginLoading | LoginSuccess | LoginFail;
+export interface LogOut {
+  type: typeof LOGOUT;
+}
+export type LoginDispatchTypes = LoginLoading | LoginSuccess | LoginFail | LogOut;
 
 // //VINEYARDS
 
@@ -303,10 +315,10 @@ export interface VineyardState {
   error: string;
 }
 
-// interface GetVineyardAction {
-//   type: typeof GET_VINEYARD;
-//   payload: VineyardData;
-// }
+interface GetVineyardAction {
+  type: typeof GET_VINEYARD;
+  payload: VineyardData;
+}
 
 // interface SetLoadingAction {
 //   type: typeof SET_LOADING;
@@ -328,7 +340,7 @@ export interface VineyardState {
   }
   export interface VineyardSuccess {
     type: typeof VINEYARD_SUCCESS;
-    payload: any;
+    payload: VineyardData;
   }
   export interface VineyardError {
     type: typeof VINEYARD_ERROR;
