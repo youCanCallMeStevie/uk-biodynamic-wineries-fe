@@ -1,7 +1,10 @@
 import axios from "axios";
-const { REACT_APP_API_URI } = process.env;
 import { SearchQuery } from "../interfaces";
 import { VineyardData } from "../../store/types";
+
+const { REACT_APP_API_URI } = process.env;
+
+
 
 export const fetchSavedVineyards = async () => {
   try {

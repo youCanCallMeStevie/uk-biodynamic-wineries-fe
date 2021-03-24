@@ -290,10 +290,10 @@ export interface Global {
   continent_name: string;
   continent_code: string;
 }
-
 export interface LanguageObj {
   [key: string]: string;
 }
+//export type LanguageObj  = Record<string, string>;
 
 export interface SunModule {
   rise: Rise;
@@ -344,6 +344,8 @@ interface GetVineyardAction {
   }
   export interface VineyardError {
     type: typeof VINEYARD_ERROR;
+    payload: string
+
   }
   
   export type VineyardDispatchTypes =

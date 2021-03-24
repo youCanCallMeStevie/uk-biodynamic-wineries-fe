@@ -1,4 +1,3 @@
-import { Dispatch } from "redux";
 import {
   fetchSavedVineyards,
   getOneVineyard,
@@ -7,6 +6,8 @@ import {
   editVineyard,
   deleteVineyard,
 } from "../../utils/Api/vineyardApi";
+import { Dispatch } from "redux";
+
 
 import {
   VineyardData,
@@ -34,13 +35,10 @@ export const fetchSavedVineyardsAction = () => async (
   } catch (err) {
     dispatch({
       type: VINEYARD_ERROR,
-      payload: {
-        error_msg: "There are no saved vineyards for this user",
-      },
+      payload:  "There are no saved vineyards for this user",
     });
   }
 };
-
 export const getVineyardAction = () => async (
   dispatch: Dispatch<VineyardDispatchTypes>
 ) => {
@@ -59,9 +57,7 @@ export const getVineyardAction = () => async (
   } catch (error) {
     dispatch({
       type: VINEYARD_ERROR,
-      payload: {
-        error_msg: "There are no vineyard",
-      },
+      payload:  "There are no vineyard",
     });
   }
 };
@@ -80,9 +76,8 @@ export const createVineyardAction = () => async (
   } catch (error) {
     dispatch({
       type: VINEYARD_ERROR,
-      payload: {
-        error_msg: "Error creating this vineyard",
-      },
+      payload:  "Error creating this vineyard",
+    
     });
   }
 };
@@ -102,9 +97,8 @@ export const editVineyardAction = (
   } catch (error) {
     dispatch({
       type: VINEYARD_ERROR,
-      payload: {
-        error_msg: "Error editing this vineyard",
-      },
+      payload: "Error editing this vineyard",
+    
     });
   }
 };
@@ -123,10 +117,22 @@ export const deleteVineyardAction = (vineyardId: string) => async (
   } catch (error) {
     dispatch({
       type: VINEYARD_ERROR,
-      payload: {
-        error_msg: "Error deleting this vineyard",
-      },
+      payload:  "Error deleting this vineyard",
+      
     });
   }
 };
 
+
+export const setLoading = (): VineyardDispatchTypes => {
+  return {
+    type: VINEYARD_LOADING,
+  };
+};
+
+export const setError = (): VineyardDispatchTypes => {
+  return {
+    type: VINEYARD_ERROR,
+    payload: "",
+  };
+};
