@@ -1,6 +1,6 @@
 import React from 'react'
 
-function HomePage() {
+function SearchResults() {
     return (
         <div>
             
@@ -8,4 +8,4 @@ function HomePage() {
     )
 }
 
-export default HomePage
+export default SearchResults

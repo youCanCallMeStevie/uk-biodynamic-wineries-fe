@@ -26,7 +26,7 @@ import {
   LoginDispatchTypes,
   RegisterDispatchTypes,
   ProfileDispatchTypes,
-  SelectedUserDispatchTypes
+  SelectedUserDispatchTypes,
 } from "../types";
 
 import { Credentials } from "../../utils/interfaces";
@@ -84,6 +84,29 @@ export const registerUserAction = (credentials: Credentials) => async (
     });
   }
 };
+
+export const getCurrentUserAction = () => async (
+  dispatch: Dispatch<LoginDispatchTypes>
+) => {
+  try {
+    dispatch({
+      type: LOGIN_LOADING,
+    });
+    const currentUser = await getCurrentUserApi();
+    console.log("currentUser", currentUser);
+    if (currentUser) {
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: currentUser,
+      });
+    } else throw Error;
+  } catch (err) {
+    dispatch({
+      type: LOGIN_FAIL,
+    });
+  }
+};
+
 
 export const editProfileAction = (data: UserProfile) => async (
   dispatch: Dispatch<ProfileDispatchTypes>
@@ -155,8 +178,8 @@ export const changeProfilePictureAction = (data: string) => async (
 };
 
 export const getSelectedUserProfile = (username: string) => async (
-    dispatch: Dispatch<SelectedUserDispatchTypes>
-  ) => {
+  dispatch: Dispatch<SelectedUserDispatchTypes>
+) => {
   try {
     console.log("sfsd");
     dispatch({

@@ -32,6 +32,8 @@ export const SELECTED_USER_LOADING = "SELECTED_USER_LOADING";
 export const SELECTED_USER_SUCCESS = "SELECTED_USER_SUCCESS";
 export const SELECTED_USER_ERROR = "SELECTED_USER_ERROR";
 
+export const OPEN_MODAL = "OPEN_MODAL";
+export const CLOSE_MODAL = "CLOSE_MODAL";
  
 //USER
 
@@ -42,6 +44,7 @@ export interface UserState {
   isLoggedIn: boolean;
   selectedUser: UserProfile | null
 }
+
 
 export interface UserProfile {
   publicProfile: boolean;
@@ -60,7 +63,7 @@ export interface UserProfile {
   updatedAt: Date;
   __v?: number;
   refreshToken: string;
-  imageUrl?: string | null;
+  imageUrl?: string;
 }
 
 export interface UserError {
@@ -319,24 +322,10 @@ export interface VineyardState {
   error: string;
 }
 
-interface GetVineyardAction {
-  type: typeof GET_VINEYARD;
-  payload: VineyardData;
-}
-
-// interface SetLoadingAction {
-//   type: typeof SET_LOADING;
+// interface GetVineyardAction {
+//   type: typeof GET_VINEYARD;
+//   payload: VineyardData;
 // }
-
-// interface SetErrorAction {
-//   type: typeof SET_ERROR;
-//   payload: string;
-// }
-
-// export type VineyardAction =
-//   | GetVineyardAction
-//   | SetLoadingAction
-//   | SetErrorAction;
 
 
   export interface VineyardLoading {
@@ -367,3 +356,21 @@ export interface RemoveFromFavs {
 }
 
 export type FavDispatchTypes = AddToFavs | RemoveFromFavs;
+
+// MODEL
+export interface ModalState {
+  isOpen: boolean,
+  type?:string
+};
+
+export interface OpenModal {
+  type: typeof OPEN_MODAL;
+  payload?: {isOpen: boolean; type: string};
+}
+
+export interface CloseModal {
+  type: typeof CLOSE_MODAL;
+  payload?: {isOpen: boolean; type: string};
+}
+
+export type ModalDispatchTypes = OpenModal | CloseModal

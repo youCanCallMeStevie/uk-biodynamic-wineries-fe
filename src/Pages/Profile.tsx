@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Nav() {
+function Profile() {
     return (
         <div>
             
@@ -8,4 +8,4 @@ function Nav() {
     )
 }
 
-export default Nav
+export default Profile
