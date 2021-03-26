@@ -1,7 +1,7 @@
 import axios from "axios";
-const { REACT_APP_API_URI } = process.env;
 import { Credentials } from "../interfaces";
 import { UserProfile } from "../../store/types";
+const { REACT_APP_API_URI } = process.env;
 
 export const registerUser = async (credentials: Credentials) => {
   try {

@@ -1,19 +1,19 @@
-// export const lightMode = {
+export const lightMode = {
 
-//     primaryColor:
-//     primaryColorLighter:
-//     secondaryColor:
-//     text:      
-//     textSecondary:
-//     border:
-// }
+    // primaryColor:
+    // primaryColorLighter:
+    // secondaryColor:
+    // text:      
+    // textSecondary:
+    // border:
+}
 
-// export const darkMode = {
+export const darkMode = {
 
-//     primaryColor:
-//     primaryColorLighter:
-//     secondaryColor:
-//     text:      
-//     textSecondary:
-//     border:
-// }
+    // primaryColor:
+    // primaryColorLighter:
+    // secondaryColor:
+    // text:      
+    // textSecondary:
+    // border:
+}

@@ -10,13 +10,13 @@ const customIcon = new Icon({
   iconSize: [25, 25],
 });
 interface VineyardProps {
-  data: VineyardData;
+  data: VineyardData | null;
 }
 
 function Map({ data }: VineyardProps) {
   // onClick: (param: any) => any)
   const [activeVineyard, setActiveVineyard] = useState({});
-  console.log("data", data.vineyards);
+  console.log("data", data!.vineyards);
   return (
     <div className="leaflet-container">
       <MapContainer center={[51.75, -1.2742]} zoom={8} scrollWheelZoom={true}>
@@ -24,7 +24,7 @@ function Map({ data }: VineyardProps) {
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {data.vineyards.map(vineyard => (
+        {data!.vineyards.map(vineyard => (
           <Marker
             // image={vineyard.images[0]}
             key={vineyard._id}

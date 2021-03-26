@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "./store";
 import './App.css';
 import Search from "./Components/Search/Search";
-import Map from "./Components/Map/Map";
+import Home from "./Pages/Home";
 import Alert from "./Components/Alert/Alert";
 // import { VineyardData, VineyardDispatchTypes } from './store/types';
 import { setAlert} from "./store/actions/alertActions";
@@ -30,7 +30,7 @@ dispatch(getVineyardAction())
 {alertMsg && <Alert message={alertMsg} onClose={()=> dispatch(setAlert(""))}/>}
 {error && <Alert message={error} onClose={()=> dispatch(setError())}/>}
 
-{loading? <Loader />: vineyardData && <Map data={vineyardData} />}
+{loading? <Loader />: vineyardData && <Home/>}
 
   </div>
   );

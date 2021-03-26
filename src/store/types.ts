@@ -63,7 +63,7 @@ export interface UserProfile {
   updatedAt: Date;
   __v?: number;
   refreshToken: string;
-  imageUrl?: string;
+  imageUrl: string;
 }
 
 export interface UserError {
