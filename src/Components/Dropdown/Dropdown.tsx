@@ -16,7 +16,7 @@ export default function Dropdown({ menu, user }: DropdownProps) {
             <Avatar>
               <Image
                 src={user.profile!.imageUrl}
-                alt="Profil picture of logged in user"
+                alt="Profile picture of logged in user"
               />
             </Avatar>
             <h4>
