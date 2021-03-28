@@ -7,7 +7,7 @@ import { getCurrentUserAction } from "../../store/actions/userActions";
 import Dropdown from "../Dropdown/Dropdown";
 import Modal from "../Modal/Modal";
 
-//stles
+//styles
 import { Avatar, Image } from "../../styles/globalStyles";
 import {
   Nav,
@@ -17,9 +17,11 @@ import {
   NavMenu,
   NavItem,
   NavLinks,
+  NavItemBtn,
+  NavBtnLink,
   HamburgerIcon,
 } from "./barnav.elements";
-
+import { Button } from "../../styles/globalStyles";
 //icons
 import { FaBars, FaTimes } from "react-icons/fa";
 import { IconContext } from "react-icons/lib";
@@ -28,34 +30,65 @@ const BarNav = () => {
   const [showModal, setShowModal] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const [click, setClick] = useState(false);
+  const [button, setButton] = useState(true);
+
   const user = useSelector((state: RootState) => state.user);
   const modalStatus = useSelector((state: RootState) => state.modal.isOpen);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getCurrentUserAction());
-  }, []);
 
   const loginSection = useMemo(() => {
     if (!user.isLoggedIn) {
       return (
         <>
-          <NavItem>
-            <NavLinks to="/signin">
-              <span onClick={() => dispatch(toggleModalActions(true, "login"))}>
-                Sign In
-              </span>
-            </NavLinks>
-          </NavItem>
-          <NavItem>
-            <NavLinks to="/register">
-              <span
-                onClick={() => dispatch(toggleModalActions(true, "signup"))}
-              >
-                Sign Up
-              </span>
-            </NavLinks>
-          </NavItem>
+          {button ? (
+            <>
+              <NavItemBtn>
+                <NavBtnLink to="/signin">
+                  <Button
+                    primary
+                    onClick={() => dispatch(toggleModalActions(true, "login"))}
+                  >
+                    LOGIN
+                  </Button>
+                </NavBtnLink>
+              </NavItemBtn>
+              <NavItemBtn>
+                <NavBtnLink to="/register">
+                  <Button
+                    primary
+                    onClick={() => dispatch(toggleModalActions(true, "signup"))}
+                  >
+                    SIGN UP
+                  </Button>
+                </NavBtnLink>
+              </NavItemBtn>
+            </>
+          ) : (
+            <>
+              <NavItemBtn>
+                <NavBtnLink to="/signin">
+                  <Button
+                    fontBig
+                    primary
+                    onClick={() => dispatch(toggleModalActions(true, "login"))}
+                  >
+                    LOGIN
+                  </Button>
+                </NavBtnLink>
+              </NavItemBtn>
+              <NavItemBtn>
+                <NavBtnLink to="/register">
+                  <Button
+                    fontBig
+                    primary
+                    onClick={() => dispatch(toggleModalActions(true, "signup"))}
+                  >
+                    SIGN UP
+                  </Button>
+                </NavBtnLink>
+              </NavItemBtn>
+            </>
+          )}
         </>
       );
     } else {
@@ -81,9 +114,24 @@ const BarNav = () => {
 
   const handleClick = () => setClick(!click);
 
+  const showButton = () => {
+    if (window.innerWidth <= 960) {
+      setButton(false);
+    } else {
+      setButton(true);
+    }
+  };
+
+  useEffect(() => {
+    dispatch(getCurrentUserAction());
+    showButton();
+  }, []);
+
+  window.addEventListener("resize", showButton);
+
   return (
     <>
-      <IconContext.Provider value={{ color: "#fff" }}>
+      <IconContext.Provider value={{ color: "#f3f4ed" }}>
         <Nav>
           <NavBarContainer>
             <NavLogo to="/">

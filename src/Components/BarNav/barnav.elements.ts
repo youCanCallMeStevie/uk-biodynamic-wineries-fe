@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { FaMagento } from "react-icons/fa";
+import { WiMoonWaningGibbous6 } from "react-icons/wi";
 import { Link } from "react-router-dom";
 import { Container } from "../../styles/globalStyles";
 
@@ -33,7 +33,7 @@ export const NavBarContainer = styled(Container)`
 `;
 
 export const NavLogo = styled(Link)`
-  color: #fff;
+  color: #f3f4ed;
   justify-self: flex-start;
   cursor: pointer;
   text-decoration: none;
@@ -42,7 +42,8 @@ export const NavLogo = styled(Link)`
   align-items: center;
 `;
 
-export const NavIcon = styled(FaMagento)`
+
+export const NavIcon = styled(WiMoonWaningGibbous6)`
   margin-right: 0.5rem;
 `;
 
@@ -61,9 +62,9 @@ export const HamburgerIcon = styled.div`
 `;
 
 interface Click {
-    // children?: Element; 
-onClick: () => void;
-    click?: any;
+  // children?: Element;
+  onClick: () => void;
+  click?: any;
 }
 
 export const NavMenu = styled.ul<Click>`
@@ -89,7 +90,7 @@ export const NavItem = styled.li`
   height: 80px;
   border-bottom: 2px solid transparent;
   &:hover {
-    border-bottom: 2px solid #4b59f7;
+    border-bottom: 2px solid #c06014;
   }
   @media screen and (max-width: 960px) {
     width: 100%;
@@ -100,7 +101,7 @@ export const NavItem = styled.li`
 `;
 
 export const NavLinks = styled(Link)`
-  color: #fff;
+  color: #f3f4ed;
   display: flex;
   align-items: center;
   text-decoration: none;
@@ -112,8 +113,30 @@ export const NavLinks = styled(Link)`
     width: 100%;
     display: table;
     &:hover {
-      colour: #4b59f7;
+      color: #c06014;
       transition: all 0.3s ease;
     }
   }
+`;
+
+export const NavItemBtn = styled.li`
+  @media screen and (max-width: 960px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 120px;
+  }
+`;
+
+export const NavBtnLink = styled(Link)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  padding: 8px 16px;
+  height: 100%;
+  width: 100%;
+  border: none;
+  outline: none;
 `;

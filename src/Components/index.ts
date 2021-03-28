@@ -6,6 +6,7 @@ export { default as Toggle} from "./Toggle/Toggle";
 export { default as Search} from "./Search/Search";
 export { default as Modal} from "./Modal/Modal";
 export { default as Loader} from "./Loader/Loader";
+export { default as InfoBanner} from "./InfoBanner/InfoBanner";
 
 
 

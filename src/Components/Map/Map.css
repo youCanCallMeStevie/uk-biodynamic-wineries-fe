@@ -1,5 +1,3 @@
-/* .leaflet-container {
-  top: 50px;
-  width: 100%;
-  height: 50vh;
-} */
+.leaflet-container {
+  overflow: scroll !important;
+}
