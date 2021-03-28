@@ -38,9 +38,7 @@ function Map({ data }: VineyardProps) {
           </Marker>
         ))}
       </MapContainer>
-      <div className="hero-text">
-        go<br></br>near
-      </div>
+      
     </div>
   );
 }

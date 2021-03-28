@@ -1,7 +1,7 @@
 import React, {useMemo} from "react";
 import { Link } from "react-router-dom";
 import { UserState } from "../../store/types";
-import { Avatar, Image } from "../../styles/uiKits";
+import { Avatar, Image } from "../../styles/globalStyles";
 
 interface DropdownProps {
   menu: string;

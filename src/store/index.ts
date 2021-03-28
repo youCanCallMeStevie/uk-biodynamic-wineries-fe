@@ -11,9 +11,9 @@ import nightModeReducer from "./reducers/nightModeReducer";
 
 const rootReducer= combineReducers({
     vineyard: vineyardReducer,
-    alert: alertReducer,
     user: userReducer,
     modal: modalReducer,
+    alert: alertReducer,
     nightMode: nightModeReducer
 })
 
