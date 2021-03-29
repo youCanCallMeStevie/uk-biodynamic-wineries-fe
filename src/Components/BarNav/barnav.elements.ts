@@ -21,7 +21,7 @@ export const Nav = styled.nav`
   font-size: 1.2rem;
   position: sticky;
   top: 0;
-  z-index: 999;
+  z-index: 10001;
 `;
 
 export const NavBarContainer = styled(Container)`

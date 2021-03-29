@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Button } from "../../styles/globalStyles";
+import { Container, Button, Image } from "../../styles/globalStyles";
 import {
   InfoSec,
   InfoRow,
@@ -8,11 +8,12 @@ import {
   TopLine,
   Heading,
   Subtitle,
+  ImgWrapper,
 } from "./InfoBanner.elements";
 import { Link } from "react-router-dom";
 
 function InfoBanner({
-primary,
+  primary,
   lightBg,
   imgStart,
   lightTopLine,
@@ -21,7 +22,10 @@ primary,
   buttonLabel,
   description,
   headline,
-  topLine
+  topLine,
+  img,
+  start,
+  alt,
 }: any) {
   return (
     <>
@@ -34,9 +38,16 @@ primary,
                 <Heading lightText={lightText}>{headline}</Heading>
                 <Subtitle lightTextDesc={lightTextDesc}>{description}</Subtitle>
                 <Link to="/sign-up">
-                  <Button big fontBig primary={primary}>{buttonLabel}</Button>
+                  <Button big fontBig primary={primary}>
+                    {buttonLabel}
+                  </Button>
                 </Link>
               </TextWrapper>
+            </InfoCol>
+            <InfoCol>
+              <ImgWrapper start={start}>
+                <Image src={img} alt={alt} />
+              </ImgWrapper>
             </InfoCol>
           </InfoRow>
         </Container>

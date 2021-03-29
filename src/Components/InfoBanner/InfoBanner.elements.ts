@@ -2,13 +2,13 @@ import styled from "styled-components";
 
 // FIX THIS LATER
 interface Background {
-  lightBg?: string;
+  lightBg?: boolean;
 }
 
 export const InfoSec = styled.div<Background>`
   color: #f3f4ed;
-  padding: 160px 0;
-  background: ${({ lightBg }) => (lightBg ? "#f3f4ed" : "#101522")};
+  padding: 50px 0;
+  background-color: ${({ lightBg }) => (lightBg ? "#f3f4ed" : "#101522")};
 `;
 
 interface Row {
@@ -49,32 +49,42 @@ export const TextWrapper = styled.div`
 `;
 
 interface Color {
-  lightTopLine?: string;
-  lightText?: string;
-  lightTextDesc?: string;
+  lightTopLine?: boolean;
+  lightText?: boolean;
+  lightTextDesc?: boolean;
 }
 export const TopLine = styled.div<Color>`
-  color: ${({ lightTopLine }) => (lightTopLine ? "#a9b3c1" : "#424642")};
+  color: ${({ lightTopLine }) => (lightTopLine ? "#a9b3c1" : "#c06014")};
   font-size: 18px;
   line-height: 16px;
   letter-spacing: 1.4px;
   margin-bottom: 16px;
 `;
 
-
 export const Heading = styled.h1<Color>`
   margin-bottom: 24px;
   font-size: 48px;
-  line-height: 1.16px;
+  line-height: 1.1;
   color: ${({ lightText }) => (lightText ? "#f7f8fa" : "#1c2237")};
 `;
 
-
-
 export const Subtitle = styled.p<Color>`
-max-width: 440px;
-margin-bottom: 35px;
-font-size: 18px;
-line-height: 24px;
-color: ${({lightTextDesc})=> (lightTextDesc ? "#a9b3c1" : "#1c2237")}
-`
+  max-width: 440px;
+  margin-bottom: 35px;
+  font-size: 18px;
+  line-height: 24px;
+  color: ${({ lightTextDesc }) => (lightTextDesc ? "#a9b3c1" : "#1c2237")};
+`;
+
+interface Position {
+  start?: string;
+}
+export const ImgWrapper = styled.div<Position>`
+  max-width: 555px;
+  display: flex;
+  justify-content: ${({ start }) => (start ? "flex-start" : "flex-end")};
+  vertical-align: middle;
+  display: inline-block;
+  max-height: 500px;
+`;
+

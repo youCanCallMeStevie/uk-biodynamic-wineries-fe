@@ -6,6 +6,7 @@ import { toggleModalActions } from "../../store/actions/modalActions";
 import { getCurrentUserAction } from "../../store/actions/userActions";
 import Dropdown from "../Dropdown/Dropdown";
 import Modal from "../Modal/Modal";
+import Toggle from "../Toggle/Toggle";
 
 //styles
 import { Avatar, Image } from "../../styles/globalStyles";
@@ -158,6 +159,7 @@ const BarNav = () => {
                 </NavLinks>
               </NavItem> */}
               {loginSection}
+                <Toggle />
             </NavMenu>
           </NavBarContainer>
         </Nav>

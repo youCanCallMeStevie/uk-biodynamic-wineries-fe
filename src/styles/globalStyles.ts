@@ -5,7 +5,7 @@ const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
     margin: 0;
     padding:0;
-    font-family: "Source Sans Pro", sans-serif;
+    font-family: "Roboto", sans-serif;
 }
 `;
 //buttons
@@ -40,15 +40,16 @@ export const Container = styled.div`
   margin-left: auto;
   padding-left: 50px;
   padding-right: 50px;
+  /* background-color: #101522; */
   @media screen and (max-width: 991px) {
     padding-left: 30px;
     padding-right: 30px;
-  }
+  };
 `;
 
 // FIX THIS LATER
 interface IButton {
-  primary?: any;
+  primary?: boolean;
   big?: any;
   fontBig?: any;
 }
@@ -62,6 +63,7 @@ export const Button = styled.button<IButton>`
   outline: none;
   border: none;
   cursor: pointer;
+  z-index:1001
   &:hover {
     transition: all 0.3s ease;    
     background: #f3f4ed;
