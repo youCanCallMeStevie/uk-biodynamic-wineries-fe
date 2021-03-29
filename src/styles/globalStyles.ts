@@ -17,9 +17,11 @@ const GlobalStyles = createGlobalStyle`
 //text areas
 
 interface IImage {
-  src: string;
+  src?: string;
 }
-export const Image = styled.img<IImage>``;
+export const Image = styled.img<IImage>`
+width: 500px
+`;
 
 export const Avatar = styled.div`
   height: 50px;
@@ -63,7 +65,7 @@ export const Button = styled.button<IButton>`
   outline: none;
   border: none;
   cursor: pointer;
-  z-index:1001
+  z-index:1001;
   &:hover {
     transition: all 0.3s ease;    
     background: #f3f4ed;

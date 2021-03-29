@@ -24,6 +24,7 @@ export const MapSec = styled.div`
     position: relative !important;
     left: 0;
     top: 0;
+    max-height:20vh
   }
 `;
 

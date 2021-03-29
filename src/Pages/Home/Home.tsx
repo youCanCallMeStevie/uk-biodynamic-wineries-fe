@@ -11,7 +11,7 @@ function Home() {
 
   return (
     <>
-          {details!.vineyards && <Map data={details} />}
+      {details!.vineyards && <Map data={details} />}
       <InfoBanner {...homeObjOne} />
       <InfoBanner {...homeObjTwo} />
       <InfoBanner {...homeObjThree} />

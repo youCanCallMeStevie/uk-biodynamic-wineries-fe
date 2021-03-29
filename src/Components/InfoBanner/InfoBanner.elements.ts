@@ -83,8 +83,16 @@ export const ImgWrapper = styled.div<Position>`
   max-width: 555px;
   display: flex;
   justify-content: ${({ start }) => (start ? "flex-start" : "flex-end")};
+`;
+
+interface BannerImg {
+  src?: string;
+}
+export const Img = styled.img<BannerImg>`
+  padding-right: 0;
+  border:0;
+  max-width: 100%;
   vertical-align: middle;
   display: inline-block;
   max-height: 500px;
-`;
-
+`

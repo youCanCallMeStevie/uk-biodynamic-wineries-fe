@@ -1,3 +1,5 @@
+import image1 from "../../assets/illustrations/_flower_day_2.svg"
+
 export const homeObjOne = {
   lightBg: false,
   primary: true,
@@ -10,7 +12,7 @@ export const homeObjOne = {
   headline: "Discover the Biodynamic Day for your Visit to UK Bio Vineyard.",
   lightText: true,
   topLine: "What does the Moon's Position have to do with wine",
-  img: require("../../assets/illustrations/moon_only.svg"),
+  img: require(`../../assets/illustrations/moonlight.svg`),
   alt: "image",
   start: ""
 };
@@ -28,7 +30,7 @@ export const homeObjTwo = {
   headline: "Discover the Biodynamic Day for your Visit to UK Bio Vineyard.",
   lightText: false,
   topLine: "What does the Moon's Position have to do with wine",
-  img: require("../../assets/illustrations/moonlight.svg"),
+  img: require(`../../assets/illustrations/_male_planet.svg`),
   alt: "image",
   start: "true"
 };
@@ -45,7 +47,7 @@ export const homeObjThree = {
   headline: "Discover the Biodynamic Day for your Visit to UK Bio Vineyard.",
   lightText: true,
   topLine: "What does the Moon's Position have to do with wine",
-  img: require("../../assets/illustrations/moonlight.svg"),
+  img: require(`../../assets/illustrations/_flower_day_2.svg`),
   alt: "image",
   start: ""
 };

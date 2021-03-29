@@ -9,8 +9,11 @@ import {
   Heading,
   Subtitle,
   ImgWrapper,
+  Img
 } from "./InfoBanner.elements";
 import { Link } from "react-router-dom";
+import image1 from "../../assets/illustrations/_flower_day_2.svg"
+
 
 function InfoBanner({
   primary,
@@ -46,7 +49,7 @@ function InfoBanner({
             </InfoCol>
             <InfoCol>
               <ImgWrapper start={start}>
-                <Image src={img} alt={alt} />
+                <Img src={img.default} alt={alt} />
               </ImgWrapper>
             </InfoCol>
           </InfoRow>
