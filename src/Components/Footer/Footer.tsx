@@ -1,9 +1,76 @@
 import React from "react";
-import { FooterSec } from "./Footer.elements";
+import {FaLinkedin, FaGithub, FaInstagram} from "react-icons/fa";
+import {
+  FooterContainer,
+  FooterLinksWrapper,
+  FooterItems,
+  FooterLinkTitle,
+  FooterLink,
+  FooterLinksContainer,
+  SocialIconLink,
+  SocialIcons,
+  WebsiteRights,
+  SiteIcon,
+  SiteLogo,
+  SocialWrapper,
+  SocialContainer
+} from "./Footer.elements";
 function Footer() {
-  return(
-    <FooterSec/>
-  )
+  return (
+    <>
+      <FooterContainer />
+      <FooterLinksContainer>
+        <FooterLinksWrapper>
+          <FooterItems>
+            <FooterLinkTitle>About Us</FooterLinkTitle>
+            <FooterLink to="/">Link</FooterLink>
+            <FooterLink to="/">Link</FooterLink>
+            <FooterLink to="/">Link</FooterLink>
+          </FooterItems>
+          <FooterItems>
+            <FooterLinkTitle>Contact Us</FooterLinkTitle>
+            <FooterLink to="/">Link</FooterLink>
+            <FooterLink to="/">Link</FooterLink>
+            <FooterLink to="/">Link</FooterLink>
+          </FooterItems>
+          <FooterItems>
+            <FooterLinkTitle>Social Media</FooterLinkTitle>
+            <FooterLink to="/">Link</FooterLink>
+            <FooterLink to="/">Link</FooterLink>
+            <FooterLink to="/">Link</FooterLink>
+          </FooterItems>
+          <FooterItems>
+            <FooterLinkTitle>Social Media</FooterLinkTitle>
+            <FooterLink to="/">Link</FooterLink>
+            <FooterLink to="/">Link</FooterLink>
+            <FooterLink to="/">Link</FooterLink>
+          </FooterItems>
+        </FooterLinksWrapper>
+      </FooterLinksContainer>
+      <SocialContainer>
+<SocialWrapper>
+
+    <SiteLogo to="/">
+        <SiteIcon>
+            Steview
+        </SiteIcon>
+
+    </SiteLogo>
+    <WebsiteRights>
+        S R Flanagan ©2021
+    </WebsiteRights>
+    <SocialIcons>
+        <SocialIconLink href ={"/"} target="_blank" aria-lable="Github"><FaGithub/></SocialIconLink>
+        <SocialIconLink href ={"/"} target="_blank" aria-lable="Instagram"><FaInstagram/></SocialIconLink>
+        <SocialIconLink href ={"/"} target="_blank" aria-lable="Linked"><FaLinkedin/></SocialIconLink>
+
+    </SocialIcons>
+</SocialWrapper>
+
+      </SocialContainer>
+      <FooterContainer />
+    </>
+  );
 }
 
 export default Footer;

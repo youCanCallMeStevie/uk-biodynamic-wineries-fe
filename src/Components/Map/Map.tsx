@@ -6,7 +6,6 @@ import { VineyardData, VineyardDispatchTypes } from "../../store/types";
 import { Icon } from "leaflet";
 import { MapSec, MapSecContainer, ButtonWrapper } from "./Map.elements";
 
-
 let mapMarker = require("../../assets/illustrations/maps_marker.svg");
 
 const customIcon = new Icon({
@@ -27,8 +26,8 @@ function Map({ data }: VineyardProps, { primary }: any) {
       <MapSec>
         <MapSecContainer>
           <MapContainer
-            center={[51, -1.2742]}
-            zoom={7}
+            center={[51.4, -1.3638]}
+            zoom={8}
             scrollWheelZoom={false}
           >
             <TileLayer
