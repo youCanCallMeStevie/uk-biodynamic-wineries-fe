@@ -12,7 +12,6 @@ import {
   Img
 } from "./InfoBanner.elements";
 import { Link } from "react-router-dom";
-import image1 from "../../assets/illustrations/_flower_day_2.svg"
 
 
 function InfoBanner({

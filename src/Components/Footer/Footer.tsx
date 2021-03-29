@@ -1,5 +1,5 @@
 import React from "react";
-import {FaLinkedin, FaGithub, FaInstagram} from "react-icons/fa";
+import { FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa";
 import {
   FooterContainer,
   FooterLinksWrapper,
@@ -13,7 +13,7 @@ import {
   SiteIcon,
   SiteLogo,
   SocialWrapper,
-  SocialContainer
+  SocialContainer,
 } from "./Footer.elements";
 function Footer() {
   return (
@@ -33,6 +33,9 @@ function Footer() {
             <FooterLink to="/">Link</FooterLink>
             <FooterLink to="/">Link</FooterLink>
           </FooterItems>
+        </FooterLinksWrapper>
+
+        <FooterLinksWrapper>
           <FooterItems>
             <FooterLinkTitle>Social Media</FooterLinkTitle>
             <FooterLink to="/">Link</FooterLink>
@@ -48,25 +51,35 @@ function Footer() {
         </FooterLinksWrapper>
       </FooterLinksContainer>
       <SocialContainer>
-<SocialWrapper>
-
-    <SiteLogo to="/">
-        <SiteIcon>
-            Steview
-        </SiteIcon>
-
-    </SiteLogo>
-    <WebsiteRights>
-        S R Flanagan ©2021
-    </WebsiteRights>
-    <SocialIcons>
-        <SocialIconLink href ={"/"} target="_blank" aria-lable="Github"><FaGithub/></SocialIconLink>
-        <SocialIconLink href ={"/"} target="_blank" aria-lable="Instagram"><FaInstagram/></SocialIconLink>
-        <SocialIconLink href ={"/"} target="_blank" aria-lable="Linked"><FaLinkedin/></SocialIconLink>
-
-    </SocialIcons>
-</SocialWrapper>
-
+        <SocialWrapper>
+          <SiteLogo to="/">
+            <SiteIcon>Steview</SiteIcon>
+          </SiteLogo>
+          <WebsiteRights>S R Flanagan ©2021</WebsiteRights>
+          <SocialIcons>
+            <SocialIconLink
+              href={"https://github.com/youCanCallMeStevie"}
+              target="_blank"
+              aria-lable="Github"
+            >
+              <FaGithub />
+            </SocialIconLink>
+            <SocialIconLink
+              href={"https://www.instagram.com/steviecodes"}
+              target="_blank"
+              aria-lable="Instagram"
+            >
+              <FaInstagram />
+            </SocialIconLink>
+            <SocialIconLink
+              href={"https://www.linkedin.com/in/youcancallmestevie/"}
+              target="_blank"
+              aria-lable="Linked"
+            >
+              <FaLinkedin />
+            </SocialIconLink>
+          </SocialIcons>
+        </SocialWrapper>
       </SocialContainer>
       <FooterContainer />
     </>

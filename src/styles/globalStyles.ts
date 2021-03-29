@@ -20,7 +20,6 @@ interface IImage {
   src?: string;
 }
 export const Image = styled.img<IImage>`
-width: 500px
 `;
 
 export const Avatar = styled.div`

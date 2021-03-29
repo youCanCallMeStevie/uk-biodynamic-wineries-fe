@@ -1,11 +1,12 @@
 import styled from "styled-components";
-
+import {Link} from "react-router-dom";
 export const DaysSection = styled.div`
   padding: 100px 0 160px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   background: #c06014;
+  /* height: 620px; */
 `;
 
 export const DaysWrapper = styled.div`
@@ -21,7 +22,7 @@ export const DaysWrapper = styled.div`
   }
 `;
 
-export const DayHeader = styled.h1`
+export const DaysHeading = styled.h1`
   color: #f3f4ed;
   font-size: 48px;
   margin-bottom: 24px;
@@ -35,22 +36,24 @@ export const DayContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    width: 100%;
+    justify-content: space-between;
+    width: 80%;
   }
 `;
 export const DayCard = styled.div`
   background: #536162;
-  box-shadow: 0 6px 20px rgba(56, 125, 255, 0.2);
-  width: 280px;
-  height: 500px;
+  box-shadow: 0 6px 20px rgba(0, 4, 10, 0.584);
+  width: 200px;
+  height: 400px;
+  text-decoration: none;
   border-radius: 4px;
-  &:nth-child(2) {
+  margin: 10px;
+  /* &:nth-child(2) { add this if i am going to doa button to learn more or something
     margin: 24px;
-  }
+  } */
   &:hover {
-    transform: scale(1.06);
-    transition: all 0.3s ease-out;
+    transform: scale(1.4);
+    transition: all 0.75s ease-out;
     color: #424642;
   }
   @media screen and (max-width: 960px) {
@@ -59,4 +62,42 @@ export const DayCard = styled.div`
       transform: none;
     }
   }
+`;
+
+export const DayCardInfo = styled.div`
+/* padding-bottom: 0px; */
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  padding: 24px;
+  align-items: center;
+  color: #fff;
+`;
+
+export const DayIcon = styled.div`
+  margin: 24px 0;
+  img {
+    height:150px !important;
+    max-width: 210px;
+    /* overflow: hidden */
+
+  }
+`;
+export const HouseHeader = styled.h3`
+  margin-bottom: 5px;
+  font-size: 18px;
+`;
+export const DayHeader = styled.h2`
+  font-size: 30px;
+`;
+
+export const ZodiacHeader = styled.h6`
+  font-size: 12px;
+  margin-bottom: 24px;
+`;
+export const AboutDaySection = styled.p`
+  margin: 16px 0 32px;
+  display:flex;
+  align-items: center;
+  color: offwhite;
 `;

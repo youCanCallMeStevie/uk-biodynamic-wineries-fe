@@ -40,13 +40,17 @@ function App() {
       {loading ? (
         <Loader />
       ) : (
-        vineyardData && <Route path="/" exact component={Home} />
+        vineyardData && 
+        <>
+        <Route path="/" exact component={Home} />
+        <Footer/>
+
+        </>
       )}
       {alertMsg && (
         <Alert message={alertMsg} onClose={() => dispatch(setAlert(""))} />
       )}
       {error && <Alert message={error} onClose={() => dispatch(setError())} />}
-      <Footer/>
     </Router>
   );
 }

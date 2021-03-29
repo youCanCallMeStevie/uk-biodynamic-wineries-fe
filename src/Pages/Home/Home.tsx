@@ -1,10 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Map from "../../Components/Map/Map";
 import { RootState } from "../../store";
-import { InfoBanner } from "../../Components";
+import { InfoBanner, Map, BioDays } from "../../Components";
 import { homeObjOne, homeObjTwo, homeObjThree } from "./Data";
-import photo from "../../assets/illustrations/moon_only.svg"
 
 function Home() {
   const details = useSelector((state: RootState) => state.vineyard.data);
@@ -13,6 +11,7 @@ function Home() {
     <>
       {details!.vineyards && <Map data={details} />}
       <InfoBanner {...homeObjOne} />
+      <BioDays/>
       <InfoBanner {...homeObjTwo} />
       <InfoBanner {...homeObjThree} />
 
