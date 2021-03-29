@@ -6,15 +6,19 @@ import { VineyardData, VineyardDispatchTypes } from "../../store/types";
 import { Icon } from "leaflet";
 import { MapSec, MapSecContainer, ButtonWrapper } from "./Map.elements";
 
+
+let mapMarker = require("../../assets/illustrations/maps_marker.svg");
+
 const customIcon = new Icon({
-  iconUrl: `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiafWmfX0vIJshHbXJL59xjQxGrHJd6smlxh1Sg2ybkOcjpmYyg07aUYcrybac1YlgAfo&usqp=CAU`,
-  iconSize: [25, 25],
+  iconUrl: mapMarker.default,
+  iconSize: [45, 45],
 });
+
 interface VineyardProps {
   data: VineyardData | null;
 }
 
-function Map({ data }: VineyardProps, {primary}:any) {
+function Map({ data }: VineyardProps, { primary }: any) {
   // onClick: (param: any) => any)
   const [activeVineyard, setActiveVineyard] = useState({});
   console.log("data", data!.vineyards);
@@ -23,22 +27,17 @@ function Map({ data }: VineyardProps, {primary}:any) {
       <MapSec>
         <MapSecContainer>
           <MapContainer
-            center={[51.75, -1.2742]}
-            zoom={9}
+            center={[51, -1.2742]}
+            zoom={7}
             scrollWheelZoom={false}
           >
-            <Container>
-            <ButtonWrapper>
-            <Button big fontBig primary={primary}>Find a Biodynamic Vineyard</Button>
-            </ButtonWrapper>
-            </Container>
             <TileLayer
               attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
+
             {data!.vineyards.map(vineyard => (
               <Marker
-                // image={vineyard.images[0]}
                 key={vineyard._id}
                 icon={customIcon}
                 position={[
@@ -53,6 +52,13 @@ function Map({ data }: VineyardProps, {primary}:any) {
               </Marker>
             ))}
           </MapContainer>
+          <Container>
+            <ButtonWrapper>
+              <Button big fontBig primary={primary}>
+                Plan Your Visit
+              </Button>
+            </ButtonWrapper>
+          </Container>
         </MapSecContainer>
       </MapSec>
     </>

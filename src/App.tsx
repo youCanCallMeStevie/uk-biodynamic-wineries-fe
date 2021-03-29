@@ -16,6 +16,7 @@ import {
   setError,
 } from "./store/actions/vineyardActions";
 import GlobalStyles from "./styles/globalStyles";
+import Footer from "./Components/Footer/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -45,6 +46,7 @@ function App() {
         <Alert message={alertMsg} onClose={() => dispatch(setAlert(""))} />
       )}
       {error && <Alert message={error} onClose={() => dispatch(setError())} />}
+      <Footer/>
     </Router>
   );
 }
