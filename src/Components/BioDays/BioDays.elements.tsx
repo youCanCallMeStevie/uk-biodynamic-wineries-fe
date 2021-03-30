@@ -52,12 +52,13 @@ export const DayCard = styled.div`
     margin: 24px;
   } */
   &:hover {
-    transform: scale(1.4);
+    transform: scale(1.2);
     transition: all 0.75s ease-out;
     color: #424642;
   }
   @media screen and (max-width: 960px) {
-    width: 90%;
+    width: 75%;
+    min-width: 200px;
     &:hover {
       transform: none;
     }
@@ -78,7 +79,7 @@ export const DayIcon = styled.div`
   margin: 24px 0;
   img {
     height:150px !important;
-    max-width: 210px;
+    max-width: 215px;
     /* overflow: hidden */
 
   }

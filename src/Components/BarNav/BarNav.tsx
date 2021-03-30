@@ -26,9 +26,12 @@ import { Button } from "../../styles/globalStyles";
 //icons
 import { FaBars, FaTimes } from "react-icons/fa";
 import { IconContext } from "react-icons/lib";
+import { WiMoonWaxingGibbous2, WiMoonWaningGibbous6, WiMoonWaxingCrescent4, WiMoonWaningCrescent5, WiMoonFull, WiMoonNew } from "react-icons/wi";
 
 
 const BarNav = () => {
+  const moonInfo = useSelector((state: RootState)=> state.moon.moonInfo)
+
   const [showModal, setShowModal] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const [click, setClick] = useState(false);
@@ -68,13 +71,13 @@ const BarNav = () => {
           ) : (
             <>
               <NavItemBtn>
-                <NavBtnLink to="/signin">
+                <NavBtnLink to="/">
                   <Button
                     fontBig
                     primary
                     onClick={() => dispatch(toggleModalActions(true, "login"))}
                   >
-                    LOGIN
+                    LOGOUT
                   </Button>
                 </NavBtnLink>
               </NavItemBtn>

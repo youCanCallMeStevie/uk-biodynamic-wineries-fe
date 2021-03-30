@@ -5,16 +5,15 @@ import { InfoBanner, Map, BioDays } from "../../Components";
 import { homeObjOne, homeObjTwo, homeObjThree } from "./Data";
 
 function Home() {
-const details = useSelector((state: RootState) => state.vineyard.data);
-const moonInfo = useSelector((state: RootState)=> state.moon.moonInfo)
+  const details = useSelector((state: RootState) => state.vineyard.data);
+  const moonInfo = useSelector((state: RootState) => state.moon.moonInfo);
   return (
     <>
       {details!.vineyards && <Map data={details} moonInfo={moonInfo} />}
-      <InfoBanner {...homeObjOne} />
-      <BioDays/>
-      <InfoBanner {...homeObjTwo} />
-      <InfoBanner {...homeObjThree} />
-
+      <InfoBanner {...homeObjOne} moonInfo={moonInfo} />
+      <BioDays />
+      <InfoBanner {...homeObjTwo} moonInfo={moonInfo} />
+      <InfoBanner {...homeObjThree} moonInfo={moonInfo} />
     </>
   );
 }

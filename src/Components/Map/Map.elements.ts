@@ -18,6 +18,9 @@ export const MapSecContainer = styled.div`
     padding-left: 30px;
     padding-right: 30px;
     max-height: 100vh;
+    .button{
+      background: #536162!important;
+    }
   } ;
 `;
 
@@ -44,6 +47,30 @@ export const ButtonWrapper = styled.div`
     flex-basis: 100%;
     display: flex;
     justify-content: center;
+    
   }
 `;
+export const HeadingWrapper = styled.div`
+position: absolute;
+z-index: 5005;
+top: 140px;
+width: 100%;
+@media screen and (max-width: 768px) {
+    position: relative;
+    top: 1rem;
+    left: 0;
+    max-width: 100%;
+    flex-basis: 100%;
+    display: flex;
+    justify-content: center;
+  }
+`
 
+export const DayHeading = styled.h1`
+color: #c06014;
+font-size: 3rem;
+@media screen and (max-width: 768px) {
+    font-size:16px;
+  }
+
+`

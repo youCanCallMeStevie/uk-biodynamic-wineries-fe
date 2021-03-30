@@ -29,7 +29,7 @@ export const homeObjTwo = {
     "Depending on when you visit a vineyard,.... Biodynamic, blah, blah, blah, spend some time building proepr copy. but get the coding done",
   headline: "Discover the Biodynamic Day for your Visit to UK Bio Vineyard.",
   lightText: false,
-  topLine: "What does the Moon's Position have to do with wine",
+  topLine: "What's today's",
   img: require(`../../assets/illustrations/_male_planet.svg`),
   alt: "image",
   start: "true"

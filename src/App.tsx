@@ -33,11 +33,6 @@ function App() {
     dispatch(fetchTodaysMoonAction());
   }, []);
 
-  // useEffect(() => {
-  //   dispatch(setLoading());
-  //   dispatch(getVineyardAction());
-  //   dispatch(fetchTodaysMoonAction());
-  // }, []);
   return (
     <Router>
       <GlobalStyles />

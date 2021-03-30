@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { WiMoonWaningGibbous6 } from "react-icons/wi";
 import { Link } from "react-router-dom";
 import { Container } from "../../styles/globalStyles";
+import { WiMoonWaxingGibbous2, WiMoonWaningGibbous6, WiMoonWaxingCrescent4, WiMoonWaningCrescent5, WiMoonFull, WiMoonNew } from "react-icons/wi";
 
 // export const NavBar = styled.div`
 //   position: fixed;

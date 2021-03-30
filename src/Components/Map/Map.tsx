@@ -5,7 +5,13 @@ import { Button, Container } from "../../styles/globalStyles";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { VineyardData, MoonData } from "../../store/types";
 import { Icon } from "leaflet";
-import { MapSec, MapSecContainer, ButtonWrapper } from "./Map.elements";
+import {
+  MapSec,
+  MapSecContainer,
+  ButtonWrapper,
+  HeadingWrapper,
+  DayHeading,
+} from "./Map.elements";
 
 const mapMarker = require("../../assets/illustrations/maps_marker.svg");
 
@@ -19,8 +25,7 @@ interface MapProps {
   moonInfo: MoonData | null;
 }
 function Map({ data, moonInfo }: MapProps, { primary }: any) {
-
-  console.log("moonInfo", moonInfo)
+  console.log("moonInfo", moonInfo);
   console.log("data", data!.vineyards);
   return (
     <>
@@ -53,6 +58,9 @@ function Map({ data, moonInfo }: MapProps, { primary }: any) {
             ))}
           </MapContainer>
           <Container>
+            <HeadingWrapper>
+          <DayHeading>Today is: A {moonInfo?.bioDay} Day</DayHeading>
+          </HeadingWrapper>
             <ButtonWrapper>
               <Button big fontBig primary={primary}>
                 Plan Your Visit

@@ -1,5 +1,7 @@
 import React from "react";
 import { Container, Button, Image } from "../../styles/globalStyles";
+import { MoonData } from "../../store/types";
+
 import {
   InfoSec,
   InfoRow,
@@ -9,10 +11,25 @@ import {
   Heading,
   Subtitle,
   ImgWrapper,
-  Img
+  Img,
 } from "./InfoBanner.elements";
 import { Link } from "react-router-dom";
-
+interface BannerProps {
+  moonInfo: MoonData | null;
+  primary: boolean;
+  lightBg: boolean;
+  imgStart: string;
+  lightTopLine: boolean;
+  lightText: boolean;
+  lightTextDesc: boolean;
+  buttonLabel: string;
+  description: string;
+  headline: string;
+  topLine: string;
+  img: any;
+  start: string;
+  alt: string;
+}
 
 function InfoBanner({
   primary,
@@ -28,9 +45,12 @@ function InfoBanner({
   img,
   start,
   alt,
-}: any) {
+  moonInfo,
+}: BannerProps) {
   return (
     <>
+      {console.log("moonInfo", moonInfo)}
+
       <InfoSec lightBg={lightBg}>
         <Container>
           <InfoRow imgStart={imgStart}>
@@ -48,7 +68,7 @@ function InfoBanner({
             </InfoCol>
             <InfoCol>
               <ImgWrapper start={start}>
-                <Img src={img.default} alt={alt} />
+                <Img src={img?.default} alt={alt} />
               </ImgWrapper>
             </InfoCol>
           </InfoRow>
