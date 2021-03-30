@@ -1,25 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
+
+import { useDispatch, useSelector } from "react-redux";
 import { Button, Container } from "../../styles/globalStyles";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-// const position = [51.505, -0.09]
-import { VineyardData, VineyardDispatchTypes } from "../../store/types";
+import { VineyardData, MoonData } from "../../store/types";
 import { Icon } from "leaflet";
 import { MapSec, MapSecContainer, ButtonWrapper } from "./Map.elements";
 
-let mapMarker = require("../../assets/illustrations/maps_marker.svg");
+const mapMarker = require("../../assets/illustrations/maps_marker.svg");
 
 const customIcon = new Icon({
   iconUrl: mapMarker.default,
   iconSize: [45, 45],
 });
 
-interface VineyardProps {
+interface MapProps {
   data: VineyardData | null;
+  moonInfo: MoonData | null;
 }
+function Map({ data, moonInfo }: MapProps, { primary }: any) {
 
-function Map({ data }: VineyardProps, { primary }: any) {
-  // onClick: (param: any) => any)
-  const [activeVineyard, setActiveVineyard] = useState({});
+  console.log("moonInfo", moonInfo)
   console.log("data", data!.vineyards);
   return (
     <>

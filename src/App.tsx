@@ -10,6 +10,8 @@ import Alert from "./Components/Alert/Alert";
 import { setAlert } from "./store/actions/alertActions";
 import Loader from "./Components/Loader/Loader";
 import BarNav from "./Components/BarNav/BarNav";
+import { fetchTodaysMoonAction } from "./store/actions/moonActions";
+
 import {
   getVineyardAction,
   setLoading,
@@ -28,8 +30,14 @@ function App() {
   useEffect(() => {
     dispatch(setLoading());
     dispatch(getVineyardAction());
+    dispatch(fetchTodaysMoonAction());
   }, []);
 
+  // useEffect(() => {
+  //   dispatch(setLoading());
+  //   dispatch(getVineyardAction());
+  //   dispatch(fetchTodaysMoonAction());
+  // }, []);
   return (
     <Router>
       <GlobalStyles />

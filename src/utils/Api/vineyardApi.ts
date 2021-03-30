@@ -81,7 +81,18 @@ export const deleteVineyard = async (vineyardId: string) => {
     return null;
   }
 };
-
+export const fetchTodaysMoon = async() => {
+  try {
+    const moonInfo = await axios.get(
+      `${REACT_APP_API_URI}/api/vineyards/today/mooninfo`
+    );
+    console.log("moonInfo.data.moonInfo.bioObject", moonInfo.data.moonInfo.bioObject)
+    return moonInfo.data.moonInfo.bioObject;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}
 export const searchVineyards = async (query: SearchQuery) => {
   try {
     const { grapes, date, city } = query;

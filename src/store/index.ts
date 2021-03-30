@@ -7,11 +7,12 @@ import alertReducer from "./reducers/alertReducer";
 import userReducer from "./reducers/userReducer";
 import modalReducer from "./reducers/modalReducer";
 import nightModeReducer from "./reducers/nightModeReducer";
-
+import moonReducer from "./reducers/moonReducer";
 
 const rootReducer= combineReducers({
     vineyard: vineyardReducer,
     user: userReducer,
+    moon: moonReducer,
     modal: modalReducer,
     alert: alertReducer,
     nightMode: nightModeReducer

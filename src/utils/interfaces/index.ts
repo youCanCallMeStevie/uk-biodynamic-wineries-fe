@@ -1,6 +1,6 @@
 export interface SearchQuery {
   grapes?: string;
-  date?: Date;
+  date?: string;
   city?: string;
 }
 

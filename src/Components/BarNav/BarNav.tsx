@@ -27,6 +27,7 @@ import { Button } from "../../styles/globalStyles";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { IconContext } from "react-icons/lib";
 
+
 const BarNav = () => {
   const [showModal, setShowModal] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -127,8 +128,9 @@ const BarNav = () => {
     dispatch(getCurrentUserAction());
     showButton();
   }, []);
-
   window.addEventListener("resize", showButton);
+
+
 
   return (
     <>

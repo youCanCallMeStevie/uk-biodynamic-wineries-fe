@@ -34,6 +34,8 @@ export const SELECTED_USER_ERROR = "SELECTED_USER_ERROR";
 
 export const OPEN_MODAL = "OPEN_MODAL";
 export const CLOSE_MODAL = "CLOSE_MODAL";
+
+export const GET_MOON_INFO = "GET_MOON_INFO";
  
 //USER
 
@@ -322,10 +324,6 @@ export interface VineyardState {
   error: string;
 }
 
-// interface GetVineyardAction {
-//   type: typeof GET_VINEYARD;
-//   payload: VineyardData;
-// }
 
 
   export interface VineyardLoading {
@@ -374,3 +372,34 @@ export interface CloseModal {
 }
 
 export type ModalDispatchTypes = OpenModal | CloseModal
+
+//Moon
+
+export interface MoonAction{
+  type: typeof GET_MOON_INFO;
+  payload: MoonData
+}
+
+
+export interface MoonData{
+  resultsDate: AstroTime,
+  trajectory: string, 
+  moonPhase: string,
+  zodiac: string;
+  house: string;
+  bioDay: string;
+  nextFruitday: string;
+  nextFullMoon: AstroTime
+}
+
+export interface AstroTime{
+  date: Date,
+  ut: number,
+  tt: number
+}
+
+export interface MoonState {
+  moonInfo: MoonData | null;
+  }
+
+  
