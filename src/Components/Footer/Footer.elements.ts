@@ -90,21 +90,27 @@ export const SiteLogo = styled(Link)`
 `;
 
 export const MoonWrapper = styled.div`
-display: flex;
-justify-content: space-around;
-align-items: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  @media screen and (max-width: 820px) {
+    margin-bottom: 20px;
+  }
 `;
 
 export const MoonText = styled.div`
   color: #f3f4ed;
   font-size: 12px;
   margin-bottom: 12px;
+  @media screen and (max-width: 820px) {
+    font-size: 16px;
+  }
 `;
 
 export const Copright = styled.small`
   color: #f3f4ed;
   margin-bottom: 8px;
-   @media screen and (max-width: 820px) {
+  @media screen and (max-width: 820px) {
     margin-top: 16px;
   }
 `;

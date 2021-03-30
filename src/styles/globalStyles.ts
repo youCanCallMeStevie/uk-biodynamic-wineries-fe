@@ -71,7 +71,7 @@ export const Button = styled.button<IButton>`
     background: ${({ primary }) => (primary ? "#424642" : "#c06014")};
   }
   @media screen and (max-width: 960px) {
-    width: 100%;
+    width: 80%;
   }
 `;
 

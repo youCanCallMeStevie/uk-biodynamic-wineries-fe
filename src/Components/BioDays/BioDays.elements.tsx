@@ -70,7 +70,7 @@ export const DayCardInfo = styled.div`
   /* padding-bottom: 0px; */
   display: flex;
   flex-direction: column;
-  height: 400px;
+  /* height: 400px; */
   padding: 24px;
   align-items: center;
   color: #fff;
@@ -79,9 +79,13 @@ export const DayCardInfo = styled.div`
 export const DayIcon = styled.div`
   margin: 24px 0;
   img {
+    display: flex;
     height: 150px !important;
     max-width: 215px;
-    /* overflow: hidden */
+    @media screen and (max-width: 960px) {
+      justify-content: center;
+      max-width: 200vw;
+    }
   }
 `;
 export const HouseHeader = styled.h3`

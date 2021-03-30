@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "./store";
 // import './App.css';
-import Search from "./Components/Search/Search";
 import Home from "./Pages/Home/Home";
 import Alert from "./Components/Alert/Alert";
 // import { VineyardData, VineyardDispatchTypes } from './store/types';
@@ -39,9 +38,6 @@ function App() {
     <Router>
       <GlobalStyles />
       <BarNav />
-      <Search
-      // title = "Enter city name & press search button"
-      />
       {loading ? (
         <Loader />
       ) : (

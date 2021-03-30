@@ -7,7 +7,6 @@ import {
 } from "../types";
 
 const initialState: VineyardState = {
-  data: null,
   loading: false,
   error: "",
 };

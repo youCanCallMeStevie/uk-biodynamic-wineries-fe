@@ -12,6 +12,7 @@ import {
   HeadingWrapper,
   DayHeading,
 } from "./Map.elements";
+import Search from "../Search/Search";
 
 const mapMarker = require("../../assets/illustrations/maps_marker.svg");
 
@@ -21,7 +22,7 @@ const customIcon = new Icon({
 });
 
 interface MapProps {
-  data: VineyardData | null;
+  data?: VineyardData;
   moonInfo?: MoonData;
 }
 function Map({ data, moonInfo }: MapProps, { primary }: any) {
@@ -62,9 +63,10 @@ function Map({ data, moonInfo }: MapProps, { primary }: any) {
               <DayHeading>Today is: A {moonInfo?.bioDay} Day</DayHeading>
             </HeadingWrapper>
             <ButtonWrapper>
-              <Button big fontBig primary={primary}>
+              <Search data={data} />
+              {/* <Button big fontBig primary>
                 Plan Your Visit
-              </Button>
+              </Button> */}
             </ButtonWrapper>
           </Container>
         </MapSecContainer>

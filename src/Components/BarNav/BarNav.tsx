@@ -139,7 +139,7 @@ const BarNav = () => {
               <>
                 <MoonIcon />
               </>
-              UK Bio
+              LunaVines
             </NavLogo>
             <HamburgerIcon onClick={handleClick}>
               {click ? <FaTimes /> : <FaBars />}

@@ -321,7 +321,7 @@ export interface Rise {
 
 
 export interface VineyardState {
-  data: VineyardData | null;
+  data?: VineyardData;
   loading: boolean;
   error: string;
 }

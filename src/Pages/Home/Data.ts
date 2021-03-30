@@ -27,7 +27,7 @@ export const homeObjTwo: HomeObjectMaker = (moonInfo?: MoonData) => ({
   imgStart: "start",
   lightTopLine: false,
   lightTextDesc: false,
-  buttonLabel: "Check out the Calendar",
+  buttonLabel: "Check Out",
   description:
     "Depending on when you visit a vineyard,.... Biodynamic, blah, blah, blah, spend some time building proepr copy. but get the coding done",
   headline: "Discover the Biodynamic Day for your Visit to UK Bio Vineyard.",
