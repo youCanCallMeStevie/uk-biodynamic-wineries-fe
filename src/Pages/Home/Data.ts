@@ -1,4 +1,6 @@
-import image1 from "../../assets/illustrations/_flower_day_2.svg"
+import { BannerProps } from "../../Components/InfoBanner/InfoBanner";
+import { MoonData, MoonPhase } from "../../store/types";
+
 
 export const homeObjOne = {
   lightBg: false,
@@ -17,8 +19,9 @@ export const homeObjOne = {
   start: ""
 };
 
+type HomeObjectMaker = (moonInfo?: MoonData) => BannerProps
 
-export const homeObjTwo = {
+export const homeObjTwo: HomeObjectMaker = (moonInfo?: MoonData) => ({
   lightBg: true,
   primary: false,
   imgStart: "start",
@@ -32,8 +35,9 @@ export const homeObjTwo = {
   topLine: "What's today's",
   img: require(`../../assets/illustrations/_male_planet.svg`),
   alt: "image",
-  start: "true"
-};
+  start: "true",
+  moonInfo
+});
 
 export const homeObjThree = {
   lightBg: false,

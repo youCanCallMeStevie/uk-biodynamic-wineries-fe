@@ -22,6 +22,8 @@ import Footer from "./Components/Footer/Footer";
 
 function App() {
   const dispatch = useDispatch();
+  const moonInfo = useSelector((state: RootState) => state.moon.moonInfo);
+  const moonPhase = moonInfo?.moonPhase;
   const vineyardData = useSelector((state: RootState) => state.vineyard.data);
   const loading = useSelector((state: RootState) => state.vineyard.loading);
   const error = useSelector((state: RootState) => state.vineyard.error);
@@ -43,12 +45,12 @@ function App() {
       {loading ? (
         <Loader />
       ) : (
-        vineyardData && 
-        <>
-        <Route path="/" exact component={Home} />
-        <Footer/>
-
-        </>
+        vineyardData && (
+          <>
+            <Route path="/" exact component={Home} />
+            <Footer moonPhase={moonPhase} />
+          </>
+        )
       )}
       {alertMsg && (
         <Alert message={alertMsg} onClose={() => dispatch(setAlert(""))} />

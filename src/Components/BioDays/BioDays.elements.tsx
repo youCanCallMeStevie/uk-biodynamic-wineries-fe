@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+
 export const DaysSection = styled.div`
   padding: 100px 0 160px;
   display: flex;
@@ -66,7 +67,7 @@ export const DayCard = styled.div`
 `;
 
 export const DayCardInfo = styled.div`
-/* padding-bottom: 0px; */
+  /* padding-bottom: 0px; */
   display: flex;
   flex-direction: column;
   height: 400px;
@@ -78,10 +79,9 @@ export const DayCardInfo = styled.div`
 export const DayIcon = styled.div`
   margin: 24px 0;
   img {
-    height:150px !important;
+    height: 150px !important;
     max-width: 215px;
     /* overflow: hidden */
-
   }
 `;
 export const HouseHeader = styled.h3`
@@ -98,7 +98,7 @@ export const ZodiacHeader = styled.h6`
 `;
 export const AboutDaySection = styled.p`
   margin: 16px 0 32px;
-  display:flex;
+  display: flex;
   align-items: center;
   color: offwhite;
 `;

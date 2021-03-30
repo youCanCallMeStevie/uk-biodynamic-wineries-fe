@@ -26,51 +26,47 @@ function BioDays() {
       {" "}
       <DaysSection>
         <DaysWrapper>
-          <DaysHeading>What are the Biodyanmic Days?</DaysHeading>
+          <DaysHeading>What are Biodynamic Days?</DaysHeading>
 
           <DayContainer>
             <DayCard>
-            <DayIcon>
-                  <Image src={FruitLogo} />
-                </DayIcon>
+              <DayIcon>
+                <Image src={FruitLogo} />
+              </DayIcon>
               <DayCardInfo>
-                
                 <HouseHeader>Light & Fire</HouseHeader>
                 <DayHeader>Fruit</DayHeader>
                 <ZodiacHeader>Aries | Leo | Sagittarius</ZodiacHeader>
                 <AboutDaySection>About ths day, what happens </AboutDaySection>
               </DayCardInfo>
             </DayCard>
-            <DayCard >
-            <DayIcon>
-                  <Image src={FlowerLogo} />
-                </DayIcon>
+            <DayCard>
+              <DayIcon>
+                <Image src={FlowerLogo} />
+              </DayIcon>
               <DayCardInfo>
-                
                 <HouseHeader>Air</HouseHeader>
                 <DayHeader>Flower</DayHeader>
                 <ZodiacHeader>Gemini | Libra | Aquarius</ZodiacHeader>
                 <AboutDaySection>About ths day, what happens </AboutDaySection>
               </DayCardInfo>
             </DayCard>
-            <DayCard >
-            <DayIcon>
-                  <Image src={LeafLogo} />
-                </DayIcon>
+            <DayCard>
+              <DayIcon>
+                <Image src={LeafLogo} />
+              </DayIcon>
               <DayCardInfo>
-                
                 <HouseHeader>Water</HouseHeader>
                 <DayHeader>Leaf</DayHeader>
                 <ZodiacHeader>Pisces | Cancer | Scorpio</ZodiacHeader>
                 <AboutDaySection>About ths day, what happens </AboutDaySection>
               </DayCardInfo>
             </DayCard>
-            <DayCard >
-            <DayIcon>
-                  <Image src={RootLogo} />
-                </DayIcon>
+            <DayCard>
+              <DayIcon>
+                <Image src={RootLogo} />
+              </DayIcon>
               <DayCardInfo>
-                
                 <HouseHeader>Earth</HouseHeader>
                 <DayHeader>Root</DayHeader>
                 <ZodiacHeader>Taurus | Virgo | Capricorn</ZodiacHeader>

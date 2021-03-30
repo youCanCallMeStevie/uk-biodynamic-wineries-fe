@@ -1,3 +1,5 @@
+import {MoonPhases} from "../Components/MoonIcon/MoonIcon";
+
 export const SET_LOADING = "SET_LOADING";
 export const SET_ERROR = "SET_ERROR";
 export const SET_DARKMODE = "SET_DARKMODE";
@@ -380,11 +382,12 @@ export interface MoonAction{
   payload: MoonData
 }
 
+export type MoonPhase = keyof typeof MoonPhases
 
 export interface MoonData{
   resultsDate: AstroTime,
   trajectory: string, 
-  moonPhase: string,
+  moonPhase: MoonPhase,
   zodiac: string;
   house: string;
   bioDay: string;
@@ -399,7 +402,9 @@ export interface AstroTime{
 }
 
 export interface MoonState {
-  moonInfo: MoonData | null;
+  moonInfo?: MoonData;
   }
+
+
 
   

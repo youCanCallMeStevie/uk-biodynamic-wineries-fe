@@ -1,16 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { Container } from "../../styles/globalStyles";
-import { WiMoonWaxingGibbous2, WiMoonWaningGibbous6, WiMoonWaxingCrescent4, WiMoonWaningCrescent5, WiMoonFull, WiMoonNew } from "react-icons/wi";
 
-// export const NavBar = styled.div`
-//   position: fixed;
-//   top: 0;
-//   right: 0;
-//   width: 100vw;
-//   height: 150px;
-//   background-color: blue;
-// `;
 
 export const Nav = styled.nav`
   background: #101522;
@@ -43,9 +34,7 @@ export const NavLogo = styled(Link)`
 `;
 
 
-export const NavIcon = styled(WiMoonWaningGibbous6)`
-  margin-right: 0.5rem;
-`;
+
 
 export const HamburgerIcon = styled.div`
   display: none;

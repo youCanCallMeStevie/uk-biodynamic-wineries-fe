@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
-// FIX THIS LATER
 interface Background {
-  lightBg?: boolean;
+  lightBg: boolean;
 }
 
 export const InfoSec = styled.div<Background>`

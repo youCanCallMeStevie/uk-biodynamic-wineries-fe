@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
-
 import { toggleModalActions } from "../../store/actions/modalActions";
 import { getCurrentUserAction } from "../../store/actions/userActions";
 import Dropdown from "../Dropdown/Dropdown";
@@ -13,7 +12,6 @@ import { Avatar, Image } from "../../styles/globalStyles";
 import {
   Nav,
   NavBarContainer,
-  NavIcon,
   NavLogo,
   NavMenu,
   NavItem,
@@ -26,11 +24,10 @@ import { Button } from "../../styles/globalStyles";
 //icons
 import { FaBars, FaTimes } from "react-icons/fa";
 import { IconContext } from "react-icons/lib";
-import { WiMoonWaxingGibbous2, WiMoonWaningGibbous6, WiMoonWaxingCrescent4, WiMoonWaningCrescent5, WiMoonFull, WiMoonNew } from "react-icons/wi";
-
+import MoonIcon from "../MoonIcon/MoonIcon";
 
 const BarNav = () => {
-  const moonInfo = useSelector((state: RootState)=> state.moon.moonInfo)
+  const moonInfo = useSelector((state: RootState) => state.moon.moonInfo);
 
   const [showModal, setShowModal] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -133,15 +130,15 @@ const BarNav = () => {
   }, []);
   window.addEventListener("resize", showButton);
 
-
-
   return (
     <>
       <IconContext.Provider value={{ color: "#f3f4ed" }}>
         <Nav>
           <NavBarContainer>
             <NavLogo to="/">
-              <NavIcon />
+              <>
+                <MoonIcon />
+              </>
               UK Bio
             </NavLogo>
             <HamburgerIcon onClick={handleClick}>
@@ -149,7 +146,8 @@ const BarNav = () => {
             </HamburgerIcon>
             <NavMenu onClick={handleClick} click={click}>
               <NavItem>
-                <NavLinks to="/">Home</NavLinks>
+                <NavLinks to="/">Vineyards</NavLinks>
+                {/* <NavLinks to="/">Calender</NavLinks> */}
               </NavItem>
               {/* <NavItem>
                 <NavLinks to="/profile">
@@ -164,7 +162,7 @@ const BarNav = () => {
                 </NavLinks>
               </NavItem> */}
               {loginSection}
-                <Toggle />
+              <Toggle />
             </NavMenu>
           </NavBarContainer>
         </Nav>

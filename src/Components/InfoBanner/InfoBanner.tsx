@@ -14,8 +14,8 @@ import {
   Img,
 } from "./InfoBanner.elements";
 import { Link } from "react-router-dom";
-interface BannerProps {
-  moonInfo: MoonData | null;
+export interface BannerProps {
+  moonInfo?: MoonData;
   primary: boolean;
   lightBg: boolean;
   imgStart: string;
@@ -58,6 +58,9 @@ function InfoBanner({
               <TextWrapper>
                 <TopLine lightTopLine={lightTopLine}>{topLine}</TopLine>
                 <Heading lightText={lightText}>{headline}</Heading>
+                <Subtitle lightTextDesc={lightTextDesc}>
+                  {moonInfo?.moonPhase || description}
+                </Subtitle>
                 <Subtitle lightTextDesc={lightTextDesc}>{description}</Subtitle>
                 <Link to="/sign-up">
                   <Button big fontBig primary={primary}>

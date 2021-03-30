@@ -12,7 +12,7 @@ function Home() {
       {details!.vineyards && <Map data={details} moonInfo={moonInfo} />}
       <InfoBanner {...homeObjOne} moonInfo={moonInfo} />
       <BioDays />
-      <InfoBanner {...homeObjTwo} moonInfo={moonInfo} />
+      <InfoBanner {...homeObjTwo(moonInfo)} moonInfo={moonInfo} />
       <InfoBanner {...homeObjThree} moonInfo={moonInfo} />
     </>
   );

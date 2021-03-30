@@ -86,16 +86,27 @@ export const SiteLogo = styled(Link)`
   font-size: 2rem;
   display: flex;
   align-items: center;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 `;
 
-export const SiteIcon = styled(WiMoonWaningGibbous6)`
-  margin-right: 10px;
+export const MoonWrapper = styled.div`
+display: flex;
+justify-content: space-around;
+align-items: center;
 `;
 
-export const WebsiteRights = styled.small`
+export const MoonText = styled.div`
   color: #f3f4ed;
-  margin-bottom: 16px;
+  font-size: 12px;
+  margin-bottom: 12px;
+`;
+
+export const Copright = styled.small`
+  color: #f3f4ed;
+  margin-bottom: 8px;
+   @media screen and (max-width: 820px) {
+    margin-top: 16px;
+  }
 `;
 
 export const SocialIcons = styled.div`

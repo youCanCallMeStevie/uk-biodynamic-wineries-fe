@@ -22,7 +22,7 @@ const customIcon = new Icon({
 
 interface MapProps {
   data: VineyardData | null;
-  moonInfo: MoonData | null;
+  moonInfo?: MoonData;
 }
 function Map({ data, moonInfo }: MapProps, { primary }: any) {
   console.log("moonInfo", moonInfo);
@@ -59,8 +59,8 @@ function Map({ data, moonInfo }: MapProps, { primary }: any) {
           </MapContainer>
           <Container>
             <HeadingWrapper>
-          <DayHeading>Today is: A {moonInfo?.bioDay} Day</DayHeading>
-          </HeadingWrapper>
+              <DayHeading>Today is: A {moonInfo?.bioDay} Day</DayHeading>
+            </HeadingWrapper>
             <ButtonWrapper>
               <Button big fontBig primary={primary}>
                 Plan Your Visit

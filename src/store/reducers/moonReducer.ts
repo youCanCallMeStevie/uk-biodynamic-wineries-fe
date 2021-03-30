@@ -1,7 +1,5 @@
 import {GET_MOON_INFO, MoonAction, MoonState, } from "../types"
-const initialState: MoonState = {
-    moonInfo: null,
-  };
+const initialState: MoonState = {};
   
   const moonReducer = (
     state = initialState,

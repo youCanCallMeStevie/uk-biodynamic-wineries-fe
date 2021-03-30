@@ -1,5 +1,6 @@
 import React from "react";
 import { FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa";
+import MoonIcon from "../MoonIcon/MoonIcon";
 import {
   FooterContainer,
   FooterLinksWrapper,
@@ -9,13 +10,15 @@ import {
   FooterLinksContainer,
   SocialIconLink,
   SocialIcons,
-  WebsiteRights,
-  SiteIcon,
+  Copright,
   SiteLogo,
   SocialWrapper,
   SocialContainer,
+  MoonWrapper,
+  MoonText,
 } from "./Footer.elements";
-function Footer() {
+
+function Footer({ moonPhase }: any) {
   return (
     <>
       <FooterContainer />
@@ -52,10 +55,12 @@ function Footer() {
       </FooterLinksContainer>
       <SocialContainer>
         <SocialWrapper>
-          <SiteLogo to="/">
-            <SiteIcon>Steview</SiteIcon>
-          </SiteLogo>
-          <WebsiteRights>S R Flanagan ©2021</WebsiteRights>
+          <MoonWrapper>
+            <SiteLogo to="/">
+              <MoonIcon />
+            </SiteLogo>
+            <MoonText>Today's Moon: {moonPhase}</MoonText>
+          </MoonWrapper>
           <SocialIcons>
             <SocialIconLink
               href={"https://github.com/youCanCallMeStevie"}
@@ -79,6 +84,7 @@ function Footer() {
               <FaLinkedin />
             </SocialIconLink>
           </SocialIcons>
+          <Copright>S R Flanagan ©2021</Copright>
         </SocialWrapper>
       </SocialContainer>
       <FooterContainer />
