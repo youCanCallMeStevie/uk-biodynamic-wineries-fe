@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useCallback } from "react";
-
+import React, { useState, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Container } from "../../styles/globalStyles";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { VineyardData, MoonData } from "../../store/types";
+import { RootState } from "../../store";
 import { Icon } from "leaflet";
 import {
   MapSec,
@@ -25,9 +25,13 @@ interface MapProps {
   data?: VineyardData;
   moonInfo?: MoonData;
 }
+
 function Map({ data, moonInfo }: MapProps, { primary }: any) {
-  console.log("moonInfo", moonInfo);
-  console.log("data", data!.vineyards);
+  const dispatch = useDispatch();
+
+  useEffect(() => {}, [data]);
+
+  console.log("Map data", data!.vineyards);
   return (
     <>
       <MapSec>
@@ -64,9 +68,6 @@ function Map({ data, moonInfo }: MapProps, { primary }: any) {
             </HeadingWrapper>
             <ButtonWrapper>
               <Search data={data} />
-              {/* <Button big fontBig primary>
-                Plan Your Visit
-              </Button> */}
             </ButtonWrapper>
           </Container>
         </MapSecContainer>

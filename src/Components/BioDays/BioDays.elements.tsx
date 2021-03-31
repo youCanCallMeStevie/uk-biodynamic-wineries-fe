@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
 export const DaysSection = styled.div`
   padding: 100px 0 160px;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback, useMemo } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { toggleModalActions } from "../../store/actions/modalActions";
@@ -27,9 +27,9 @@ import { IconContext } from "react-icons/lib";
 import MoonIcon from "../MoonIcon/MoonIcon";
 
 const BarNav = () => {
-  const moonInfo = useSelector((state: RootState) => state.moon.moonInfo);
+  // const moonInfo = useSelector((state: RootState) => state.moon.moonInfo);
 
-  const [showModal, setShowModal] = useState(false);
+  // const [showModal, setShowModal] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
@@ -45,7 +45,7 @@ const BarNav = () => {
           {button ? (
             <>
               <NavItemBtn>
-                <NavBtnLink to="/signin">
+                <NavBtnLink to="/">
                   <Button
                     primary
                     onClick={() => dispatch(toggleModalActions(true, "login"))}
@@ -55,7 +55,7 @@ const BarNav = () => {
                 </NavBtnLink>
               </NavItemBtn>
               <NavItemBtn>
-                <NavBtnLink to="/register">
+                <NavBtnLink to="/">
                   <Button
                     primary
                     onClick={() => dispatch(toggleModalActions(true, "signup"))}

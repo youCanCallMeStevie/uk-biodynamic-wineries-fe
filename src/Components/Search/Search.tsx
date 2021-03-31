@@ -20,11 +20,9 @@ function Search({ data }: SearchProps) {
   const handleSearch = async (query: SearchQuery) => {
     try {
       const res = await dispatch(searchVineyardsAction(query));
-
       setGrapes("");
       setCity("");
       setDate("");
-      console.log("res", res);
     } catch (err) {
       console.log(err);
     }
