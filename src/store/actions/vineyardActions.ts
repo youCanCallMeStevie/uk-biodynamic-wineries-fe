@@ -5,9 +5,9 @@ import {
   createVineyard,
   editVineyard,
   deleteVineyard,
+  searchVineyards,
 } from "../../utils/Api/vineyardApi";
 import { Dispatch } from "redux";
-
 
 import {
   VineyardData,
@@ -16,6 +16,8 @@ import {
   VINEYARD_SUCCESS,
   VINEYARD_ERROR,
 } from "../types";
+
+import { SearchQuery } from "../../utils/interfaces";
 
 export const fetchSavedVineyardsAction = () => async (
   dispatch: Dispatch<VineyardDispatchTypes>
@@ -35,7 +37,7 @@ export const fetchSavedVineyardsAction = () => async (
   } catch (err) {
     dispatch({
       type: VINEYARD_ERROR,
-      payload:  "There are no saved vineyards for this user",
+      payload: "There are no saved vineyards for this user",
     });
   }
 };
@@ -57,7 +59,30 @@ export const getVineyardAction = () => async (
   } catch (error) {
     dispatch({
       type: VINEYARD_ERROR,
-      payload:  "There are no vineyard",
+      payload: "There are no vineyard",
+    });
+  }
+};
+
+export const searchVineyardsAction = (query: SearchQuery) => async (
+  dispatch: Dispatch<VineyardDispatchTypes>
+) => {
+  try {
+    console.log("QUERY", query)
+    dispatch({
+      type: VINEYARD_LOADING,
+    });
+    const vineyards = await searchVineyards(query);
+    if (vineyards) {
+      dispatch({
+        type: VINEYARD_SUCCESS,
+        payload: vineyards,
+      });
+    } else throw Error;
+  } catch (error) {
+    dispatch({
+      type: VINEYARD_ERROR,
+      payload: "There are no vineyards that match your crtieria",
     });
   }
 };
@@ -76,8 +101,7 @@ export const createVineyardAction = () => async (
   } catch (error) {
     dispatch({
       type: VINEYARD_ERROR,
-      payload:  "Error creating this vineyard",
-    
+      payload: "Error creating this vineyard",
     });
   }
 };
@@ -98,7 +122,6 @@ export const editVineyardAction = (
     dispatch({
       type: VINEYARD_ERROR,
       payload: "Error editing this vineyard",
-    
     });
   }
 };
@@ -117,12 +140,10 @@ export const deleteVineyardAction = (vineyardId: string) => async (
   } catch (error) {
     dispatch({
       type: VINEYARD_ERROR,
-      payload:  "Error deleting this vineyard",
-      
+      payload: "Error deleting this vineyard",
     });
   }
 };
-
 
 export const setLoading = (): VineyardDispatchTypes => {
   return {

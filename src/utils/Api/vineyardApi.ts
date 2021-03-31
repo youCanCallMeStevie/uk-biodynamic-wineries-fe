@@ -1,7 +1,6 @@
 import axios from "axios";
 import { SearchQuery } from "../interfaces";
 import { VineyardData } from "../../store/types";
-
 const { REACT_APP_API_URI } = process.env;
 
 
@@ -99,9 +98,9 @@ export const searchVineyards = async (query: SearchQuery) => {
     if (!grapes && !date && !city)
       throw new Error("You need to specify a query.");
     //wrap with try catch as need to handle error!!!! make sure user selects one query
-
+console.log("process.env.REACT_APP_API_URI",process.env.REACT_APP_API_URI )
     const vineyard = await axios.get(
-      `${REACT_APP_API_URI}/api/vineyards/search/results?` + grapes &&
+      `${process.env.REACT_APP_API_URI}/api/vineyards/search/results?` + grapes &&
         `&grapes=${grapes}` + date &&
         `&date=${date}` + city &&
         `&city=${city}`
