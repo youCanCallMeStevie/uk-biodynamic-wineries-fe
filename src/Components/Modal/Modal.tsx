@@ -24,17 +24,24 @@ import {
 
 function Modal() {
   const { REACT_APP_API_URI } = process.env;
-
+  const initialFromData = {
+    name: "",
+    lastname: "",
+    username: "",
+    password: "",
+    email: "",
+  };
   const history = useHistory();
   const dispatch = useDispatch();
   const modalType = useSelector((state: RootState) => state.modal.type);
   const modalStatus = useSelector((state: RootState) => state.modal.isOpen);
   const moonInfo = useSelector((state: RootState) => state.moon.moonInfo);
-  const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
-  const [name, setName] = useState("");
-  const [lastname, setLastname] = useState("");
-  const credentials = { password, username, name, lastname };
+  const [formData, setFormData] = useState(initialFromData);
+  // const [password, setPassword] = useState("");
+  // const [username, setUsername] = useState("");
+  // const [name, setName] = useState("");
+  // const [lastname, setLastname] = useState("");
+  const credentials = { ...formData };
 
   const animation = useSpring({
     config: { duration: 500 },
@@ -42,27 +49,28 @@ function Modal() {
     transform: !modalStatus ? `translateY(-100%)` : `translateY(0%)`,
   });
 
-  const handleLogin = async (credentials: Credentials) => {
-    try {
-      await dispatch(loginAction(credentials));
-      setUsername("");
-      setPassword("");
-      history.push("/");
-      dispatch(toggleModalActions(false, ""));
-    } catch (err) {
-      console.log(err);
-    }
+  // const handleLogin = async (credentials: Credentials) => {
+  //   try {
+  //     await dispatch(loginAction(credentials));
+  //     setUsername("");
+  //     setPassword("");
+  //     history.push("/");
+  //     dispatch(toggleModalActions(false, ""));
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
+  const handleFormChange = (e: any) => {
+    console.log("helloo");
+    console.log("e.target.value", e.target.value);
+    console.log("e.target.name", e.target.name);
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
-  const handleSignup = async (credentials: Credentials) => {
+  const handleSignup = async () => {
     try {
-      await dispatch(registerUserAction(credentials));
-      setUsername("");
-      setPassword("");
-      setName("");
-      setLastname("");
-      history.push("/");
-      dispatch(toggleModalActions(false, ""));
+      dispatch(registerUserAction(formData));
+      setFormData(initialFromData);
+      dispatch(toggleModalActions(true, "login"));
     } catch (err) {
       console.log(err);
     }
@@ -82,7 +90,7 @@ function Modal() {
     }
   }, [moonInfo]);
 
-  const contentSection = useMemo(() => {
+  const contentSection = () => {
     if (modalType == "login") {
       return (
         <>
@@ -91,10 +99,11 @@ function Modal() {
           </ModalImgWrapper>
           <ModalContent>
             <h1>Welcome back, moon baby!</h1>
-            <SignInForm>
+            {/* <SignInForm>
               <Input
                 type="text"
                 placeholder="Username"
+
                 value={username}
                 onChange={e => setUsername(e.target.value)}
               ></Input>
@@ -116,7 +125,7 @@ function Modal() {
             </Button>
             <a href={`${REACT_APP_API_URI}/api/auth/google`}>
               <div>or Sign Up with Google</div>
-            </a>
+            </a> */}
             <CloseModalBtn
               onClick={() => dispatch(toggleModalActions(false, ""))}
             />
@@ -124,6 +133,7 @@ function Modal() {
         </>
       );
     } else if (modalType == "signup") {
+      const { name, lastname, username, password, email } = formData;
       return (
         <>
           <ModalImgWrapper>
@@ -136,32 +146,43 @@ function Modal() {
               <Input
                 type="text"
                 placeholder="First Name"
+                name="name"
                 value={name}
-                onChange={e => setName(e.target.value)}
+                onChange={handleFormChange}
               ></Input>
               <Input
                 type="text"
+                name="lastname"
                 placeholder="Last Name"
                 value={lastname}
-                onChange={e => setLastname(e.target.value)}
+                onChange={handleFormChange}
               ></Input>
               <Input
                 type="text"
                 placeholder="Username"
+                name="username"
                 value={username}
-                onChange={e => setUsername(e.target.value)}
+                onChange={handleFormChange}
+              ></Input>
+              <Input
+                type="text"
+                placeholder="email@web.com"
+                name="email"
+                value={email}
+                onChange={handleFormChange}
               ></Input>
               <Input
                 type="password"
+                name="password"
                 value={password}
                 placeholder="password"
-                onChange={e => setPassword(e.target.value)}
+                onChange={handleFormChange}
               ></Input>
               <Button
                 primary
                 onClick={(event: React.MouseEvent<HTMLElement>) => {
                   event.preventDefault();
-                  handleSignup(credentials);
+                  handleSignup();
                 }}
               >
                 Register
@@ -204,12 +225,12 @@ function Modal() {
         </>
       );
     }
-  }, [modalType]);
+  };
 
   return (
     <Background>
       <animated.div style={animation}>
-        <ModalWrapper>{contentSection}</ModalWrapper>
+        <ModalWrapper>{contentSection()}</ModalWrapper>
       </animated.div>
     </Background>
   );

@@ -106,8 +106,8 @@ export const searchVineyards = async (query: SearchQuery) => {
         `&date=${date}` +
         `&city=${city}`
     );
-    console.log("vineyard", vineyard.data.results)
-    return vineyard.data.results;
+    console.log("vineyard API", vineyard.data)
+    return vineyard.data;
   } catch (error) {
     console.log(error);
     return null;
