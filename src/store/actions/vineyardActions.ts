@@ -76,14 +76,16 @@ export const searchVineyardsAction = (query: SearchQuery) => async (
     console.log("vineyardAction1", vineyards);
 
     if (vineyards) {
+      console.log("vineyardAction2", vineyards);
+
       dispatch({
         type: VINEYARD_SUCCESS,
         payload: vineyards,
       });
-      console.log("vineyardAction2", vineyards);
-      return vineyards;
+      console.log("vineyardAction3", vineyards);
     } else throw new Error();
   } catch (error) {
+    console.log(error);
     dispatch({
       type: VINEYARD_ERROR,
       payload: "There are no vineyards that match your crtieria",

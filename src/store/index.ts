@@ -8,6 +8,7 @@ import userReducer from "./reducers/userReducer";
 import modalReducer from "./reducers/modalReducer";
 import nightModeReducer from "./reducers/nightModeReducer";
 import moonReducer from "./reducers/moonReducer";
+import mapReducer from "./reducers/mapReducer";
 
 const rootReducer= combineReducers({
     vineyard: vineyardReducer,
@@ -15,7 +16,8 @@ const rootReducer= combineReducers({
     moon: moonReducer,
     modal: modalReducer,
     alert: alertReducer,
-    nightMode: nightModeReducer
+    nightMode: nightModeReducer,
+    map: mapReducer,
 })
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));

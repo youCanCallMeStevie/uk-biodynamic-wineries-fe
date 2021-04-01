@@ -1,25 +1,17 @@
 import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
-import { InfoBanner, Map, BioDays, Loader } from "../../Components";
+import { InfoBanner, Map, BioDays, Search } from "../../Components";
 import { homeObjOne, homeObjTwo, homeObjThree } from "./Data";
 function Home() {
   const details = useSelector((state: RootState) => state.vineyard);
   const moonInfo = useSelector((state: RootState) => state.moon.moonInfo);
-
-  const mapIssue = useMemo(() => {
-    if (details.loading) {
-      return <Loader />;
-    } else {
-      return <Map data={details.data} moonInfo={moonInfo} />;
-    }
-  }, [details]);
+  const position = useSelector((state: RootState) => state.map.position);
 
   return (
     <>
-      {/* {details!.vineyards &&  */}
-      {/* {mapIssue} */}
-      <Map data={details.data} moonInfo={moonInfo} />
+      <Search />
+      <Map data={details.data} moonInfo={moonInfo} position={position} />
       <InfoBanner {...homeObjOne} moonInfo={moonInfo} />
       <BioDays />
       <InfoBanner {...homeObjTwo(moonInfo)} moonInfo={moonInfo} />

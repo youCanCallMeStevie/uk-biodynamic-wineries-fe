@@ -38,6 +38,18 @@ export const OPEN_MODAL = "OPEN_MODAL";
 export const CLOSE_MODAL = "CLOSE_MODAL";
 
 export const GET_MOON_INFO = "GET_MOON_INFO";
+
+export const SET_POSITION = "SET_POSITION";
+
+//Map
+export interface MapState{
+  postion?: MapData 
+}
+
+export interface MapData {
+  postion: Array<number>;
+  zoom: number
+}
  
 //USER
 

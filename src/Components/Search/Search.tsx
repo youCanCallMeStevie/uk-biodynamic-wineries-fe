@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ImSearch } from "react-icons/im";
-import { VineyardData } from "../../store/types";
+import { VineyardData, SET_POSITION } from "../../store/types";
 import { SearchContainer, SearchInput, SearchWrapper } from "./Search.elements";
 import { Button } from "../../styles/globalStyles";
 import { SearchQuery } from "../../utils/interfaces";
@@ -19,7 +19,8 @@ function Search({ data }: SearchProps) {
 
   const handleSearch = async (query: SearchQuery) => {
     try {
-      const res = await dispatch(searchVineyardsAction(query));
+      await dispatch(searchVineyardsAction(query));
+      dispatch({ type: SET_POSITION, payload: { center: [51.509, -0.118] } });
       setGrapes("");
       setCity("");
       setDate("");

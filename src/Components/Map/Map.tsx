@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Container } from "../../styles/globalStyles";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import { VineyardData, MoonData } from "../../store/types";
+import { VineyardData, MoonData, MapData } from "../../store/types";
 import { RootState } from "../../store";
 import { Icon } from "leaflet";
 import {
@@ -24,21 +24,41 @@ const customIcon = new Icon({
 interface MapProps {
   data?: VineyardData;
   moonInfo?: MoonData;
+  position?: MapData;
 }
 
-function Map({ data, moonInfo }: MapProps, { primary }: any) {
+function Map({ data, moonInfo, position }: MapProps, { primary }: any) {
   const dispatch = useDispatch();
+  const [map, setMap] = useState(null);
+  const mapResults = useMemo(() => {
+    return (
+      data &&
+      data.vineyards &&
+      data.vineyards.map(vineyard => (
+        <Marker
+          key={vineyard._id}
+          icon={customIcon}
+          position={[vineyard.details.latitude, vineyard.details.longitude]}
+        >
+          <Popup>
+            {vineyard.name}
+            <br /> {vineyard.bio}
+          </Popup>
+        </Marker>
+      ))
+    );
+  }, [data]);
 
-  // useEffect(() => {}, [data]);
+  // useEffect(() => {
+  //   map && map!.flyto(center, zoom);
+  // }, [center, zoom]);
 
-  console.log("Map data", data!.vineyards);
-  console.log(Boolean(data));
-  console.log(Boolean(undefined));
   return (
     <>
       <MapSec>
         <MapSecContainer>
           <MapContainer
+            // whenCreated={setMap}
             center={[51.4, -1.3638]}
             zoom={8}
             scrollWheelZoom={false}
@@ -48,37 +68,15 @@ function Map({ data, moonInfo }: MapProps, { primary }: any) {
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
 
-            {
-              // typeof data === "undefined" &&
-              //   (() => {
-              //     console.log("here");
-              //     return true;
-              //   })() &&
-              data &&
-                data.vineyards.map(vineyard => (
-                  <Marker
-                    key={vineyard._id}
-                    icon={customIcon}
-                    position={[
-                      vineyard.details.latitude,
-                      vineyard.details.longitude,
-                    ]}
-                  >
-                    <Popup>
-                      {vineyard.name}
-                      <br /> {vineyard.bio}
-                    </Popup>
-                  </Marker>
-                ))
-            }
+            {mapResults}
           </MapContainer>
           <Container>
             <HeadingWrapper>
               <DayHeading>Today is: A {moonInfo?.bioDay} Day</DayHeading>
             </HeadingWrapper>
-            <ButtonWrapper>
+            {/* <ButtonWrapper>
               <Search data={data} />
-            </ButtonWrapper>
+            </ButtonWrapper> */}
           </Container>
         </MapSecContainer>
       </MapSec>

@@ -13,7 +13,6 @@ export const fetchTodaysMoonAction = () => async (
         payload: moonInfo,
       });
     } else throw new Error();
-    return moonInfo;
   } catch (error) {
     console.log(error);
   }
