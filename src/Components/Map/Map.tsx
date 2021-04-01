@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Container } from "../../styles/globalStyles";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { VineyardData, MoonData, MapData } from "../../store/types";
-import { RootState } from "../../store";
 import { Icon } from "leaflet";
 import { MapSec, MapSecContainer } from "./Map.elements";
 import { Map as LeafletMap } from "leaflet";

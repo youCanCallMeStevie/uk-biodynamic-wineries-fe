@@ -22,7 +22,7 @@ export const InfoRow = styled.div<Row>`
 `;
 
 export const InfoCol = styled.div`
-  margin-bottom: 15px;
+  /* margin-bottom: 15px; */
   padding-right: 15px;
   padding-left: 15px;
   flex: 1;

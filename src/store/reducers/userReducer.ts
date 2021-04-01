@@ -101,16 +101,12 @@ const userReducer = (
     case REGISTER_SUCCESS:
       return {
         ...state,
-        isLoggedIn: true,
-        profile: action.payload,
-        error: "",
+        loading: false,
       };
 
     case REGISTER_FAIL:
       return {
         ...state,
-        isLoggedIn: false,
-        profile: undefined,
         error: "Error with registration, possible missing required details",
       };
 

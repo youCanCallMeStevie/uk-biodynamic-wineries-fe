@@ -1,4 +1,4 @@
-import { getCurrentUserApi, userLoginApi } from "../../utils/Api/authApi";
+import { getCurrentUserApi, userLoginApi, userLogout } from "../../utils/Api/authApi";
 
 import { Dispatch } from "redux";
 import {
@@ -13,6 +13,7 @@ import {
   LOGIN_FAIL,
   LOGIN_LOADING,
   LOGIN_SUCCESS,
+  LOGOUT,
   PROFILE_LOADING,
   PROFILE_SUCCESS,
   PROFILE_ERROR,
@@ -39,13 +40,14 @@ export const loginAction = (credentials: Credentials) => async (
       type: LOGIN_LOADING,
     });
     if (credentials) {
+      console.log("credentials", credentials)
       const login = await userLoginApi(credentials);
       console.log(login);
       if (login) {
-        const currentUser = await getCurrentUserApi();
+        const profile = await getCurrentUserApi();
         dispatch({
           type: LOGIN_SUCCESS,
-          payload: currentUser,
+          payload: profile,
         });
       } else throw Error;
     }
@@ -84,6 +86,21 @@ export const registerUserAction = (credentials: Credentials) => async (
     });
   }
 };
+
+export const logoutAction = () => async (
+  dispatch: Dispatch<LoginDispatchTypes>
+) => {
+  try {
+    dispatch({
+        type: LOGOUT,
+      });
+  } catch (err) {
+    dispatch({
+      type: LOGIN_FAIL,
+    });
+  }
+};
+
 
 export const getCurrentUserAction = () => async (
   dispatch: Dispatch<LoginDispatchTypes>
@@ -181,7 +198,6 @@ export const getSelectedUserProfile = (username: string) => async (
   dispatch: Dispatch<SelectedUserDispatchTypes>
 ) => {
   try {
-    console.log("sfsd");
     dispatch({
       type: SELECTED_USER_LOADING,
     });

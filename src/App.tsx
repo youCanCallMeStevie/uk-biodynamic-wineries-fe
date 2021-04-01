@@ -48,10 +48,10 @@ function App() {
           </>
         )
       )}
-      {alertMsg && (
+      {/* {alertMsg && (
         <Alert message={alertMsg} onClose={() => dispatch(setAlert(""))} />
       )}
-      {error && <Alert message={error} onClose={() => dispatch(setError())} />}
+      {error && <Alert message={error} onClose={() => dispatch(setError())} />} */}
     </Router>
   );
 }

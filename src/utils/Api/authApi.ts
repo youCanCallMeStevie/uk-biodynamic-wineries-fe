@@ -23,7 +23,8 @@ export const getCurrentUserApi = async () => {
     const resp = await axios.get(`${REACT_APP_API_URI}/api/users/me`, {
       withCredentials: true,
     });
-    const currentUser = await resp.data;
+    const currentUser = await resp.data.currentUser;
+    console.log("currentUser", currentUser)
     return currentUser;
   } catch (err) {
     console.log(err);
@@ -33,7 +34,7 @@ export const getCurrentUserApi = async () => {
 export const userLogout = async () => {
   try {
     const logout = await axios.post(`${REACT_APP_API_URI}/api/auth/logout`);
-    return logout.data;
+    // return logout.data;
   } catch (err) {
     console.log(err);
     return null;

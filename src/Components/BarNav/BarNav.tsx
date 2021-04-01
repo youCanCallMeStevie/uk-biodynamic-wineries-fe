@@ -2,7 +2,10 @@ import React, { useEffect, useState, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { toggleModalActions } from "../../store/actions/modalActions";
-import { getCurrentUserAction } from "../../store/actions/userActions";
+import {
+  getCurrentUserAction,
+  logoutAction,
+} from "../../store/actions/userActions";
 import Dropdown from "../Dropdown/Dropdown";
 import Modal from "../Modal/Modal";
 import Toggle from "../Toggle/Toggle";
@@ -25,6 +28,7 @@ import { Button } from "../../styles/globalStyles";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { IconContext } from "react-icons/lib";
 import MoonIcon from "../MoonIcon/MoonIcon";
+import userReducer from "../../store/reducers/userReducer";
 
 const BarNav = () => {
   // const moonInfo = useSelector((state: RootState) => state.moon.moonInfo);
@@ -41,30 +45,30 @@ const BarNav = () => {
   const loginSection = useMemo(() => {
     if (!user.isLoggedIn) {
       return (
+        // <>
+        //   {button ? (
         <>
-          {button ? (
-            <>
-              <NavItemBtn>
-                <NavBtnLink to="/">
-                  <Button
-                    primary
-                    onClick={() => dispatch(toggleModalActions(true, "login"))}
-                  >
-                    LOGIN
-                  </Button>
-                </NavBtnLink>
-              </NavItemBtn>
-              <NavItemBtn>
-                <NavBtnLink to="/">
-                  <Button
-                    primary
-                    onClick={() => dispatch(toggleModalActions(true, "signup"))}
-                  >
-                    SIGN UP
-                  </Button>
-                </NavBtnLink>
-              </NavItemBtn>
-            </>
+          <NavItemBtn>
+            <NavBtnLink to="/">
+              <Button
+                primary
+                onClick={() => dispatch(toggleModalActions(true, "login"))}
+              >
+                LOGIN
+              </Button>
+            </NavBtnLink>
+          </NavItemBtn>
+          <NavItemBtn>
+            <NavBtnLink to="/">
+              <Button
+                primary
+                onClick={() => dispatch(toggleModalActions(true, "signup"))}
+              >
+                SIGN UP
+              </Button>
+            </NavBtnLink>
+          </NavItemBtn>
+          {/* </>
           ) : (
             <>
               <NavItemBtn>
@@ -74,7 +78,7 @@ const BarNav = () => {
                     primary
                     onClick={() => dispatch(toggleModalActions(true, "login"))}
                   >
-                    LOGOUT
+                    LOGIN
                   </Button>
                 </NavBtnLink>
               </NavItemBtn>
@@ -90,20 +94,25 @@ const BarNav = () => {
                 </NavBtnLink>
               </NavItemBtn>
             </>
-          )}
+          )} */}
         </>
       );
     } else {
       return (
         <>
-          <h4> Hi {user.profile!.name}</h4>
+          <h5> Hi, {user && user?.profile!.name}!</h5>
           <Avatar onClick={() => setShowDropdown(!showDropdown)}>
             <Image
-              src={user.profile!.imageUrl}
+              src={user && user?.profile!.imageUrl}
               alt="Profil picture of logged in user"
             />
           </Avatar>
           {showDropdown && <Dropdown menu={"user"} user={user} />}
+          <NavBtnLink to="/">
+            <Button primary onClick={() => dispatch(logoutAction())}>
+              LOG OUT
+            </Button>
+          </NavBtnLink>
         </>
       );
     }

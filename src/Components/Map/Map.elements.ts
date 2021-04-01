@@ -15,11 +15,9 @@ export const MapSecContainer = styled.div`
     height: 50vh;
   }
   @media screen and (max-width: 991px) {
-    padding-left: 30px;
+   padding-left: 30px;
     padding-right: 30px;
-    .button{
-      background: #536162!important;
-    }
+    /* width: 60vw; */
   } ;
 `;
 

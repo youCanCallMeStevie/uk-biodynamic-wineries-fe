@@ -6,12 +6,16 @@ interface IClick {
   click?: any;
 }
 
-
+export const SearchContainer = styled.div`
+padding-bottom: 10px;
+background-color: #101522;
+`
 export const SearchWrapper = styled.form`
   display: flex;
   justify-content: start;
   align-items: center;
   @media screen and (max-width: 990px) {
+    width: 200px;
     flex-direction: column;
     margin-top: 2rem;
     button {

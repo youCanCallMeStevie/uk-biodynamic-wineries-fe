@@ -2,11 +2,13 @@ import React, { useState, useMemo, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Button, Image, Input } from "../../styles/globalStyles";
-import { Credentials } from "../../utils/interfaces";
 import {
   loginAction,
   registerUserAction,
 } from "../../store/actions/userActions";
+
+import { getVineyardAction } from "../../store/actions/vineyardActions";
+
 import { toggleModalActions } from "../../store/actions/modalActions";
 import RegisterImg from "../../assets/illustrations/nature_tech.svg";
 import LoginImg from "../../assets/illustrations/moon_location.svg";
@@ -31,17 +33,19 @@ function Modal() {
     password: "",
     email: "",
   };
+  const initialLoginData = {
+    username: "",
+    password: "",
+  };
   const history = useHistory();
   const dispatch = useDispatch();
   const modalType = useSelector((state: RootState) => state.modal.type);
   const modalStatus = useSelector((state: RootState) => state.modal.isOpen);
   const moonInfo = useSelector((state: RootState) => state.moon.moonInfo);
   const [formData, setFormData] = useState(initialFromData);
-  // const [password, setPassword] = useState("");
-  // const [username, setUsername] = useState("");
-  // const [name, setName] = useState("");
-  // const [lastname, setLastname] = useState("");
-  const credentials = { ...formData };
+  const [loginData, setLoginData] = useState(initialLoginData);
+
+  // const credentials = { ...formData };
 
   const animation = useSpring({
     config: { duration: 500 },
@@ -49,21 +53,21 @@ function Modal() {
     transform: !modalStatus ? `translateY(-100%)` : `translateY(0%)`,
   });
 
-  // const handleLogin = async (credentials: Credentials) => {
-  //   try {
-  //     await dispatch(loginAction(credentials));
-  //     setUsername("");
-  //     setPassword("");
-  //     history.push("/");
-  //     dispatch(toggleModalActions(false, ""));
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-  const handleFormChange = (e: any) => {
-    console.log("helloo");
-    console.log("e.target.value", e.target.value);
-    console.log("e.target.name", e.target.name);
+  const handleLoginChange = (e: any) => {
+    setLoginData({ ...loginData, [e.target.name]: e.target.value });
+  };
+  const handleLogin = async () => {
+    try {
+      dispatch(loginAction(loginData));
+      setLoginData(initialLoginData);
+      history.push("/");
+      dispatch(toggleModalActions(false, ""));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleSignupChange = (e: any) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   const handleSignup = async () => {
@@ -92,6 +96,8 @@ function Modal() {
 
   const contentSection = () => {
     if (modalType == "login") {
+      const { username, password } = loginData;
+
       return (
         <>
           <ModalImgWrapper>
@@ -99,33 +105,34 @@ function Modal() {
           </ModalImgWrapper>
           <ModalContent>
             <h1>Welcome back, moon baby!</h1>
-            {/* <SignInForm>
+            <SignInForm>
               <Input
                 type="text"
-                placeholder="Username"
-
+                name="username"
                 value={username}
-                onChange={e => setUsername(e.target.value)}
+                placeholder="Username"
+                onChange={handleLoginChange}
               ></Input>
               <Input
                 type="password"
+                name="password"
                 value={password}
                 placeholder="password"
-                onChange={e => setPassword(e.target.value)}
+                onChange={handleLoginChange}
               ></Input>
+              <Button
+                primary
+                onClick={(event: React.MouseEvent<HTMLElement>) => {
+                  event.preventDefault();
+                  handleLogin();
+                }}
+              >
+                Login
+              </Button>
             </SignInForm>
-            <Button
-              primary
-              onClick={(event: React.MouseEvent<HTMLElement>) => {
-                event.preventDefault();
-                handleLogin(credentials);
-              }}
-            >
-              Log In
-            </Button>
             <a href={`${REACT_APP_API_URI}/api/auth/google`}>
               <div>or Sign Up with Google</div>
-            </a> */}
+            </a>
             <CloseModalBtn
               onClick={() => dispatch(toggleModalActions(false, ""))}
             />
@@ -148,35 +155,35 @@ function Modal() {
                 placeholder="First Name"
                 name="name"
                 value={name}
-                onChange={handleFormChange}
+                onChange={handleSignupChange}
               ></Input>
               <Input
                 type="text"
                 name="lastname"
                 placeholder="Last Name"
                 value={lastname}
-                onChange={handleFormChange}
+                onChange={handleSignupChange}
               ></Input>
               <Input
                 type="text"
                 placeholder="Username"
                 name="username"
                 value={username}
-                onChange={handleFormChange}
+                onChange={handleSignupChange}
               ></Input>
               <Input
                 type="text"
                 placeholder="email@web.com"
                 name="email"
                 value={email}
-                onChange={handleFormChange}
+                onChange={handleSignupChange}
               ></Input>
               <Input
                 type="password"
                 name="password"
                 value={password}
                 placeholder="password"
-                onChange={handleFormChange}
+                onChange={handleSignupChange}
               ></Input>
               <Button
                 primary
@@ -187,12 +194,10 @@ function Modal() {
               >
                 Register
               </Button>
-
-              <a href={`${REACT_APP_API_URI}/api/auth/google`}>
-                <div>or Sign Up with Google</div>
-              </a>
             </SignInForm>
-
+            <a href={`${REACT_APP_API_URI}/api/auth/google`}>
+              <div>or Sign Up with Google</div>
+            </a>
             <CloseModalBtn
               onClick={() => dispatch(toggleModalActions(false, ""))}
             />
@@ -218,6 +223,29 @@ function Modal() {
               day is {moonInfo!.bioDay}.
             </p>
             {nextFruitDayInfo}
+            <CloseModalBtn
+              onClick={() => dispatch(toggleModalActions(false, ""))}
+            />
+          </ModalContent>
+        </>
+      );
+    } else if (modalType == "alert") {
+      return (
+        <>
+          <ModalImgWrapper>
+            <Image src={MoonImg} alt="nature and tech illustration" />
+          </ModalImgWrapper>
+          <ModalContent>
+            <h1>No Results</h1>
+            <Button
+              primary
+              onClick={() =>
+                dispatch(getVineyardAction()) &&
+                dispatch(toggleModalActions(false, ""))
+              }
+            >
+              See All Vineyards
+            </Button>
             <CloseModalBtn
               onClick={() => dispatch(toggleModalActions(false, ""))}
             />

@@ -23,10 +23,12 @@ export const Image = styled.img<IImage>`
 `;
 
 export const Avatar = styled.div`
-  height: 50px;
-  width: 50px;
-  overflow: hidden;
   img {
+    margin-left: 1rem;
+    border-radius: 50px;
+    height: 40px;
+  width: 40px;
+  overflow: hidden;
     height: 100%;
     width: 100%fit-content;
     object-fit: cover;
