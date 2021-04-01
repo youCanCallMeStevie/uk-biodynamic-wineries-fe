@@ -29,7 +29,7 @@ interface MapProps {
 
 function Map({ data, moonInfo, position }: MapProps, { primary }: any) {
   const dispatch = useDispatch();
-  const [map, setMap] = useState(null);
+  // const [map, setMap] = useState(null);
   const mapResults = useMemo(() => {
     return (
       data &&
@@ -50,8 +50,8 @@ function Map({ data, moonInfo, position }: MapProps, { primary }: any) {
   }, [data]);
 
   // useEffect(() => {
-  //   map && map!.flyto(center, zoom);
-  // }, [center, zoom]);
+  //   position && position!.flyto(position!.center, position!.zoom);
+  // }, [position!.center, position!.zoom]);
 
   return (
     <>

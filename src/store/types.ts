@@ -47,7 +47,7 @@ export interface MapState{
 }
 
 export interface MapData {
-  postion: Array<number>;
+  center: Array<number>;
   zoom: number
 }
  

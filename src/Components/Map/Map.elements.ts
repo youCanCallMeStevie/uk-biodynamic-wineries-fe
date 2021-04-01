@@ -17,7 +17,6 @@ export const MapSecContainer = styled.div`
   @media screen and (max-width: 991px) {
     padding-left: 30px;
     padding-right: 30px;
-    max-height: 100vh;
     .button{
       background: #536162!important;
     }
