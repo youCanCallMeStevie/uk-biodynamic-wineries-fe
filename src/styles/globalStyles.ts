@@ -75,4 +75,17 @@ export const Button = styled.button<IButton>`
   }
 `;
 
+
+export const Input = styled.input`
+  min-width: 200px;
+  height: 30px;
+  margin: 10px;
+  border-radius: 8px;
+  padding: 10px 20px;
+  border-radius: 2px;
+  outline: none;
+  border: none;
+  font-size: 10px;
+  border: 1px solid #fff;
+`;
 export default GlobalStyles;

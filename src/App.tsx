@@ -32,7 +32,7 @@ function App() {
     dispatch(setLoading());
     dispatch(getVineyardAction());
     dispatch(fetchTodaysMoonAction());
-  }, []);
+  }, [dispatch]);
 
   return (
     <Router>

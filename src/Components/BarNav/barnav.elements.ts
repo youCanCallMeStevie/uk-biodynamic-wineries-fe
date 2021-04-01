@@ -77,9 +77,9 @@ export const NavMenu = styled.ul<Click>`
 
 export const NavItem = styled.li`
   height: 80px;
-  border-bottom: 2px solid transparent;
+  border-bottom: 4px solid transparent;
   &:hover {
-    border-bottom: 2px solid #c06014;
+    border-bottom: 4px solid #c06014;
   }
   @media screen and (max-width: 960px) {
     width: 100%;

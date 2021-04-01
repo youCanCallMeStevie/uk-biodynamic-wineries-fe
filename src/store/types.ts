@@ -47,18 +47,19 @@ export interface MapState{
 }
 
 export interface MapData {
-  center: Array<number>;
+  // flyTo(position: MapData);
+  center: [number, number];
   zoom: number
 }
  
 //USER
 
 export interface UserState {
-  profile: UserProfile | null;
+  profile?: UserProfile;
   loading: boolean;
   error: string;
   isLoggedIn: boolean;
-  selectedUser: UserProfile | null
+  selectedUser?: UserProfile
 }
 
 
@@ -80,6 +81,7 @@ export interface UserProfile {
   __v?: number;
   refreshToken: string;
   imageUrl: string;
+  password: string;
 }
 
 export interface UserError {

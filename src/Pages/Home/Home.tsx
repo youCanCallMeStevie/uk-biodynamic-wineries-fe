@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { LargeSearch, SmallSearch } from "./Home.elements";
@@ -9,14 +9,15 @@ function Home() {
   const moonInfo = useSelector((state: RootState) => state.moon.moonInfo);
   const position = useSelector((state: RootState) => state.map.position);
 
+  console.log({ data: details.data });
   return (
     <>
       <LargeSearch>
-        <Search />
+        <Search moonInfo={moonInfo} />
       </LargeSearch>
       <Map data={details.data} moonInfo={moonInfo} position={position} />
       <SmallSearch>
-        <Search />
+        <Search moonInfo={moonInfo} />
       </SmallSearch>
       <InfoBanner {...homeObjOne} moonInfo={moonInfo} />
       <BioDays />

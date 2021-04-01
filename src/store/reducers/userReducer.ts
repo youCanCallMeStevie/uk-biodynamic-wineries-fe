@@ -23,11 +23,11 @@ import {
 } from "../types";
 
 const initialState: UserState = {
-  profile: null,
+  profile: undefined,
   loading: false,
   error: "",
   isLoggedIn: false,
-  selectedUser: null,
+  selectedUser: undefined,
 };
 
 const userReducer = (
@@ -50,7 +50,7 @@ const userReducer = (
     case LOGIN_LOADING:
       return {
         ...state,
-        profile: null,
+        profile: undefined,
         loading: true,
         error: "",
       };
@@ -67,7 +67,7 @@ const userReducer = (
         ...state,
 
         isLoggedIn: false,
-        profile: null,
+        profile: undefined,
         error: "",
         loading: false,
       };
@@ -110,7 +110,7 @@ const userReducer = (
       return {
         ...state,
         isLoggedIn: false,
-        profile: null,
+        profile: undefined,
         error: "Error with registration, possible missing required details",
       };
 
@@ -125,7 +125,7 @@ const userReducer = (
       return {
         ...state,
         loading: false,
-        selectedUser: null,
+        selectedUser: undefined,
         error: "Profile not existing",
       };
     default:

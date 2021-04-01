@@ -1,32 +1,72 @@
-import React, { useEffect, useMemo, useCallback } from "react";
+import React, { useState, useMemo, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Image } from "../../styles/globalStyles";
+import { useHistory } from "react-router-dom";
+import { Button, Image, Input } from "../../styles/globalStyles";
+import { Credentials } from "../../utils/interfaces";
+import {
+  loginAction,
+  registerUserAction,
+} from "../../store/actions/userActions";
 import { toggleModalActions } from "../../store/actions/modalActions";
 import RegisterImg from "../../assets/illustrations/nature_tech.svg";
 import LoginImg from "../../assets/illustrations/moon_location.svg";
 import MoonImg from "../../assets/illustrations/moon_only.svg";
 import { useSpring, animated } from "react-spring";
 import { RootState } from "../../store";
-
 import {
   Background,
   ModalWrapper,
   ModalImgWrapper,
   ModalContent,
   CloseModalBtn,
+  SignInForm,
 } from "./Modal.elements";
 
 function Modal() {
+  const { REACT_APP_API_URI } = process.env;
+
+  const history = useHistory();
   const dispatch = useDispatch();
   const modalType = useSelector((state: RootState) => state.modal.type);
   const modalStatus = useSelector((state: RootState) => state.modal.isOpen);
   const moonInfo = useSelector((state: RootState) => state.moon.moonInfo);
+  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
+  const [lastname, setLastname] = useState("");
+  const credentials = { password, username, name, lastname };
 
   const animation = useSpring({
     config: { duration: 500 },
     opacity: !modalStatus ? 0 : 1,
     transform: !modalStatus ? `translateY(-100%)` : `translateY(0%)`,
   });
+
+  const handleLogin = async (credentials: Credentials) => {
+    try {
+      await dispatch(loginAction(credentials));
+      setUsername("");
+      setPassword("");
+      history.push("/");
+      dispatch(toggleModalActions(false, ""));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleSignup = async (credentials: Credentials) => {
+    try {
+      await dispatch(registerUserAction(credentials));
+      setUsername("");
+      setPassword("");
+      setName("");
+      setLastname("");
+      history.push("/");
+      dispatch(toggleModalActions(false, ""));
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const nextFruitDayInfo = useMemo(() => {
     if (moonInfo!.bioDay == "Fruit") {
@@ -41,7 +81,7 @@ function Modal() {
       );
     }
   }, [moonInfo]);
-  console.log("nextFruitDayInfo", nextFruitDayInfo);
+
   const contentSection = useMemo(() => {
     if (modalType == "login") {
       return (
@@ -51,8 +91,32 @@ function Modal() {
           </ModalImgWrapper>
           <ModalContent>
             <h1>Welcome back, moon baby!</h1>
-            <p> Login with username & password</p>
-            <Button primary>Or login with Google</Button>
+            <SignInForm>
+              <Input
+                type="text"
+                placeholder="Username"
+                value={username}
+                onChange={e => setUsername(e.target.value)}
+              ></Input>
+              <Input
+                type="password"
+                value={password}
+                placeholder="password"
+                onChange={e => setPassword(e.target.value)}
+              ></Input>
+            </SignInForm>
+            <Button
+              primary
+              onClick={(event: React.MouseEvent<HTMLElement>) => {
+                event.preventDefault();
+                handleLogin(credentials);
+              }}
+            >
+              Log In
+            </Button>
+            <a href={`${REACT_APP_API_URI}/api/auth/google`}>
+              <div>or Sign Up with Google</div>
+            </a>
             <CloseModalBtn
               onClick={() => dispatch(toggleModalActions(false, ""))}
             />
@@ -68,8 +132,46 @@ function Modal() {
           <ModalContent>
             <h1>Are you ready?</h1>
             <p> Save vineyards, leave reviews & plan your next visit</p>
+            <SignInForm>
+              <Input
+                type="text"
+                placeholder="First Name"
+                value={name}
+                onChange={e => setName(e.target.value)}
+              ></Input>
+              <Input
+                type="text"
+                placeholder="Last Name"
+                value={lastname}
+                onChange={e => setLastname(e.target.value)}
+              ></Input>
+              <Input
+                type="text"
+                placeholder="Username"
+                value={username}
+                onChange={e => setUsername(e.target.value)}
+              ></Input>
+              <Input
+                type="password"
+                value={password}
+                placeholder="password"
+                onChange={e => setPassword(e.target.value)}
+              ></Input>
+              <Button
+                primary
+                onClick={(event: React.MouseEvent<HTMLElement>) => {
+                  event.preventDefault();
+                  handleSignup(credentials);
+                }}
+              >
+                Register
+              </Button>
 
-            <Button primary>Sign up with Google</Button>
+              <a href={`${REACT_APP_API_URI}/api/auth/google`}>
+                <div>or Sign Up with Google</div>
+              </a>
+            </SignInForm>
+
             <CloseModalBtn
               onClick={() => dispatch(toggleModalActions(false, ""))}
             />
@@ -103,20 +205,6 @@ function Modal() {
       );
     }
   }, [modalType]);
-
-  const keyPress = useCallback(
-    e => {
-      if (e.key === "Escape" && modalStatus) {
-        return !modalStatus;
-      }
-    },
-    [modalStatus]
-  );
-
-  useEffect(() => {
-    document.addEventListener("keydown", keyPress);
-    return () => document.removeEventListener("keydown", keyPress);
-  }, [keyPress]);
 
   return (
     <Background>

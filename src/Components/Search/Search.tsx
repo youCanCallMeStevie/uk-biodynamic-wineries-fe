@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import { ImSearch } from "react-icons/im";
-import { VineyardData, SET_POSITION } from "../../store/types";
-import { SearchContainer, SearchInput, SearchWrapper } from "./Search.elements";
-import { Button } from "../../styles/globalStyles";
+import { VineyardData, SET_POSITION, MoonData } from "../../store/types";
+import { SearchWrapper, DayHeading } from "./Search.elements";
+import { Button, Container, Input } from "../../styles/globalStyles";
 import { SearchQuery } from "../../utils/interfaces";
 import { useDispatch } from "react-redux";
 import { searchVineyardsAction } from "../../store/actions/vineyardActions";
 interface SearchProps {
   data?: VineyardData;
+  moonInfo?: MoonData;
 }
 
-function Search({ data }: SearchProps) {
+function Search({ data, moonInfo }: SearchProps) {
   const dispatch = useDispatch();
   const [grapes, setGrapes] = useState("");
   const [city, setCity] = useState("");
@@ -31,25 +32,26 @@ function Search({ data }: SearchProps) {
 
   return (
     <>
-      <SearchContainer>
+      <Container>
         <SearchWrapper>
-          <SearchInput
+          <DayHeading>Today is: A {moonInfo?.bioDay} Day</DayHeading>
+          <Input
             type="datetime-local"
             value={date && date}
             onChange={e => setDate(e.target.value.toString())}
-          ></SearchInput>
-          <SearchInput
+          ></Input>
+          <Input
             type="text"
             placeholder="Sussex"
             value={city && city}
             onChange={e => setCity(e.target.value)}
-          ></SearchInput>
-          <SearchInput
+          ></Input>
+          <Input
             type="text"
             placeholder="grape"
             value={grapes && grapes}
             onChange={e => setGrapes(e.target.value)}
-          ></SearchInput>
+          ></Input>
           <Button
             primary
             fontBig
@@ -61,7 +63,7 @@ function Search({ data }: SearchProps) {
             Plan Your Visit
           </Button>
         </SearchWrapper>
-      </SearchContainer>
+      </Container>
     </>
   );
 }

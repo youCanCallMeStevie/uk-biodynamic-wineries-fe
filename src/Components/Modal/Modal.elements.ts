@@ -79,6 +79,7 @@ export const ModalContent = styled.div`
 
 export const CloseModalBtn = styled(FaTimes)`
   cursor: pointer;
+  color: white;
   position: absolute;
   top: 20px;
   right: 20px;
@@ -87,3 +88,11 @@ export const CloseModalBtn = styled(FaTimes)`
   padding: 0;
   z-index: 100000;
 `;
+
+export const SignInForm = styled.form`
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+
+`

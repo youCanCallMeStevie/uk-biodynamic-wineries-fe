@@ -5,14 +5,8 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { VineyardData, MoonData, MapData } from "../../store/types";
 import { RootState } from "../../store";
 import { Icon } from "leaflet";
-import {
-  MapSec,
-  MapSecContainer,
-  ButtonWrapper,
-  HeadingWrapper,
-  DayHeading,
-} from "./Map.elements";
-import Search from "../Search/Search";
+import { MapSec, MapSecContainer } from "./Map.elements";
+import { Map as LeafletMap } from "leaflet";
 
 const mapMarker = require("../../assets/illustrations/maps_marker.svg");
 
@@ -29,36 +23,18 @@ interface MapProps {
 
 function Map({ data, moonInfo, position }: MapProps, { primary }: any) {
   const dispatch = useDispatch();
-  // const [map, setMap] = useState(null);
-  const mapResults = useMemo(() => {
-    return (
-      data &&
-      data.vineyards &&
-      data.vineyards.map(vineyard => (
-        <Marker
-          key={vineyard._id}
-          icon={customIcon}
-          position={[vineyard.details.latitude, vineyard.details.longitude]}
-        >
-          <Popup>
-            {vineyard.name}
-            <br /> {vineyard.bio}
-          </Popup>
-        </Marker>
-      ))
-    );
-  }, [data]);
-
-  // useEffect(() => {
-  //   position && position!.flyto(position!.center, position!.zoom);
-  // }, [position!.center, position!.zoom]);
+  const [map, setMap] = useState<LeafletMap | null>(null);
+  console.log("data", data);
+  useEffect(() => {
+    map && position && map.flyTo(position.center, position.zoom);
+  }, [position!.center, position!.zoom]);
 
   return (
     <>
       <MapSec>
         <MapSecContainer>
           <MapContainer
-            // whenCreated={setMap}
+            whenCreated={setMap}
             center={[51.4, -1.3638]}
             zoom={8}
             scrollWheelZoom={false}
@@ -68,16 +44,24 @@ function Map({ data, moonInfo, position }: MapProps, { primary }: any) {
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
 
-            {mapResults}
+            {data &&
+              data.vineyards &&
+              data.vineyards.map(vineyard => (
+                <Marker
+                  key={vineyard._id}
+                  icon={customIcon}
+                  position={[
+                    vineyard.details.latitude,
+                    vineyard.details.longitude,
+                  ]}
+                >
+                  <Popup>
+                    {vineyard.name}
+                    <br /> {vineyard.bio}
+                  </Popup>
+                </Marker>
+              ))}
           </MapContainer>
-          <Container>
-            <HeadingWrapper>
-              <DayHeading>Today is: A {moonInfo?.bioDay} Day</DayHeading>
-            </HeadingWrapper>
-            {/* <ButtonWrapper>
-              <Search data={data} />
-            </ButtonWrapper> */}
-          </Container>
         </MapSecContainer>
       </MapSec>
     </>
