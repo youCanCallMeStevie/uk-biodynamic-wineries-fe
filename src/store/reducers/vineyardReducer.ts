@@ -16,16 +16,17 @@ const vineyardReducer = (
   action: VineyardDispatchTypes
 ): VineyardState => {
   switch (action.type) {
-    case VINEYARD_SUCCESS:
-      return {
-        data: action.payload,
-        loading: false,
-        error: "",
-      };
+    
     case VINEYARD_LOADING:
       return {
         ...state,
         loading: true,
+      };
+      case VINEYARD_SUCCESS:
+      return {
+        data: action.payload,
+        loading: false,
+        error: "",
       };
     case VINEYARD_ERROR:
       return {

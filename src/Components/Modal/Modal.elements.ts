@@ -15,7 +15,7 @@ export const Background = styled.div`
 export const ModalWrapper = styled.div`
   width: 800px;
   height: 500px;
-  background: #fff;
+  background: #1c2237;
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
   color: #000;
   display: grid;
@@ -25,11 +25,19 @@ export const ModalWrapper = styled.div`
   border-radius: 8px;
 `;
 
-export const ModalImg = styled.img`
+export const ModalImgWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100%;
   background: #000;
   border-radius: 10px 0 0 10px;
+  img {
+    margin-top: 5%;
+    max-width: 300px;
+    padding: 10px 24px;
+  }
 `;
 export const ModalContent = styled.div`
   display: flex;
@@ -38,8 +46,28 @@ export const ModalContent = styled.div`
   align-items: center;
   line-height: 1.8;
   color: #141414;
+  h1 {
+    margin-bottom: 24px;
+    color: #a9b3c1; 
+    font-size: 48px;
+    line-height: 1.1;
+    text-align: left;
+    padding: 10px 24px;
+
+  }
+  h2 {
+    font-size: 18px;
+    color: #a9b3c1;
+    line-height: 16px;
+    letter-spacing: 1.4px;
+    margin-bottom: 16px;
+  }
   p {
-    margin-bottom: 1rem;
+    margin-bottom: 35px;
+    font-size: 18px;
+    line-height: 24px;
+    color: #f7f8fa;
+    padding: 10px 24px;
   }
   button {
     padding: 10px 24px;

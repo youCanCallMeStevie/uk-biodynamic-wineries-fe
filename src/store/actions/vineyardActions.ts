@@ -33,7 +33,6 @@ export const fetchSavedVineyardsAction = () => async (
         type: VINEYARD_SUCCESS,
         payload: savedVineyards,
       });
-    
     } else throw Error;
   } catch (err) {
     dispatch({
@@ -69,19 +68,21 @@ export const searchVineyardsAction = (query: SearchQuery) => async (
   dispatch: Dispatch<VineyardDispatchTypes>
 ) => {
   try {
-    console.log("QUERY", query)
+    console.log("QUERY", query);
     dispatch({
       type: VINEYARD_LOADING,
     });
     const vineyards = await searchVineyards(query);
-    console.log("vineyardAction", vineyards)
+    console.log("vineyardAction1", vineyards);
 
     if (vineyards) {
       dispatch({
         type: VINEYARD_SUCCESS,
         payload: vineyards,
       });
-    } else throw Error;
+      console.log("vineyardAction2", vineyards);
+      return vineyards;
+    } else throw new Error();
   } catch (error) {
     dispatch({
       type: VINEYARD_ERROR,

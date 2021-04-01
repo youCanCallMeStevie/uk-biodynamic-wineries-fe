@@ -29,9 +29,11 @@ interface MapProps {
 function Map({ data, moonInfo }: MapProps, { primary }: any) {
   const dispatch = useDispatch();
 
-  useEffect(() => {}, [data]);
+  // useEffect(() => {}, [data]);
 
   console.log("Map data", data!.vineyards);
+  console.log(Boolean(data));
+  console.log(Boolean(undefined));
   return (
     <>
       <MapSec>
@@ -46,21 +48,29 @@ function Map({ data, moonInfo }: MapProps, { primary }: any) {
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
 
-            {data!.vineyards.map(vineyard => (
-              <Marker
-                key={vineyard._id}
-                icon={customIcon}
-                position={[
-                  vineyard.details.latitude,
-                  vineyard.details.longitude,
-                ]}
-              >
-                <Popup>
-                  {vineyard.name}
-                  <br /> {vineyard.bio}
-                </Popup>
-              </Marker>
-            ))}
+            {
+              // typeof data === "undefined" &&
+              //   (() => {
+              //     console.log("here");
+              //     return true;
+              //   })() &&
+              data &&
+                data.vineyards.map(vineyard => (
+                  <Marker
+                    key={vineyard._id}
+                    icon={customIcon}
+                    position={[
+                      vineyard.details.latitude,
+                      vineyard.details.longitude,
+                    ]}
+                  >
+                    <Popup>
+                      {vineyard.name}
+                      <br /> {vineyard.bio}
+                    </Popup>
+                  </Marker>
+                ))
+            }
           </MapContainer>
           <Container>
             <HeadingWrapper>

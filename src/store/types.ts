@@ -391,7 +391,7 @@ export interface MoonData{
   zodiac: string;
   house: string;
   bioDay: string;
-  nextFruitday: string;
+  nextFruitDay: string;
   nextFullMoon: AstroTime
 }
 

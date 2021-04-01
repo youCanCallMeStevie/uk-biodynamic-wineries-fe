@@ -1,6 +1,9 @@
 import React from "react";
 import { Container, Button, Image } from "../../styles/globalStyles";
 import { MoonData } from "../../store/types";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../store";
+import { toggleModalActions } from "../../store/actions/modalActions";
 
 import {
   InfoSec,
@@ -47,6 +50,9 @@ function InfoBanner({
   alt,
   moonInfo,
 }: BannerProps) {
+  const dispatch = useDispatch();
+  const modalStatus = useSelector((state: RootState) => state.modal.isOpen);
+
   return (
     <>
       {console.log("moonInfo", moonInfo)}
@@ -62,11 +68,17 @@ function InfoBanner({
                   {moonInfo?.moonPhase || description}
                 </Subtitle>
                 <Subtitle lightTextDesc={lightTextDesc}>{description}</Subtitle>
-                <Link to="/sign-up">
-                  <Button big fontBig primary={primary}>
-                    {buttonLabel}
-                  </Button>
-                </Link>
+                {/* <Link to="/sign-up"> */}
+
+                <Button
+                  big
+                  fontBig
+                  primary={primary}
+                  onClick={() => dispatch(toggleModalActions(true, "moon"))}
+                >
+                  {buttonLabel}
+                </Button>
+                {/* </Link> */}
               </TextWrapper>
             </InfoCol>
             <InfoCol>

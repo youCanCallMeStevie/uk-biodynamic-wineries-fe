@@ -47,7 +47,7 @@ export const TextWrapper = styled.div`
   }
 `;
 
-interface Color {
+export interface Color {
   lightTopLine?: boolean;
   lightText?: boolean;
   lightTextDesc?: boolean;
