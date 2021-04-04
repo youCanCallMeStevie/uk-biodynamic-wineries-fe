@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "./store";
 // import './App.css';
 import Home from "./Pages/Home/Home";
+import Vineyard from "./Pages/VineyardProfile/Vineyard";
 import Alert from "./Components/Alert/Alert";
 // import { VineyardData, VineyardDispatchTypes } from './store/types';
 import { setAlert } from "./store/actions/alertActions";
@@ -44,6 +45,16 @@ function App() {
         vineyardData && (
           <>
             <Route path="/" exact component={Home} />
+            <Footer moonPhase={moonPhase} />
+          </>
+        )
+      )}
+      {loading ? (
+        <Loader />
+      ) : (
+        vineyardData && (
+          <>
+            <Route path="/:vineyardId" exact component={Vineyard} />
             <Footer moonPhase={moonPhase} />
           </>
         )
