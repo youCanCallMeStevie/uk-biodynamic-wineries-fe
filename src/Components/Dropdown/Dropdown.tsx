@@ -1,13 +1,17 @@
-import React, {useMemo} from "react";
+import React, { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { UserState } from "../../store/types";
-import { Avatar, Image } from "../../styles/globalStyles";
-
+import { Avatar, Image, Button } from "../../styles/globalStyles";
+import { useDispatch, useSelector } from "react-redux";
+import { DropdownContainer, Divider, Tab } from "./Dropdown.elements";
+import { logoutAction } from "../../store/actions/userActions";
 interface DropdownProps {
   menu: string;
   user: UserState;
 }
 export default function Dropdown({ menu, user }: DropdownProps) {
+  const dispatch = useDispatch();
+
   const dropDownMenu = useMemo(() => {
     switch (menu) {
       case "user":
@@ -19,17 +23,44 @@ export default function Dropdown({ menu, user }: DropdownProps) {
                 alt="Profile picture of logged in user"
               />
             </Avatar>
-            <h4>
-              {user.profile!.name} {user.profile!.lastname}
-            </h4>
-            {/* <Button> View Profile</Button>
-  <Divider></Divider> */}
-            {/* <dropdown list Logout Refer a Friend */}
+            <p>Saved Vineyards</p>
+            <p>Reviews</p>
+            <Link to="/me">
+              {" "}
+              <Button> View / Edit Profile</Button>{" "}
+            </Link>
+            <Divider />
+            <p>Refer a Friend</p>
+          </>
+        );
+
+      case "winery":
+        return (
+          <>
+            <Avatar>
+              <Image
+                src={user.profile!.imageUrl}
+                alt="Profile picture of logged in user"
+              />
+            </Avatar>
+            <p>Saved Vineyards</p>
+            <p>Reviews</p>
+            <Link to="/me">
+              {" "}
+              <Button> View / Edit Winery Info</Button>{" "}
+            </Link>
+            <Divider />
+            <p>Refer a Friend</p>
           </>
         );
       default:
         return "";
     }
   }, [menu]);
-  return <div>{dropDownMenu}</div>;
+  return (
+    <>
+      <Tab />
+      <DropdownContainer>{dropDownMenu}</DropdownContainer>
+    </>
+  );
 }

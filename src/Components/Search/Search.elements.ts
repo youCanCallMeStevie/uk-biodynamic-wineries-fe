@@ -11,11 +11,12 @@ padding-bottom: 10px;
 background-color: #101522;
 `
 export const SearchWrapper = styled.form`
+margin: 10px 50px 20px 50px;
   display: flex;
-  justify-content: start;
+  justify-content: space-evenly;
   align-items: center;
   @media screen and (max-width: 990px) {
-    width: 200px;
+    justify-content: center;
     flex-direction: column;
     margin-top: 2rem;
     button {

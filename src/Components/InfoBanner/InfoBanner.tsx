@@ -67,7 +67,6 @@ function InfoBanner({
                 <Subtitle lightTextDesc={lightTextDesc}>
                   {moonInfo?.moonPhase || description}
                 </Subtitle>
-                <Subtitle lightTextDesc={lightTextDesc}>{description}</Subtitle>
                 {/* <Link to="/sign-up"> */}
 
                 <Button

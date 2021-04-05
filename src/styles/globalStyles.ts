@@ -19,16 +19,15 @@ const GlobalStyles = createGlobalStyle`
 interface IImage {
   src?: string;
 }
-export const Image = styled.img<IImage>`
-`;
+export const Image = styled.img<IImage>``;
 
 export const Avatar = styled.div`
+  margin: 1rem;
   img {
-    margin-left: 1rem;
     border-radius: 50px;
     height: 40px;
-  width: 40px;
-  overflow: hidden;
+    width: 40px;
+    overflow: hidden;
     height: 100%;
     width: 100%fit-content;
     object-fit: cover;
@@ -47,7 +46,7 @@ export const Container = styled.div`
   @media screen and (max-width: 991px) {
     padding-left: 30px;
     padding-right: 30px;
-  };
+  } ;
 `;
 
 // FIX THIS LATER
@@ -66,9 +65,9 @@ export const Button = styled.button<IButton>`
   outline: none;
   border: none;
   cursor: pointer;
-  z-index:5001;
+  z-index: 5001;
   &:hover {
-    transition: all 0.3s ease;    
+    transition: all 0.3s ease;
     background: #f3f4ed;
     background: ${({ primary }) => (primary ? "#424642" : "#c06014")};
   }
@@ -76,7 +75,6 @@ export const Button = styled.button<IButton>`
     width: 80%;
   }
 `;
-
 
 export const Input = styled.input`
   min-width: 200px;

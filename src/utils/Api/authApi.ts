@@ -33,8 +33,7 @@ export const getCurrentUserApi = async () => {
 };
 export const userLogout = async () => {
   try {
-    const logout = await axios.post(`${REACT_APP_API_URI}/api/auth/logout`);
-    // return logout.data;
+    await axios.post(`${REACT_APP_API_URI}/api/auth/logout`);
   } catch (err) {
     console.log(err);
     return null;

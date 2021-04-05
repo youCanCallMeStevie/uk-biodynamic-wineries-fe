@@ -11,6 +11,8 @@ export const SmallSearch = styled.div`
   @media screen and (max-width: 990px) {
 
     display: flex;
+    justify-content:center;
+    align-items: center;
     padding: 50px 50px;
     button {
       margin-top: 10px;

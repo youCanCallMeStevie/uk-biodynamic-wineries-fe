@@ -6,9 +6,7 @@ import {
   getCurrentUserAction,
   logoutAction,
 } from "../../store/actions/userActions";
-import Dropdown from "../Dropdown/Dropdown";
-import Modal from "../Modal/Modal";
-import Toggle from "../Toggle/Toggle";
+import { Dropdown, Modal, Toggle } from "../index";
 
 //styles
 import { Avatar, Image } from "../../styles/globalStyles";
@@ -28,12 +26,8 @@ import { Button } from "../../styles/globalStyles";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { IconContext } from "react-icons/lib";
 import MoonIcon from "../MoonIcon/MoonIcon";
-import userReducer from "../../store/reducers/userReducer";
 
 const BarNav = () => {
-  // const moonInfo = useSelector((state: RootState) => state.moon.moonInfo);
-
-  // const [showModal, setShowModal] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
@@ -45,8 +39,6 @@ const BarNav = () => {
   const loginSection = useMemo(() => {
     if (!user.isLoggedIn) {
       return (
-        // <>
-        //   {button ? (
         <>
           <NavItemBtn>
             <NavBtnLink to="/">
@@ -68,51 +60,26 @@ const BarNav = () => {
               </Button>
             </NavBtnLink>
           </NavItemBtn>
-          {/* </>
-          ) : (
-            <>
-              <NavItemBtn>
-                <NavBtnLink to="/">
-                  <Button
-                    fontBig
-                    primary
-                    onClick={() => dispatch(toggleModalActions(true, "login"))}
-                  >
-                    LOGIN
-                  </Button>
-                </NavBtnLink>
-              </NavItemBtn>
-              <NavItemBtn>
-                <NavBtnLink to="/register">
-                  <Button
-                    fontBig
-                    primary
-                    onClick={() => dispatch(toggleModalActions(true, "signup"))}
-                  >
-                    SIGN UP
-                  </Button>
-                </NavBtnLink>
-              </NavItemBtn>
-            </>
-          )} */}
         </>
       );
     } else {
       return (
         <>
-          <h5> Hi, {user && user?.profile!.name}!</h5>
+          <h5 onClick={() => setShowDropdown(!showDropdown)}>
+            {" "}
+            Hi, {user && user?.profile!.name}!
+          </h5>
           <Avatar onClick={() => setShowDropdown(!showDropdown)}>
             <Image
               src={user && user?.profile!.imageUrl}
               alt="Profil picture of logged in user"
             />
           </Avatar>
+
           {showDropdown && <Dropdown menu={"user"} user={user} />}
-          <NavBtnLink to="/">
-            <Button primary onClick={() => dispatch(logoutAction())}>
-              LOG OUT
-            </Button>
-          </NavBtnLink>
+          <Button primary onClick={() => dispatch(logoutAction())}>
+            LOG OUT
+          </Button>
         </>
       );
     }
@@ -156,20 +123,7 @@ const BarNav = () => {
             <NavMenu onClick={handleClick} click={click}>
               <NavItem>
                 <NavLinks to="/">Vineyards</NavLinks>
-                {/* <NavLinks to="/">Calender</NavLinks> */}
               </NavItem>
-              {/* <NavItem>
-                <NavLinks to="/profile">
-                  {user.isLoggedIn && (
-                    <Avatar>
-                      <Image
-                        src={user.profile!.imageUrl}
-                        alt="Profile picture of logged in user"
-                      />
-                    </Avatar>
-                  )}
-                </NavLinks>
-              </NavItem> */}
               {loginSection}
               <Toggle />
             </NavMenu>

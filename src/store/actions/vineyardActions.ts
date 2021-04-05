@@ -64,6 +64,27 @@ export const getVineyardAction = () => async (
   }
 };
 
+export const getOneVineyardAction = (vineyardId: string) => async (
+  dispatch: Dispatch<VineyardDispatchTypes>
+) => {
+  try {
+    dispatch({
+      type: VINEYARD_LOADING,
+    });
+    const vineyard = await getOneVineyard(vineyardId);
+    if (vineyard) {
+      dispatch({
+        type: VINEYARD_SUCCESS,
+        payload: vineyard,
+      });
+    } else throw Error;
+  } catch (error) {
+    dispatch({
+      type: VINEYARD_ERROR,
+      payload: "There are no vineyard",
+    });
+  }
+};
 export const searchVineyardsAction = (query: SearchQuery) => async (
   dispatch: Dispatch<VineyardDispatchTypes>
 ) => {

@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "./store";
 // import './App.css';
 import Home from "./Pages/Home/Home";
-import Vineyard from "./Pages/VineyardProfile/Vineyard";
+import User from "./Pages/UserProfile/User";
+import Vineyard from "./Pages/Vineyard/Vineyard";
 import Alert from "./Components/Alert/Alert";
 // import { VineyardData, VineyardDispatchTypes } from './store/types';
 import { setAlert } from "./store/actions/alertActions";
@@ -24,7 +25,7 @@ function App() {
   const dispatch = useDispatch();
   const moonInfo = useSelector((state: RootState) => state.moon.moonInfo);
   const moonPhase = moonInfo?.moonPhase;
-  const vineyardData = useSelector((state: RootState) => state.vineyard.data);
+  const vineyardData = useSelector((state: RootState) => state.vineyard);
   const loading = useSelector((state: RootState) => state.vineyard.loading);
   const error = useSelector((state: RootState) => state.vineyard.error);
   const alertMsg = useSelector((state: RootState) => state.alert.message);
@@ -44,21 +45,14 @@ function App() {
       ) : (
         vineyardData && (
           <>
-            <Route path="/" exact component={Home} />
-            <Footer moonPhase={moonPhase} />
+            <Route exact path="/" component={Home} />
           </>
         )
       )}
-      {loading ? (
-        <Loader />
-      ) : (
-        vineyardData && (
-          <>
-            <Route path="/:vineyardId" exact component={Vineyard} />
-            <Footer moonPhase={moonPhase} />
-          </>
-        )
-      )}
+      <Route exact path="/vineyard/:vineyardId" component={Vineyard} />
+      <Route exact path="/me" component={User} />
+      <Footer moonPhase={moonPhase} />
+
       {/* {alertMsg && (
         <Alert message={alertMsg} onClose={() => dispatch(setAlert(""))} />
       )}

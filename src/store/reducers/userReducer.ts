@@ -44,6 +44,8 @@ const userReducer = (
       return {
         ...state,
         isLoggedIn: true,
+        loading: false,
+
         profile: action.payload,
         error: "",
       };
@@ -74,6 +76,7 @@ const userReducer = (
     case PROFILE_SUCCESS:
       return {
         ...state,
+        loading: false,
         isLoggedIn: true,
         profile: action.payload,
         error: "",

@@ -5,7 +5,7 @@ import { VineyardData, MoonData, MapData } from "../../store/types";
 import { Icon } from "leaflet";
 import { MapSec, MapSecContainer } from "./Map.elements";
 import { Map as LeafletMap } from "leaflet";
-
+import { Link } from "react-router-dom";
 const mapMarker = require("../../assets/illustrations/maps_marker.svg");
 
 const customIcon = new Icon({
@@ -23,9 +23,9 @@ function Map({ data, moonInfo, position }: MapProps, { primary }: any) {
   const dispatch = useDispatch();
   const [map, setMap] = useState<LeafletMap | null>(null);
   console.log("data", data);
-  useEffect(() => {
-    map && position && map.flyTo(position.center, position.zoom);
-  }, [position!.center, position!.zoom]);
+  // useEffect(() => {
+  //   map && position && map.flyTo(position.center, position.zoom);
+  // }, [position!.center, position!.zoom]);
 
   return (
     <>
@@ -54,8 +54,10 @@ function Map({ data, moonInfo, position }: MapProps, { primary }: any) {
                   ]}
                 >
                   <Popup>
-                    {vineyard.name}
-                    <br /> {vineyard.bio}
+                    <Link to={`/vineyard/${vineyard._id}`}>
+                      <h3>{vineyard.name}</h3>
+                    </Link>
+                    <br /> <p>{vineyard.bio}</p>
                   </Popup>
                 </Marker>
               ))}

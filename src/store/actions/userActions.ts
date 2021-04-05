@@ -1,4 +1,4 @@
-import { getCurrentUserApi, userLoginApi, userLogout } from "../../utils/Api/authApi";
+import { getCurrentUserApi, userLoginApi } from "../../utils/Api/authApi";
 
 import { Dispatch } from "redux";
 import {

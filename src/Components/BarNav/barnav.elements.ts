@@ -61,6 +61,9 @@ export const NavMenu = styled.ul<Click>`
   align-items: center;
   list-style: none;
   text-align: center;
+  h5, img {
+    cursor: pointer;
+  }
   @media screen and (max-width: 960px) {
     display: flex;
     flex-direction: column;
