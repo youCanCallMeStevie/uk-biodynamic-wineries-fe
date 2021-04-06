@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Button, Image } from "../../styles/globalStyles";
-import { MoonData } from "../../store/types";
+import { MoonData, VineyardData } from "../../store/types";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { toggleModalActions } from "../../store/actions/modalActions";
@@ -19,6 +19,7 @@ import {
 import { Link } from "react-router-dom";
 export interface BannerProps {
   moonInfo?: MoonData;
+  details?: VineyardData;
   primary: boolean;
   lightBg: boolean;
   imgStart: string;
@@ -29,7 +30,7 @@ export interface BannerProps {
   description: string;
   headline: string;
   topLine: string;
-  img: any;
+  img?: any;
   start: string;
   alt: string;
 }
@@ -49,10 +50,14 @@ function InfoBanner({
   start,
   alt,
   moonInfo,
+  details,
 }: BannerProps) {
   const dispatch = useDispatch();
   const modalStatus = useSelector((state: RootState) => state.modal.isOpen);
-
+  let randomImg =
+    details?.vineyards[0].images[
+      Math.floor(Math.random() * details?.vineyards[0].images.length)
+    ];
   return (
     <>
       {console.log("moonInfo", moonInfo)}
@@ -62,8 +67,12 @@ function InfoBanner({
           <InfoRow imgStart={imgStart}>
             <InfoCol>
               <TextWrapper>
-                <TopLine lightTopLine={lightTopLine}>{topLine}</TopLine>
-                <Heading lightText={lightText}>{headline}</Heading>
+                <TopLine lightTopLine={lightTopLine}>
+                  {details?.vineyards[0].region || topLine}
+                </TopLine>
+                <Heading lightText={lightText}>
+                  {details?.vineyards[0].name || headline}
+                </Heading>
                 <Subtitle lightTextDesc={lightTextDesc}>
                   {moonInfo?.moonPhase || description}
                 </Subtitle>
@@ -82,7 +91,7 @@ function InfoBanner({
             </InfoCol>
             <InfoCol>
               <ImgWrapper start={start}>
-                <Img src={img?.default} alt={alt} />
+                <Img src={randomImg || img?.default} alt={alt} />
               </ImgWrapper>
             </InfoCol>
           </InfoRow>
