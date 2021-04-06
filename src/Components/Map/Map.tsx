@@ -23,9 +23,9 @@ function Map({ data, moonInfo, position }: MapProps, { primary }: any) {
   const dispatch = useDispatch();
   const [map, setMap] = useState<LeafletMap | null>(null);
   console.log("data", data);
-  // useEffect(() => {
-  //   map && position && map.flyTo(position.center, position.zoom);
-  // }, [position!.center, position!.zoom]);
+  useEffect(() => {
+    map && position && map.flyTo(position.center, position.zoom);
+  }, [position!.center, position!.zoom]);
 
   return (
     <>

@@ -1,10 +1,12 @@
 import { BannerProps } from "../../Components/InfoBanner/InfoBanner";
+import{SummaryProps} from "../../Components/Summary/Summary"
 import { MoonData, MoonPhase, VineyardData } from "../../store/types";
 import {RiStarSFill} from "react-icons/ri"
 
 
 
 type VineyardObjectMaker = (details?: VineyardData) => BannerProps
+type SummaryObjectMaker = (details?: VineyardData) => SummaryProps
 
 
 export const vineyardObjOne: VineyardObjectMaker = (details?: VineyardData) => ({
@@ -21,7 +23,7 @@ export const vineyardObjOne: VineyardObjectMaker = (details?: VineyardData) => (
     lightText: false,
     topLine: `${details?.vineyards[0].name} in ${details?.vineyards[0].region}`,
     img: require(`../../assets/illustrations/_flower_day_2.svg`),
-    alt: "image",
+    alt: `Random Image 2 for ${details?.vineyards[0].name}`,
     start: "",
     details
   });
@@ -34,30 +36,23 @@ export const vineyardObjTwo: VineyardObjectMaker = (details?: VineyardData) => (
   lightTextDesc: true,
   buttonLabel: "Check Out",
   description:
-    "Depending on when you visit a vineyard,.... Biodynamic, blah, blah, blah, spend some time building proepr copy. but get the coding done",
-  headline: `${details?.vineyards[0].bio}`,
+  `${details?.vineyards[0].biodynamic} ${details?.vineyards[0].dogFriendly} ${details?.vineyards[0].rooms}`,
+  headline: `${details?.vineyards[0].fullAddress}`,
   lightText: true,
   topLine: `${details?.vineyards[0].name} in ${details?.vineyards[0].region}`,
-  alt: "image",
+  alt: `Random Image 2 for ${details?.vineyards[0].name}`,
   start: "true",
   details
 });
 
-export const vineyardObjThree: VineyardObjectMaker = (details?: VineyardData) => ({
-  
-  
-    lightBg: true,
+export const vineyardObjThree: SummaryObjectMaker = (details?: VineyardData) => ({
+  lightBg: true,
   primary: false,
   imgStart: "",
   lightTopLine: false,
   lightTextDesc: false,
   buttonLabel: "Leave a Review",
-  description:
-    ` ${details?.vineyards[0].reviews[0]?.userId?.username} left ${details?.vineyards[0].reviews[0]?.rating} stars`,
-
-  headline:`"${details?.vineyards[0].reviews[0]?.text}"`,
   lightText: false,
-  topLine: `Reviews for ${details?.vineyards[0].name}:`,
   img: require(`../../assets/illustrations/_flower_day_2.svg`),
   alt: "image",
   start: "",

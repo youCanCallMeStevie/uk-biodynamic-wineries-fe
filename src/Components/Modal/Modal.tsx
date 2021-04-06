@@ -1,18 +1,19 @@
 import React, { useState, useMemo, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { Button, Image, Input } from "../../styles/globalStyles";
 import {
   loginAction,
   registerUserAction,
 } from "../../store/actions/userActions";
-
+import { UserProfile } from "../../store/types";
 import { getVineyardAction } from "../../store/actions/vineyardActions";
-
+import { newReviewAction } from "../../store/actions/reviewActions";
 import { toggleModalActions } from "../../store/actions/modalActions";
 import RegisterImg from "../../assets/illustrations/nature_tech.svg";
 import LoginImg from "../../assets/illustrations/moon_location.svg";
 import MoonImg from "../../assets/illustrations/moon_only.svg";
+import ReviewImg from "../../assets/illustrations/location_marker_girl.svg";
 import { useSpring, animated } from "react-spring";
 import { RootState } from "../../store";
 import {
@@ -26,7 +27,18 @@ import {
 
 function Modal() {
   const { REACT_APP_API_URI } = process.env;
-  const initialFromData = {
+
+  const history = useHistory();
+  const dispatch = useDispatch();
+  // const params = useParams();
+  const modalType = useSelector((state: RootState) => state.modal.type);
+  const details = useSelector((state: RootState) => state.vineyard.data);
+  const modalStatus = useSelector((state: RootState) => state.modal.isOpen);
+  const moonInfo = useSelector((state: RootState) => state.moon.moonInfo);
+  const userInfo = useSelector((state: RootState) => state.user.profile);
+  console.log("xxxUserInfo", userInfo);
+
+  const initialFormData = {
     name: "",
     lastname: "",
     username: "",
@@ -37,14 +49,14 @@ function Modal() {
     username: "",
     password: "",
   };
-  const history = useHistory();
-  const dispatch = useDispatch();
-  const modalType = useSelector((state: RootState) => state.modal.type);
-  const modalStatus = useSelector((state: RootState) => state.modal.isOpen);
-  const moonInfo = useSelector((state: RootState) => state.moon.moonInfo);
-  const [formData, setFormData] = useState(initialFromData);
+  const initialReviewData = {
+    rating: 5,
+    text: "",
+    userId: userInfo?._id,
+  };
+  const [formData, setFormData] = useState(initialFormData);
   const [loginData, setLoginData] = useState(initialLoginData);
-
+  const [reviewData, setReviewData] = useState(initialReviewData);
   // const credentials = { ...formData };
 
   const animation = useSpring({
@@ -73,13 +85,25 @@ function Modal() {
   const handleSignup = async () => {
     try {
       dispatch(registerUserAction(formData));
-      setFormData(initialFromData);
+      setFormData(initialFormData);
       dispatch(toggleModalActions(true, "login"));
     } catch (err) {
       console.log(err);
     }
   };
 
+  const handleReviewChange = (e: any) => {
+    setReviewData({ ...reviewData, [e.target.name]: e.target.value });
+  };
+  const handleReview = async () => {
+    try {
+      // dispatch(newReviewAction(reviewData, vineyardId));
+      setReviewData(initialReviewData);
+      dispatch(toggleModalActions(false, ""));
+    } catch (err) {
+      console.log(err);
+    }
+  };
   const nextFruitDayInfo = useMemo(() => {
     if (moonInfo!.bioDay == "Fruit") {
       return <h2>Today is an ideal time for wine!</h2>;
@@ -87,8 +111,8 @@ function Modal() {
       return (
         <p>
           {" "}
-          Next fruit day (& most the best expression of wine) is{" "}
-          {moonInfo!.nextFruitDay}
+          Next fruit day (& most the best expression of wine) is:
+          <h6>{moonInfo!.nextFruitDay}</h6>
         </p>
       );
     }
@@ -97,7 +121,6 @@ function Modal() {
   const contentSection = () => {
     if (modalType == "login") {
       const { username, password } = loginData;
-
       return (
         <>
           <ModalImgWrapper>
@@ -131,7 +154,7 @@ function Modal() {
               </Button>
             </SignInForm>
             <a href={`${REACT_APP_API_URI}/api/auth/google`}>
-              <div>or Sign Up with Google</div>
+              or Sign Up with Google
             </a>
             <CloseModalBtn
               onClick={() => dispatch(toggleModalActions(false, ""))}
@@ -196,7 +219,7 @@ function Modal() {
               </Button>
             </SignInForm>
             <a href={`${REACT_APP_API_URI}/api/auth/google`}>
-              <div>or Sign Up with Google</div>
+              or Sign Up with Google
             </a>
             <CloseModalBtn
               onClick={() => dispatch(toggleModalActions(false, ""))}
@@ -217,12 +240,53 @@ function Modal() {
               in {moonInfo!.trajectory}. The moon currently is in the
               constellation of {moonInfo!.zodiac}.
             </p>
-            <h2>What does this mean for wine?</h2>
+            <h2>What does it mean for wine?</h2>
             <p>
-              This constelaltion represents {moonInfo!.house} it's biodyanmic
+              This constelaltion represents {moonInfo!.house} & it's biodyanmic
               day is {moonInfo!.bioDay}.
             </p>
             {nextFruitDayInfo}
+            <CloseModalBtn
+              onClick={() => dispatch(toggleModalActions(false, ""))}
+            />
+          </ModalContent>
+        </>
+      );
+    } else if (modalType == "review") {
+      const { text, rating } = reviewData;
+      return (
+        <>
+          <ModalImgWrapper>
+            <Image src={ReviewImg} alt="nature and tech illustration" />
+          </ModalImgWrapper>
+          <ModalContent>
+            <SignInForm>
+              <h1>What do you think of {details?.vineyards[0].name}?</h1>
+              <Input
+                type="text"
+                placeholder="Your review"
+                name="text"
+                value={text}
+                onChange={handleReviewChange}
+              ></Input>
+              <Input
+                type="number"
+                name="rating"
+                placeholder="1-5 stars"
+                value={rating}
+                onChange={handleReviewChange}
+              ></Input>
+              <Button
+                primary
+                onClick={(event: React.MouseEvent<HTMLElement>) => {
+                  event.preventDefault();
+                  handleReview();
+                }}
+              >
+                Submit Reivew
+              </Button>
+            </SignInForm>
+
             <CloseModalBtn
               onClick={() => dispatch(toggleModalActions(false, ""))}
             />

@@ -10,6 +10,9 @@ export { default as InfoBanner} from "./InfoBanner/InfoBanner";
 export { default as BioDays} from "./BioDays/BioDays";
 export { default as Listing} from "./Listing/Listing";
 export { default as Gallery} from "./Gallery/Gallery";
+export { default as Summary} from "./Summary/Summary";
+export { default as SaveIcon} from "./SaveIcon/SaveIcon";
+
 
 
 

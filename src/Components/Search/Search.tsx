@@ -1,55 +1,39 @@
 import React, { useState, useMemo, useEffect } from "react";
-import { VineyardData, SET_POSITION, MoonData } from "../../store/types";
+import {
+  VineyardData,
+  SET_POSITION,
+  MoonData,
+  SET_SEARCH_PERFORMED,
+} from "../../store/types";
 import { SearchWrapper, DayHeading, SearchContainer } from "./Search.elements";
 import { Button, Container, Input } from "../../styles/globalStyles";
 import { SearchQuery } from "../../utils/interfaces";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleModalActions } from "../../store/actions/modalActions";
 import { searchVineyardsAction } from "../../store/actions/vineyardActions";
 import { Listing } from "../index";
+import { RootState } from "../../store";
 
 interface SearchProps {
   data?: VineyardData;
   moonInfo?: MoonData;
 }
 
-function Search({ data, moonInfo }: SearchProps) {
+function Search({ moonInfo }: SearchProps) {
   const dispatch = useDispatch();
-
-  const [showListings, setShowListings] = useState(false);
+  const { data, searchPerformed } = useSelector(
+    (state: RootState) => state.vineyard
+  );
   const [grapes, setGrapes] = useState("");
   const [city, setCity] = useState("");
   const [date, setDate] = useState("");
   const query = { grapes, city, date };
 
-  // useEffect(() => {
-  //   console.log("useEffect showListings", showListings);
-  // }, [showListings]);
-
-  const handleListings = useMemo(() => {
-    if (showListings === false) {
-      return <></>;
-    } else {
-      return (
-        <>
-          {data &&
-            data.vineyards &&
-            data.vineyards.map(vineyard => (
-              <Listing key={vineyard._id} listing={vineyard} />
-            ))}
-        </>
-      );
-    }
-  }, [showListings]);
-
   const handleSearch = async (query: SearchQuery) => {
     try {
-      await setShowListings(true);
-      console.log("handle Search showListings1", showListings);
-      await dispatch(searchVineyardsAction(query));
+      await dispatch(searchVineyardsAction(query, true));
       dispatch({ type: SET_POSITION, payload: { center: [51.509, -0.118] } });
-      // await setShowListings(true);
-      // console.log("handle Search showListings2", showListings);
+      dispatch({ type: SET_SEARCH_PERFORMED, payload: true });
       setGrapes("");
       setCity("");
       setDate("");
@@ -97,8 +81,15 @@ function Search({ data, moonInfo }: SearchProps) {
             >
               Plan Your Visit
             </Button>
-          </SearchWrapper>
-          {handleListings}
+          </SearchWrapper>{" "}
+          <>
+            {searchPerformed &&
+              data &&
+              data.vineyards &&
+              data.vineyards.map(vineyard => (
+                <Listing key={vineyard._id} listing={vineyard} />
+              ))}
+          </>{" "}
         </Container>
       </SearchContainer>
     </>

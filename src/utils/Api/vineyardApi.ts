@@ -114,14 +114,16 @@ export const searchVineyards = async (query: SearchQuery) => {
   }
 };
 
-export const likeAVineyard = async (vineyardId: string) => {
+export const followAVineyard = async (vineyardId: string) => {
   try {
+    console.log("followAVineyard", vineyardId )
     const post = await axios.post(
       `${REACT_APP_API_URI}/api/vineyards/${vineyardId}/like`,
       {
         withCredentials: true,
       }
     );
+    console.log("post", post)
     return post.data;
   } catch (error) {
     console.log(error);
@@ -129,7 +131,7 @@ export const likeAVineyard = async (vineyardId: string) => {
   }
 };
 
-export const unlikeAVineyard = async (vineyardId: string) => {
+export const unfollowAVineyard = async (vineyardId: string) => {
   try {
     const post = await axios.put(
       `${REACT_APP_API_URI}/api/vineyards/${vineyardId}/unlike`,

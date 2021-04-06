@@ -26,7 +26,9 @@ function BioDays() {
       {" "}
       <DaysSection>
         <DaysWrapper>
-          <DaysHeading>What are Biodynamic Days?</DaysHeading>
+          <DaysHeading>
+            What do Biodynamic Days mean for Wine Tasting?
+          </DaysHeading>
 
           <DayContainer>
             <DayCard>
@@ -37,7 +39,11 @@ function BioDays() {
                 <HouseHeader>Light & Fire</HouseHeader>
                 <DayHeader>Fruit</DayHeader>
                 <ZodiacHeader>Aries | Leo | Sagittarius</ZodiacHeader>
-                <AboutDaySection>About ths day, what happens </AboutDaySection>
+                <AboutDaySection>
+                  When the moon is in any of the fire signs, it is the most
+                  optimal for tasting wine as fruit flavors are more vibrant,
+                  and the wine is rich and full.
+                </AboutDaySection>
               </DayCardInfo>
             </DayCard>
             <DayCard>
@@ -48,7 +54,11 @@ function BioDays() {
                 <HouseHeader>Air</HouseHeader>
                 <DayHeader>Flower</DayHeader>
                 <ZodiacHeader>Gemini | Libra | Aquarius</ZodiacHeader>
-                <AboutDaySection>About ths day, what happens </AboutDaySection>
+                <AboutDaySection>
+                  When the moon is in any air sign it will be better days for
+                  tasting aromatic wines, especially white wines with floral
+                  aromas.
+                </AboutDaySection>
               </DayCardInfo>
             </DayCard>
             <DayCard>
@@ -59,7 +69,10 @@ function BioDays() {
                 <HouseHeader>Water</HouseHeader>
                 <DayHeader>Leaf</DayHeader>
                 <ZodiacHeader>Pisces | Cancer | Scorpio</ZodiacHeader>
-                <AboutDaySection>About ths day, what happens </AboutDaySection>
+                <AboutDaySection>
+                  When the moon is in any of the water signs wines appear less
+                  sweet, with a dominant, earthy minerality.
+                </AboutDaySection>
               </DayCardInfo>
             </DayCard>
             <DayCard>
@@ -70,7 +83,10 @@ function BioDays() {
                 <HouseHeader>Earth</HouseHeader>
                 <DayHeader>Root</DayHeader>
                 <ZodiacHeader>Taurus | Virgo | Capricorn</ZodiacHeader>
-                <AboutDaySection>About ths day, what happens </AboutDaySection>
+                <AboutDaySection>
+                  When the moon is in any Earth sign, it is best to avoid
+                  tasting wine as it's expression will appear more subtle.
+                </AboutDaySection>
               </DayCardInfo>
             </DayCard>
           </DayContainer>

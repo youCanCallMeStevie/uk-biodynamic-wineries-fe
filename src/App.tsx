@@ -31,6 +31,7 @@ function App() {
   const alertMsg = useSelector((state: RootState) => state.alert.message);
 
   useEffect(() => {
+    console.log("are you re rendering?");
     dispatch(setLoading());
     dispatch(getVineyardAction());
     dispatch(fetchTodaysMoonAction());

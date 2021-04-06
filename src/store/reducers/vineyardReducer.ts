@@ -4,11 +4,14 @@ import {
   VINEYARD_LOADING,
   VINEYARD_SUCCESS,
   VINEYARD_ERROR,
+  VineyardData,
+  SET_SEARCH_PERFORMED,
 } from "../types";
 
 const initialState: VineyardState = {
   loading: false,
   error: "",
+  searchPerformed:false,
 };
 
 const vineyardReducer = (
@@ -33,6 +36,12 @@ const vineyardReducer = (
         ...state,
         error: "Error loading vineyard details",
         loading: false,
+      };
+
+      case SET_SEARCH_PERFORMED:
+      return {
+        ...state,
+         searchPerformed:action.payload
       };
     default:
       return state;

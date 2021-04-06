@@ -15,9 +15,12 @@ import {
   VINEYARD_LOADING,
   VINEYARD_SUCCESS,
   VINEYARD_ERROR,
+  SET_SEARCH_PERFORMED,
 } from "../types";
 
 import { SearchQuery } from "../../utils/interfaces";
+
+export const setSearchPerformed=(searchPerformed:boolean) => ({type:SET_SEARCH_PERFORMED,payload:searchPerformed})
 
 export const fetchSavedVineyardsAction = () => async (
   dispatch: Dispatch<VineyardDispatchTypes>
@@ -85,7 +88,7 @@ export const getOneVineyardAction = (vineyardId: string) => async (
     });
   }
 };
-export const searchVineyardsAction = (query: SearchQuery) => async (
+export const searchVineyardsAction = (query: SearchQuery,isSearch=false) => async (
   dispatch: Dispatch<VineyardDispatchTypes>
 ) => {
   try {
@@ -101,7 +104,7 @@ export const searchVineyardsAction = (query: SearchQuery) => async (
 
       dispatch({
         type: VINEYARD_SUCCESS,
-        payload: vineyards,
+        payload:vineyards
       });
       console.log("vineyardAction3", vineyards);
     } else throw new Error();

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store";
-import { InfoBanner, Map, BioDays, Search } from "../../Components";
+import { InfoBanner, Map, Summary, SaveIcon } from "../../Components";
 import { vineyardObjOne, vineyardObjTwo, vineyardObjThree } from "./Data";
 import {
   LargeSearch,
@@ -23,7 +23,7 @@ function Vineyard() {
   const dispatch = useDispatch();
   console.log("params", params);
   const { vineyardId }: any = params;
-  console.log("vineyardId", vineyardId);
+  console.log("XXXXXXvineyardId", vineyardId);
 
   useEffect(() => {
     dispatch(getOneVineyardAction(vineyardId));
@@ -32,19 +32,11 @@ function Vineyard() {
   console.log("details", details);
   return (
     <>
+      <SaveIcon />
       <InfoBanner {...vineyardObjOne(details)} details={details} />
-
-      {/* {details?.vineyards.length == 1 && (
-        <>
-          <h1>{details?.vineyards[0].name}</h1>
-          <p>{details?.vineyards[0].address.city}</p>
-          <p>{details?.vineyards[0].bio}</p>
-        </>
-      )} */}
       <Map data={details} moonInfo={moonInfo} position={position} />
       <InfoBanner {...vineyardObjTwo(details)} details={details} />
-
-      <InfoBanner {...vineyardObjThree(details)} details={details} />
+      <Summary {...vineyardObjThree(details)} details={details} />
     </>
   );
 }

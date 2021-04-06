@@ -1,14 +1,9 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
-import {
-  LargeSearch,
-  SmallSearch,
-  SmallScreenWrapper,
-} from "../../styles/globalStyles";
+import { LargeSearch, SmallSearch } from "../../styles/globalStyles";
 import { InfoBanner, Map, BioDays, Search } from "../../Components";
 import { homeObjOne, homeObjTwo, homeObjThree } from "./Data";
-import { Container } from "../../styles/globalStyles";
 function Home() {
   const details = useSelector((state: RootState) => state.vineyard);
   const moonInfo = useSelector((state: RootState) => state.moon.moonInfo);
@@ -22,13 +17,9 @@ function Home() {
       <LargeSearch>
         <Search moonInfo={moonInfo} data={details.data} />
       </LargeSearch>
-      {/* <SmallScreenWrapper>
-        <Container> */}
       <SmallSearch>
         <Search moonInfo={moonInfo} data={details.data} />
       </SmallSearch>
-      {/* </Container>
-      </SmallScreenWrapper> */}
       <InfoBanner {...homeObjOne} />
       <BioDays />
       <InfoBanner {...homeObjTwo(moonInfo)} moonInfo={moonInfo} />
@@ -37,4 +28,18 @@ function Home() {
   );
 }
 
+/**
+ *
+ * useCallback && useMemo  [ title , location ]
+ * useMemo for display demo [ title , location ]
+ */
+
 export default Home;
+
+/**
+ *  Redux
+ *  Container
+ *
+ *   VineYardListing
+ *    List
+ */

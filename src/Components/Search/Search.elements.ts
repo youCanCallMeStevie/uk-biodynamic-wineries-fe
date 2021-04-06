@@ -8,6 +8,7 @@ interface IClick {
 
 export const SearchContainer = styled.div`
 padding-bottom: 10px;
+width: 100vw;
 background-color: #101522;
 `
 export const SearchWrapper = styled.form`

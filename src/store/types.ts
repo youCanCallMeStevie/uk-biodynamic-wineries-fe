@@ -20,7 +20,7 @@ export const GET_VINEYARD = "GET_VINEYARD";
 export const VINEYARD_LOADING = "VINEYARD_LOADING";
 export const VINEYARD_SUCCESS = "VINEYARD_SUCCESS";
 export const VINEYARD_ERROR = "VINEYARD_ERROR";
-
+export const SET_SEARCH_PERFORMED="SET_SEARCH_PERFORMED"
 export const PROFILE_LOADING = "PROFILE_LOADING";
 export const PROFILE_SUCCESS = "PROFILE_SUCCESS";
 export const PROFILE_ERROR = "PROFILE_ERROR";
@@ -163,7 +163,7 @@ export interface DarkState {
 export interface ReviewData {
   text: string | null;
   rating: number | null;
-  userId: UserProfile
+  userId: string | null | UserProfile;
 }
 
 export interface ReviewLoading {
@@ -207,7 +207,8 @@ export type LoginDispatchTypes = LoginLoading | LoginSuccess | LoginFail | LogOu
 // //VINEYARDS
 
 export interface VineyardData {
-vineyards: Array<VineyardInfo>
+  vineyards: VineyardInfo [],
+ 
 }
 
 export interface VineyardInfo {
@@ -225,6 +226,7 @@ export interface VineyardInfo {
   region: string;
   guidedTours?: boolean;
   guidedTastings?: boolean;
+  dogFriendly?: boolean;
   biodynamic: boolean;
   organic?: boolean;
   email: string;
@@ -339,6 +341,7 @@ export interface VineyardState {
   data?: VineyardData;
   loading: boolean;
   error: string;
+  searchPerformed?:boolean,
 }
 
 
@@ -355,11 +358,14 @@ export interface VineyardState {
     payload: string
 
   }
-  
+  export type VineyardSearch =  {
+    type: typeof SET_SEARCH_PERFORMED;
+    payload: boolean;
+  }
   export type VineyardDispatchTypes =
     | VineyardLoading
     | VineyardSuccess
-    | VineyardError;
+    | VineyardError | VineyardSearch;
 
 //FAVS
 export interface AddToFavs {

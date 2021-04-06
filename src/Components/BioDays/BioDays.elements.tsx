@@ -57,8 +57,8 @@ export const DayCard = styled.div`
     color: #424642;
   }
   @media screen and (max-width: 960px) {
-    width: 75%;
-    min-width: 200px;
+    width: 40%;
+    min-width: 250px;
     &:hover {
       transform: none;
     }
@@ -76,7 +76,7 @@ export const DayCardInfo = styled.div`
 `;
 
 export const DayIcon = styled.div`
-  margin: 24px 0;
+  margin: 10px 0;
   img {
     display: flex;
     height: 150px !important;
@@ -93,14 +93,19 @@ export const HouseHeader = styled.h3`
 `;
 export const DayHeader = styled.h2`
   font-size: 30px;
+  margin-bottom: 5px;
 `;
 
-export const ZodiacHeader = styled.h6`
+export const ZodiacHeader = styled.h5`
   font-size: 12px;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
+  color: #3f3d56;
 `;
 export const AboutDaySection = styled.p`
-  margin: 16px 0 32px;
+  /* margin: 16px 0 32px; */
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  line-height: 1.3;
   display: flex;
   align-items: center;
   color: offwhite;
