@@ -68,6 +68,7 @@ function Search({ data, moonInfo }: SearchProps) {
         <Container>
           <SearchWrapper>
             <DayHeading>Today is: A {moonInfo?.bioDay} Day</DayHeading>
+
             {/* <Input
               type="datetime-local"
               value={date && date}

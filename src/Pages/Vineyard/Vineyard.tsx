@@ -32,15 +32,18 @@ function Vineyard() {
   console.log("details", details);
   return (
     <>
-      {details?.vineyards.length == 1 && (
+      <InfoBanner {...vineyardObjOne(details)} details={details} />
+
+      {/* {details?.vineyards.length == 1 && (
         <>
           <h1>{details?.vineyards[0].name}</h1>
           <p>{details?.vineyards[0].address.city}</p>
           <p>{details?.vineyards[0].bio}</p>
         </>
-      )}
+      )} */}
       <Map data={details} moonInfo={moonInfo} position={position} />
       <InfoBanner {...vineyardObjTwo(details)} details={details} />
+
       <InfoBanner {...vineyardObjThree(details)} details={details} />
     </>
   );

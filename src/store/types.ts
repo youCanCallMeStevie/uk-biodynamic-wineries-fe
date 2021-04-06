@@ -163,6 +163,7 @@ export interface DarkState {
 export interface ReviewData {
   text: string | null;
   rating: number | null;
+  userId: UserProfile
 }
 
 export interface ReviewLoading {
@@ -214,7 +215,7 @@ export interface VineyardInfo {
   grapes: Array<string | undefined>;
   styles: Array<string | undefined>;
   likes: Array<string | undefined>;
-  reviews: Array<string | undefined>;
+  reviews: Array<ReviewData>;
   prevEmailed: Array<string | undefined>;
   _id: string;
   name: string;

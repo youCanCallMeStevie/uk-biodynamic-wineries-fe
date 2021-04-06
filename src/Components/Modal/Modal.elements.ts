@@ -23,6 +23,11 @@ export const ModalWrapper = styled.div`
   position: relative;
   z-index: 100000;
   border-radius: 8px;
+  @media screen and (max-width: 960px){
+    width: 333px;
+    display: flex;
+justify-content: center;
+align-items: center;  }
 `;
 
 export const ModalImgWrapper = styled.div`
@@ -38,6 +43,9 @@ export const ModalImgWrapper = styled.div`
     max-width: 300px;
     padding: 10px 24px;
   }
+  @media screen and (max-width: 960px){
+    display: none;
+  }
 `;
 export const ModalContent = styled.div`
   display: flex;
@@ -48,12 +56,11 @@ export const ModalContent = styled.div`
   color: #141414;
   h1 {
     margin-bottom: 24px;
-    color: #a9b3c1; 
+    color: whitesmoke; 
     font-size: 48px;
     line-height: 1.1;
     text-align: left;
     padding: 10px 24px;
-
   }
   h2 {
     font-size: 18px;
@@ -74,6 +81,15 @@ export const ModalContent = styled.div`
     background: #141414;
     color: #fff;
     border: none;
+  }
+  @media screen and (max-width: 960px){
+    h1{
+      margin-top: 10px;
+      margin-bottom: 10px;
+      line-height: .9;
+      font-size: 38px;
+
+    }
   }
 `;
 

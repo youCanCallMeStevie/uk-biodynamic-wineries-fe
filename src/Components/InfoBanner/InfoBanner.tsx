@@ -58,24 +58,25 @@ function InfoBanner({
     details?.vineyards[0].images[
       Math.floor(Math.random() * details?.vineyards[0].images.length)
     ];
+
+  const handleReview = async () => {
+    try {
+      dispatch(toggleModalActions(true, "review"));
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <>
       {console.log("moonInfo", moonInfo)}
-
       <InfoSec lightBg={lightBg}>
         <Container>
           <InfoRow imgStart={imgStart}>
             <InfoCol>
               <TextWrapper>
-                <TopLine lightTopLine={lightTopLine}>
-                  {details?.vineyards[0].region || topLine}
-                </TopLine>
-                <Heading lightText={lightText}>
-                  {details?.vineyards[0].name || headline}
-                </Heading>
-                <Subtitle lightTextDesc={lightTextDesc}>
-                  {moonInfo?.moonPhase || description}
-                </Subtitle>
+                <TopLine lightTopLine={lightTopLine}>{topLine}</TopLine>
+                <Heading lightText={lightText}>{headline}</Heading>
+                <Subtitle lightTextDesc={lightTextDesc}>{description}</Subtitle>
                 {/* <Link to="/sign-up"> */}
 
                 <Button
