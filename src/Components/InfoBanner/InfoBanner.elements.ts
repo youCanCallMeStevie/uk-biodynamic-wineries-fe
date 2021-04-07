@@ -58,6 +58,8 @@ export const TopLine = styled.div<Color>`
   line-height: 16px;
   letter-spacing: 1.4px;
   margin-bottom: 16px;
+  display: flex;
+  flex-direction: row;
 `;
 
 export const Heading = styled.h1<Color>`

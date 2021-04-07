@@ -1,10 +1,10 @@
 import React from "react";
 import { Container, Button, Image } from "../../styles/globalStyles";
 import { MoonData, VineyardData } from "../../store/types";
+import { SaveIcon } from "../index";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { toggleModalActions } from "../../store/actions/modalActions";
-
 import {
   InfoSec,
   InfoRow,
@@ -16,7 +16,7 @@ import {
   ImgWrapper,
   Img,
 } from "./InfoBanner.elements";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 export interface BannerProps {
   moonInfo?: MoonData;
   details?: VineyardData;
@@ -53,7 +53,12 @@ function InfoBanner({
   details,
 }: BannerProps) {
   const dispatch = useDispatch();
+  const params = useParams();
+  const { vineyardId }: any = params;
+
   const modalStatus = useSelector((state: RootState) => state.modal.isOpen);
+  const userStatus = useSelector((state: RootState) => state.user.isLoggedIn);
+
   let randomImg =
     details?.vineyards[0].images[
       Math.floor(Math.random() * details?.vineyards[0].images.length)
@@ -74,7 +79,9 @@ function InfoBanner({
           <InfoRow imgStart={imgStart}>
             <InfoCol>
               <TextWrapper>
-                <TopLine lightTopLine={lightTopLine}>{topLine}</TopLine>
+                <TopLine lightTopLine={lightTopLine}>
+                  {topLine} {vineyardId && userStatus ? <SaveIcon /> : ""}
+                </TopLine>
                 <Heading lightText={lightText}>{headline}</Heading>
                 <Subtitle lightTextDesc={lightTextDesc}>{description}</Subtitle>
                 {/* <Link to="/sign-up"> */}

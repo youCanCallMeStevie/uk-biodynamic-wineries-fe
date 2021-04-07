@@ -32,7 +32,6 @@ function Vineyard() {
   console.log("details", details);
   return (
     <>
-      <SaveIcon />
       <InfoBanner {...vineyardObjOne(details)} details={details} />
       <Map data={details} moonInfo={moonInfo} position={position} />
       <InfoBanner {...vineyardObjTwo(details)} details={details} />

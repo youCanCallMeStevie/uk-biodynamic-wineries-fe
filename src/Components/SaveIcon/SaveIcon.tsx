@@ -18,7 +18,6 @@ function SaveIcon() {
   const [vineyardsFollow, setVineyardsFollow] = useState(result);
 
   const userProfile = useSelector((state: RootState) => state.user?.profile);
-  console.log("user>>", userProfile);
   const params = useParams();
   const { vineyardId }: any = params;
 
@@ -26,26 +25,19 @@ function SaveIcon() {
     isFollow();
   }, [setFollow]);
 
-  //   const isFollow = async () => {
-  //     const follow =
-  //       userProfile!.likedVineyards &&
-  //       userProfile!.likedVineyards.some(
-  //         (vineyard: unknown) => (vineyard as VineyardInfo)?._id === vineyardId
-  //       );
-  //     setFollow(follow);
-  //   };
   const isFollow = async () => {
     const follow =
       userProfile!.likedVineyards &&
       userProfile!.likedVineyards.some(
         (vineyard: any) => vineyard._id === vineyardId
       );
-    setFollow(follow);
+    if (follow !== undefined) {
+      setFollow(follow);
+    }
   };
 
   const handleFollow = async () => {
     if (follow) {
-      console.log("HF vineyardId", vineyardId);
       await unfollowAVineyard(vineyardId);
       const newArray = vineyardsFollow.filter(
         (vineyard: any) => vineyard?._id !== vineyardId
@@ -60,12 +52,9 @@ function SaveIcon() {
   };
 
   const SavIconWrapper = styled.div`
-    margin-right: 0.25em;
+    margin-left: 0.5em;
+    margin-top: -0.25em;
     font-size: 35px;
-    background: transparent;
-    position: absolute;
-    top: 150px;
-    left: 35%;
     color: orange;
   `;
   return (
