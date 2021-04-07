@@ -1,6 +1,6 @@
 import React from "react";
 import { FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa";
-import MoonIcon from "../MoonIcon/MoonIcon";
+import { MoonIcon } from "../index";
 import {
   FooterContainer,
   FooterLinksWrapper,
@@ -17,8 +17,11 @@ import {
   MoonWrapper,
   MoonText,
 } from "./Footer.elements";
-
+import { useDispatch } from "react-redux";
+import { toggleModalActions } from "../../store/actions/modalActions";
 function Footer({ moonPhase }: any) {
+  const dispatch = useDispatch();
+
   return (
     <>
       <FooterContainer />
@@ -56,10 +59,13 @@ function Footer({ moonPhase }: any) {
       <SocialContainer>
         <SocialWrapper>
           <MoonWrapper>
-            <SiteLogo to="/">
+            <SiteLogo
+              to="/"
+              onClick={() => dispatch(toggleModalActions(true, "moon"))}
+            >
               <MoonIcon />
             </SiteLogo>
-            <MoonText>Today's Moon: {moonPhase}</MoonText>
+            <MoonText>The moon's {moonPhase}</MoonText>
           </MoonWrapper>
           <SocialIcons>
             <SocialIconLink

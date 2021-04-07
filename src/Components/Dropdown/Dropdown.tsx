@@ -23,14 +23,18 @@ export default function Dropdown({ menu, user }: DropdownProps) {
                 alt="Profile picture of logged in user"
               />
             </Avatar>
+            <p>Hi, {user && user?.profile && user?.profile!.name}!</p>
+            <Divider />
+            <p>Notifications</p>
             <p>Saved Vineyards</p>
-            <p>Reviews</p>
             <Link to="/me">
               {" "}
               <Button> View / Edit Profile</Button>{" "}
             </Link>
             <Divider />
-            <p>Refer a Friend</p>
+            <Button primary onClick={() => dispatch(logoutAction())}>
+              LOG OUT
+            </Button>
           </>
         );
 
@@ -50,7 +54,9 @@ export default function Dropdown({ menu, user }: DropdownProps) {
               <Button> View / Edit Winery Info</Button>{" "}
             </Link>
             <Divider />
-            <p>Refer a Friend</p>
+            <Button primary onClick={() => dispatch(logoutAction())}>
+              LOG OUT
+            </Button>
           </>
         );
       default:

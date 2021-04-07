@@ -32,6 +32,11 @@ function MoonIcon() {
 
   const Icon = styled(MoonPhases[moonPhase])`
     margin-right: 0.25em;
+    margin-left: 0.25em;
+    &:hover {
+      color: #c06014;
+      transition: all 0.3s ease;
+    }
   `;
 
   return <Icon />;

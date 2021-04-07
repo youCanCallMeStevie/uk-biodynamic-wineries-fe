@@ -1,4 +1,5 @@
 import {MoonPhases} from "../Components/MoonIcon/MoonIcon";
+import {BioTypes} from "../Components/BioIcon/BioIcon";
 
 export const SET_LOADING = "SET_LOADING";
 export const SET_ERROR = "SET_ERROR";
@@ -404,6 +405,7 @@ export interface MoonAction{
 }
 
 export type MoonPhase = keyof typeof MoonPhases
+export type BioTypes = keyof typeof BioTypes
 
 export interface MoonData{
   resultsDate: AstroTime,
@@ -411,7 +413,7 @@ export interface MoonData{
   moonPhase: MoonPhase,
   zodiac: string;
   house: string;
-  bioDay: string;
+  bioDay: BioTypes;
   nextFruitDay: string;
   nextFullMoon: AstroTime
 }

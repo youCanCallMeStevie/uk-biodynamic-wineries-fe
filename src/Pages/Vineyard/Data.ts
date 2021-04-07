@@ -15,7 +15,7 @@ export const vineyardObjOne: VineyardObjectMaker = (details?: VineyardData) => (
     imgStart: "",
     lightTopLine: false,
     lightTextDesc: false,
-    buttonLabel: "Get Started",
+    buttonLabel: "Learn More",
     description:
       `${details?.vineyards[0].description}`,
     headline:     `${details?.vineyards[0].bio}`,
@@ -34,9 +34,9 @@ export const vineyardObjTwo: VineyardObjectMaker = (details?: VineyardData) => (
   imgStart: "start",
   lightTopLine: true,
   lightTextDesc: true,
-  buttonLabel: "Check Out",
+  buttonLabel: "Get Directions",
   description:
-  `${details?.vineyards[0].biodynamic} ${details?.vineyards[0].dogFriendly} ${details?.vineyards[0].rooms}`,
+  ``,
   headline: `${details?.vineyards[0].fullAddress}`,
   lightText: true,
   topLine: `${details?.vineyards[0].name} in ${details?.vineyards[0].region}`,

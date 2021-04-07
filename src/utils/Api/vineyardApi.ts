@@ -95,19 +95,33 @@ export const fetchTodaysMoon = async () => {
 };
 export const searchVineyards = async (query: SearchQuery) => {
   try {
-    const { grapes, date, city } = query;
-    if (!grapes && !date && !city)
+    const { grapes, city } = query;
+    if (!grapes && !city)
       throw new Error("You need to specify a query.");
     //wrap with try catch as need to handle error!!!! make sure user selects one query
     console.log("process.env.REACT_APP_API_URI", process.env.REACT_APP_API_URI);
     const vineyard = await axios.get(
       `${process.env.REACT_APP_API_URI}/api/vineyards/search/results?` +
         `&grapes=${grapes}` +
-        `&date=${date}` +
         `&city=${city}`
     );
-    console.log("vineyard API", vineyard.data)
     return vineyard.data;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+};
+export const searchBioDate = async (query: SearchQuery) => {
+  try {
+    const { date } = query;
+    if (!date)
+      throw new Error("You need to specify a date.");
+    console.log("process.env.REACT_APP_API_URI", process.env.REACT_APP_API_URI);
+    const dateResult = await axios.get(
+      `${process.env.REACT_APP_API_URI}/api/vineyards/search/results/dates?` +
+        `&date=${date}`
+    );
+    return dateResult.data.moonInfo.bioObject;
   } catch (error) {
     console.log(error);
     return null;
@@ -123,7 +137,6 @@ export const followAVineyard = async (vineyardId: string) => {
         withCredentials: true,
       }
     );
-    console.log("post", post)
     return post.data;
   } catch (error) {
     console.log(error);

@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Tab = styled.div`
   position: absolute;
   top: 3.5rem;
-  right: 19.8rem;
+  right: 9rem;
   width: 0;
   height: 0;
   border-left: 16px solid transparent;
@@ -18,7 +18,7 @@ export const Tab = styled.div`
 export const DropdownContainer = styled.div`
   position: absolute;
   top: 4.5rem;
-  right: 15rem;
+  right: 8rem;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -26,9 +26,7 @@ function BioDays() {
       {" "}
       <DaysSection>
         <DaysWrapper>
-          <DaysHeading>
-            What do Biodynamic Days mean for Wine Tasting?
-          </DaysHeading>
+          <DaysHeading>What's it mean for wine?</DaysHeading>
 
           <DayContainer>
             <DayCard>

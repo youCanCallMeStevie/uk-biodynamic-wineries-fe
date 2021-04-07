@@ -24,6 +24,7 @@ import Footer from "./Components/Footer/Footer";
 function App() {
   const dispatch = useDispatch();
   const moonInfo = useSelector((state: RootState) => state.moon.moonInfo);
+  const bioType = moonInfo?.bioDay;
   const moonPhase = moonInfo?.moonPhase;
   const vineyardData = useSelector((state: RootState) => state.vineyard);
   const loading = useSelector((state: RootState) => state.vineyard.loading);
@@ -38,27 +39,31 @@ function App() {
   }, [dispatch]);
 
   return (
-    <Router>
+    <>
       <GlobalStyles />
-      <BarNav />
-      {loading ? (
-        <Loader />
-      ) : (
-        vineyardData && (
-          <>
-            <Route exact path="/" component={Home} />
-          </>
-        )
-      )}
-      <Route exact path="/vineyard/:vineyardId" component={Vineyard} />
-      <Route exact path="/me" component={User} />
-      <Footer moonPhase={moonPhase} />
 
-      {/* {alertMsg && (
+      <Router>
+        <BarNav moonPhase={moonPhase} bioType={bioType} />
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={() => {
+              return (
+                <>{loading ? <Loader /> : <>{vineyardData && <Home />}</>}</>
+              );
+            }}
+          />
+          <Route exact path="/vineyard/:vineyardId" component={Vineyard} />
+          <Route exact path="/me" component={User} />
+        </Switch>
+        <Footer moonPhase={moonPhase} />
+        {/* {alertMsg && (
         <Alert message={alertMsg} onClose={() => dispatch(setAlert(""))} />
       )}
       {error && <Alert message={error} onClose={() => dispatch(setError())} />} */}
-    </Router>
+      </Router>
+    </>
   );
 }
 export default App;
