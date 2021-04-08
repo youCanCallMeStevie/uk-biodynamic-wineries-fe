@@ -4,7 +4,7 @@ import { MoonData, VineyardData } from "../../store/types";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { toggleModalActions } from "../../store/actions/modalActions";
-import { IconWrap, IconsContainer } from "../Summary/Summary.elements";
+// import { IconWrap, IconsContainer } from "../Summary/Summary.elements";
 import {
   InfoSec,
   InfoRow,
@@ -80,7 +80,7 @@ function Summary({
                 <TopLine lightTopLine={lightTopLine}></TopLine>
                 <Heading lightText={lightText}></Heading>
                 <Subtitle lightTextDesc={lightTextDesc}>
-                  <IconsContainer>
+                  {/* <IconsContainer>
                     {details?.vineyards[0].dogFriendly && (
                       <IconWrap>
                         <span title="Dog friendly">
@@ -130,7 +130,7 @@ function Summary({
                         </span>
                       </IconWrap>
                     )}
-                  </IconsContainer>
+                  </IconsContainer> */}
                 </Subtitle>
                 {/* <Link to="/sign-up"> */}
 

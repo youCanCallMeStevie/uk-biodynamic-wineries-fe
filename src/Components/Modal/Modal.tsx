@@ -36,7 +36,6 @@ function Modal() {
   const modalStatus = useSelector((state: RootState) => state.modal.isOpen);
   const moonInfo = useSelector((state: RootState) => state.moon.moonInfo);
   const userInfo = useSelector((state: RootState) => state.user.profile);
-  console.log("xxxUserInfo", userInfo);
 
   const initialFormData = {
     name: "",

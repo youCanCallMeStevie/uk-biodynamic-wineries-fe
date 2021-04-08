@@ -5,6 +5,11 @@ import { SaveIcon, DateSearch } from "../index";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { toggleModalActions } from "../../store/actions/modalActions";
+import { Link, useParams } from "react-router-dom";
+
+// import parse from "html-react-parser";
+import Parser from "html-styled-react-parser";
+
 import {
   InfoSec,
   InfoRow,
@@ -16,7 +21,7 @@ import {
   ImgWrapper,
   Img,
 } from "./InfoBanner.elements";
-import { Link, useParams } from "react-router-dom";
+
 export interface BannerProps {
   moonInfo?: MoonData;
   details?: VineyardData;
@@ -26,7 +31,7 @@ export interface BannerProps {
   lightTopLine: boolean;
   lightText: boolean;
   lightTextDesc: boolean;
-  buttonLabel?: string;
+  buttonLabel: string;
   description: string;
   headline: string;
   topLine: string;
@@ -57,6 +62,9 @@ function InfoBanner({
   const { vineyardId }: any = params;
   const modalStatus = useSelector((state: RootState) => state.modal.isOpen);
   const userStatus = useSelector((state: RootState) => state.user.isLoggedIn);
+  const replacements = {
+    p: Button,
+  };
 
   let randomImg =
     details?.vineyards[0].images[
@@ -83,7 +91,6 @@ function InfoBanner({
                 </TopLine>
                 <Heading lightText={lightText}>{headline}</Heading>
                 <Subtitle lightTextDesc={lightTextDesc}>{description}</Subtitle>
-                {/* <Link to="/sign-up"> */}
                 {vineyardId ? (
                   <DateSearch moonInfo={moonInfo} />
                 ) : (
@@ -93,11 +100,13 @@ function InfoBanner({
                     primary={primary}
                     onClick={() => dispatch(toggleModalActions(true, "moon"))}
                   >
+                    {" "}
                     {buttonLabel}
                   </Button>
                 )}
-
-                {/* </Link> */}
+                {/* <Parser html={buttonLabel} replacements={replacements} /> */}
+                {/* {parse(buttonLabel, replacements)}
+              {parse(buttonLabel)} */}
               </TextWrapper>
             </InfoCol>
             <InfoCol>

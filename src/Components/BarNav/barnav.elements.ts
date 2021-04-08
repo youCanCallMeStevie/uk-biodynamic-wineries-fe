@@ -100,7 +100,8 @@ export const NavLinks = styled(Link)`
   padding: 0.5rem 1rem;
   height: 100%;
   p{
-    font-size: 12px;
+  font-size: 14px;
+  letter-spacing: 1.1px;
   }
   @media screen and (max-width: 960px) {
     text-align: center;

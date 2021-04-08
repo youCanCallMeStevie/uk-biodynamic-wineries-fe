@@ -1,8 +1,6 @@
 import { BannerProps } from "../../Components/InfoBanner/InfoBanner";
 import{SummaryProps} from "../../Components/Summary/Summary"
 import { MoonData, MoonPhase, VineyardData } from "../../store/types";
-import {RiStarSFill} from "react-icons/ri"
-
 
 
 type VineyardObjectMaker = (details?: VineyardData) => BannerProps
@@ -15,7 +13,11 @@ export const vineyardObjOne: VineyardObjectMaker = (details?: VineyardData) => (
     imgStart: "",
     lightTopLine: false,
     lightTextDesc: false,
-    // buttonLabel: "Learn More",
+    buttonLabel: `<p big
+    fontBig
+    primary={primary}
+    onClick={() => dispatch(toggleModalActions(true, "moon"))}
+  > Hello</p>`,
     description:
       `${details?.vineyards[0].description}`,
     headline:     `${details?.vineyards[0].bio}`,

@@ -1,5 +1,7 @@
 export { default as Alert} from "./Alert/Alert";
 export { default as BarNav} from "./BarNav/BarNav";
+export { default as Footer} from "./Footer/Footer";
+
 export { default as Dropdown} from "./Dropdown/Dropdown";
 export { default as Map} from "./Map/Map";
 export { default as Toggle} from "./Toggle/Toggle";
@@ -15,7 +17,7 @@ export { default as MoonIcon} from "./MoonIcon/MoonIcon";
 export { default as SaveIcon} from "./SaveIcon/SaveIcon";
 export { default as BioIcon} from "./BioIcon/BioIcon";
 export { default as DateSearch} from "./DateSearch/DateSearch";
-
+export { default as IconBanner} from "./IconBanner/IconBanner";
 
 
 

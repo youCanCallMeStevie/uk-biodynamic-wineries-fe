@@ -1,13 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store";
-import {
-  InfoBanner,
-  Map,
-  Summary,
-  SaveIcon,
-  DateSearch,
-} from "../../Components";
+import { InfoBanner, Map, Summary, IconBanner } from "../../Components";
 import { vineyardObjOne, vineyardObjTwo, vineyardObjThree } from "./Data";
 import { useParams } from "react-router-dom";
 import { getOneVineyardAction } from "../../store/actions/vineyardActions";
@@ -29,6 +23,7 @@ function Vineyard() {
     <>
       <InfoBanner {...vineyardObjOne(details)} details={details} />
       <Map data={details} moonInfo={moonInfo} position={position} />
+      <IconBanner details={details} />
       <InfoBanner {...vineyardObjTwo(details)} details={details} />
       <Summary {...vineyardObjThree(details)} details={details} />
     </>

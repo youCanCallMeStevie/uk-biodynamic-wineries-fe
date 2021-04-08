@@ -2,10 +2,7 @@ import React, { useEffect, useState, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { toggleModalActions } from "../../store/actions/modalActions";
-import {
-  getCurrentUserAction,
-  logoutAction,
-} from "../../store/actions/userActions";
+import { getCurrentUserAction } from "../../store/actions/userActions";
 import { Dropdown, Modal, Toggle } from "../index";
 
 //styles
@@ -31,7 +28,6 @@ const BarNav = ({ moonPhase, bioType }: any) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
-
   const user = useSelector((state: RootState) => state.user);
   const modalStatus = useSelector((state: RootState) => state.modal.isOpen);
   const dispatch = useDispatch();
@@ -115,9 +111,6 @@ const BarNav = ({ moonPhase, bioType }: any) => {
               {click ? <FaTimes /> : <FaBars />}
             </HamburgerIcon>
             <NavMenu onClick={handleClick} click={click}>
-              {/* <NavItem>
-                <NavLinks to="/">Vineyards</NavLinks>
-              </NavItem> */}
               <NavItem>
                 <NavLinks
                   to="/"

@@ -60,9 +60,10 @@ function DateSearch({ moonInfo }: DateProps) {
             {searchDate?.moonPhase !== "Full" &&
               `The next full moon, after your visit, will happen on ${moment(
                 searchDate?.nextFullMoon?.date
-              ).format("dddd, MMMM Do YYYY, h:mm:ss a")}`}
-            If you want to wait for a fruit day to visit instead, it will be{" "}
-            {searchDate?.nextFruitDay}
+              ).format("dddd, MMMM Do YYYY, h:mm:ss a")}. `}
+            {searchDate?.nextFruitDay !== "Fruit" &&
+              `If you want to wait for a fruit day to visit instead, it will be
+            ${searchDate?.nextFruitDay}.`}
           </Subtitle>
         </>
       )}

@@ -39,7 +39,7 @@ function Search({ moonInfo }: SearchProps) {
       setDate("");
       console.log("data", data!.vineyards.length);
       if (data!.vineyards.length == 0) {
-        dispatch(dispatch(toggleModalActions(true, "alert")));
+        dispatch(toggleModalActions(true, "alert"));
       }
     } catch (err) {
       console.log(err);
