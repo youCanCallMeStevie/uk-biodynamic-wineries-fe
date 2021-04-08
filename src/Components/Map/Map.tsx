@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { VineyardData, MoonData, MapData } from "../../store/types";
 import { Icon } from "leaflet";
@@ -22,7 +22,6 @@ interface MapProps {
 function Map({ data, moonInfo, position }: MapProps, { primary }: any) {
   const dispatch = useDispatch();
   const [map, setMap] = useState<LeafletMap | null>(null);
-  console.log("data", data);
   useEffect(() => {
     map && position && map.flyTo(position.center, position.zoom);
   }, [position!.center, position!.zoom]);

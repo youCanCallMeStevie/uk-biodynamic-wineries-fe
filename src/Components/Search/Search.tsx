@@ -37,10 +37,10 @@ function Search({ moonInfo }: SearchProps) {
       setGrapes("");
       setCity("");
       setDate("");
-      // console.log("data", data!.vineyards.length);
-      // if (data!.vineyards.length == 0) {
-      //   dispatch(dispatch(toggleModalActions(true, "alert")));
-      // }
+      console.log("data", data!.vineyards.length);
+      if (data!.vineyards.length == 0) {
+        dispatch(dispatch(toggleModalActions(true, "alert")));
+      }
     } catch (err) {
       console.log(err);
     }

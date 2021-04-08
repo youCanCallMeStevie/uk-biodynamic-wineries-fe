@@ -8,16 +8,10 @@ import User from "./Pages/UserProfile/User";
 import Vineyard from "./Pages/Vineyard/Vineyard";
 import Alert from "./Components/Alert/Alert";
 // import { VineyardData, VineyardDispatchTypes } from './store/types';
-import { setAlert } from "./store/actions/alertActions";
 import Loader from "./Components/Loader/Loader";
 import BarNav from "./Components/BarNav/BarNav";
 import { fetchTodaysMoonAction } from "./store/actions/moonActions";
-
-import {
-  getVineyardAction,
-  setLoading,
-  setError,
-} from "./store/actions/vineyardActions";
+import { getVineyardAction, setLoading } from "./store/actions/vineyardActions";
 import GlobalStyles from "./styles/globalStyles";
 import Footer from "./Components/Footer/Footer";
 
@@ -32,7 +26,6 @@ function App() {
   const alertMsg = useSelector((state: RootState) => state.alert.message);
 
   useEffect(() => {
-    console.log("are you re rendering?");
     dispatch(setLoading());
     dispatch(getVineyardAction());
     dispatch(fetchTodaysMoonAction());

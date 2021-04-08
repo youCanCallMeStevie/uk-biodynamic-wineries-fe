@@ -15,7 +15,7 @@ export const vineyardObjOne: VineyardObjectMaker = (details?: VineyardData) => (
     imgStart: "",
     lightTopLine: false,
     lightTextDesc: false,
-    buttonLabel: "Learn More",
+    // buttonLabel: "Learn More",
     description:
       `${details?.vineyards[0].description}`,
     headline:     `${details?.vineyards[0].bio}`,

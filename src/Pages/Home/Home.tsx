@@ -1,15 +1,20 @@
-import React, { useMemo } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store";
 import { LargeSearch, SmallSearch } from "../../styles/globalStyles";
 import { InfoBanner, Map, BioDays, Search } from "../../Components";
 import { homeObjOne, homeObjTwo, homeObjThree } from "./Data";
+import { getVineyardAction } from "../../store/actions/vineyardActions";
 function Home() {
   const details = useSelector((state: RootState) => state.vineyard);
   const moonInfo = useSelector((state: RootState) => state.moon.moonInfo);
   const position = useSelector((state: RootState) => state.map.position);
+  const dispatch = useDispatch();
 
-  console.log({ data: details.data });
+  // useEffect(() => {
+  //   dispatch(getVineyardAction());
+  // }, []);
+
   return (
     <>
       {" "}

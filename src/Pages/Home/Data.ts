@@ -1,7 +1,6 @@
 import { BannerProps } from "../../Components/InfoBanner/InfoBanner";
 import { MoonData, MoonPhase } from "../../store/types";
 
-
 export const homeObjOne = {
   lightBg: false,
   primary: true,

@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Button, Image } from "../../styles/globalStyles";
 import { MoonData, VineyardData } from "../../store/types";
-import { SaveIcon } from "../index";
+import { SaveIcon, DateSearch } from "../index";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { toggleModalActions } from "../../store/actions/modalActions";
@@ -26,7 +26,7 @@ export interface BannerProps {
   lightTopLine: boolean;
   lightText: boolean;
   lightTextDesc: boolean;
-  buttonLabel: string;
+  buttonLabel?: string;
   description: string;
   headline: string;
   topLine: string;
@@ -55,7 +55,6 @@ function InfoBanner({
   const dispatch = useDispatch();
   const params = useParams();
   const { vineyardId }: any = params;
-
   const modalStatus = useSelector((state: RootState) => state.modal.isOpen);
   const userStatus = useSelector((state: RootState) => state.user.isLoggedIn);
 
@@ -85,15 +84,19 @@ function InfoBanner({
                 <Heading lightText={lightText}>{headline}</Heading>
                 <Subtitle lightTextDesc={lightTextDesc}>{description}</Subtitle>
                 {/* <Link to="/sign-up"> */}
+                {vineyardId ? (
+                  <DateSearch moonInfo={moonInfo} />
+                ) : (
+                  <Button
+                    big
+                    fontBig
+                    primary={primary}
+                    onClick={() => dispatch(toggleModalActions(true, "moon"))}
+                  >
+                    {buttonLabel}
+                  </Button>
+                )}
 
-                <Button
-                  big
-                  fontBig
-                  primary={primary}
-                  onClick={() => dispatch(toggleModalActions(true, "moon"))}
-                >
-                  {buttonLabel}
-                </Button>
                 {/* </Link> */}
               </TextWrapper>
             </InfoCol>
