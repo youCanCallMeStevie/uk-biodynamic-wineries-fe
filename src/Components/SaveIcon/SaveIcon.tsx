@@ -5,6 +5,10 @@ import {
   followAVineyard,
   unfollowAVineyard,
 } from "../../utils/Api/vineyardApi";
+import {
+  followVineyardAction,
+  unfollowVineyardAction,
+} from "../../store/actions/vineyardActions";
 import { VineyardData, VineyardInfo } from "../../store/types";
 import { RootState } from "../../store";
 import { useSelector, useDispatch } from "react-redux";
@@ -12,13 +16,14 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 function SaveIcon() {
-  const [follow, setFollow] = useState(false);
-  console.log("follow", follow);
+  const params = useParams();
+  const dispatch = useDispatch();
+
   const result: string[] = [];
   const [vineyardsFollow, setVineyardsFollow] = useState(result);
+  const [follow, setFollow] = useState(false);
 
   const userProfile = useSelector((state: RootState) => state.user?.profile);
-  const params = useParams();
   const { vineyardId }: any = params;
 
   useEffect(() => {
@@ -35,17 +40,16 @@ function SaveIcon() {
       setFollow(follow);
     }
   };
-
   const handleFollow = async () => {
     if (follow) {
-      await unfollowAVineyard(vineyardId);
+      await dispatch(unfollowVineyardAction(vineyardId));
       const newArray = vineyardsFollow.filter(
         (vineyard: any) => vineyard?._id !== vineyardId
       );
       setVineyardsFollow(newArray);
       setFollow(!follow);
     } else {
-      await followAVineyard(vineyardId);
+      await dispatch(followVineyardAction(vineyardId));
       setVineyardsFollow([...vineyardsFollow, vineyardId]);
     }
     setFollow(!follow);

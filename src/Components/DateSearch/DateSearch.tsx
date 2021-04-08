@@ -61,9 +61,10 @@ function DateSearch({ moonInfo }: DateProps) {
               `The next full moon, after your visit, will happen on ${moment(
                 searchDate?.nextFullMoon?.date
               ).format("dddd, MMMM Do YYYY, h:mm:ss a")}. `}
-            {searchDate?.nextFruitDay !== "Fruit" &&
-              `If you want to wait for a fruit day to visit instead, it will be
-            ${searchDate?.nextFruitDay}.`}
+            {searchDate?.bioDay !== "Fruit"
+              ? `If you want to wait for a fruit day to visit instead, it will be
+            ${searchDate?.nextFruitDay}.`
+              : `Today is a great day to visit, as wine will be at it's fullest expression.`}
           </Subtitle>
         </>
       )}
@@ -84,50 +85,6 @@ function DateSearch({ moonInfo }: DateProps) {
         Tell Me About the Day!
       </Button>
     </>
-
-    // <SearchContainer>
-    //   <Container>
-    //     <SearchWrapper>
-    //       <DayHeading>Plan your visit:</DayHeading>
-    //       {searchPerformed && searchDate !== undefined && (
-    //         //   <div></div>
-    //         <>
-    //           <p>
-    //             It will be {searchDate?.bioDay} Day on your visit{" "}
-    //             {moment(searchDate.resultsDate.date).format(
-    //               "dddd, MMMM Do YYYY, h:mm:ss a"
-    //             )}
-    //             , as the moon will be in {searchDate?.zodiac} which is known
-    //             for {searchDate?.house}. The moon will be in{" "}
-    //             {searchDate?.moonPhase}.{" "}
-    //             {searchDate?.moonPhase !== "Full" &&
-    //               `The next full moon, after your visit, will happen on ${moment(
-    //                 searchDate.nextFullMoon.date
-    //               ).format("dddd, MMMM Do YYYY, h:mm:ss a")}`}
-    //             If you want to wait for a fruit day to visit instead, it will
-    //             be {searchDate?.nextFruitDay}
-    //           </p>
-    //         </>
-    //       )}
-    //       <Input
-    //         type="datetime-local"
-    //         value={date && date}
-    //         onChange={e => setDate(e.target.value.toString())}
-    //       ></Input>
-
-    //       <Button
-    //         primary
-    //         fontBig
-    //         onClick={(event: React.MouseEvent<HTMLElement>) => {
-    //           event.preventDefault();
-    //           handleSearch(query);
-    //         }}
-    //       >
-    //         What Day will it be?
-    //       </Button>
-    //     </SearchWrapper>{" "}
-    //   </Container>
-    // </SearchContainer>
   );
 }
 

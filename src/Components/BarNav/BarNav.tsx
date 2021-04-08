@@ -1,11 +1,15 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
+import { getVineyardAction } from "../../store/actions/vineyardActions";
 import { toggleModalActions } from "../../store/actions/modalActions";
-import { getCurrentUserAction } from "../../store/actions/userActions";
+import {
+  getCurrentUserAction,
+  logoutAction,
+} from "../../store/actions/userActions";
 import { Dropdown, Modal, Toggle } from "../index";
+import { useHistory } from "react-router-dom";
 
-//styles
 import { Avatar, Image } from "../../styles/globalStyles";
 import {
   Nav,
@@ -31,6 +35,7 @@ const BarNav = ({ moonPhase, bioType }: any) => {
   const user = useSelector((state: RootState) => state.user);
   const modalStatus = useSelector((state: RootState) => state.modal.isOpen);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const loginSection = useMemo(() => {
     if (!user.isLoggedIn) {
@@ -101,7 +106,7 @@ const BarNav = ({ moonPhase, bioType }: any) => {
       <IconContext.Provider value={{ color: "#f3f4ed" }}>
         <Nav>
           <NavBarContainer>
-            <NavLogo to="/">
+            <NavLogo to="/" onClick={() => dispatch(getVineyardAction())}>
               <>
                 <MoonIcon />
               </>
@@ -113,7 +118,6 @@ const BarNav = ({ moonPhase, bioType }: any) => {
             <NavMenu onClick={handleClick} click={click}>
               <NavItem>
                 <NavLinks
-                  to="/"
                   onClick={() => dispatch(toggleModalActions(true, "moon"))}
                 >
                   <MoonIcon /> <p>The moon's {moonPhase}</p>
@@ -121,13 +125,20 @@ const BarNav = ({ moonPhase, bioType }: any) => {
               </NavItem>
               <NavItem>
                 <NavLinks
-                  to="/"
                   onClick={() => dispatch(toggleModalActions(true, "fruit"))}
                 >
                   <BioIcon /> <p>Today's a {bioType} Day</p>
                 </NavLinks>
               </NavItem>
               {loginSection}
+              {window.innerWidth <= 960 && (
+                <Button
+                  primary
+                  onClick={() => dispatch(logoutAction()) && history.push("/")}
+                >
+                  LOGOUT{" "}
+                </Button>
+              )}
               <Toggle />
             </NavMenu>
           </NavBarContainer>

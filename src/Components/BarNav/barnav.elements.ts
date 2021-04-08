@@ -92,7 +92,7 @@ export const NavItem = styled.li`
   }
 `;
 
-export const NavLinks = styled(Link)`
+export const NavLinks = styled.div`
   color: #f3f4ed;
   display: flex;
   align-items: center;

@@ -9,10 +9,11 @@ import { getOneVineyardAction } from "../../store/actions/vineyardActions";
 function Vineyard() {
   const params = useParams();
   const dispatch = useDispatch();
-  const { vineyardId }: any = params;
   const details = useSelector((state: RootState) => state.vineyard.data);
   const moonInfo = useSelector((state: RootState) => state.moon.moonInfo);
   const position = useSelector((state: RootState) => state.map.position);
+
+  const { vineyardId }: any = params;
 
   useEffect(() => {
     dispatch(getOneVineyardAction(vineyardId));
@@ -25,7 +26,9 @@ function Vineyard() {
       <Map data={details} moonInfo={moonInfo} position={position} />
       <IconBanner details={details} />
       <InfoBanner {...vineyardObjTwo(details)} details={details} />
-      <Summary {...vineyardObjThree(details)} details={details} />
+      <InfoBanner {...vineyardObjThree(details)} details={details} />
+
+      {/* <Summary {...vineyardObjThree(details)} details={details} /> */}
     </>
   );
 }

@@ -70,7 +70,7 @@ export interface UserProfile {
   following: Array<string | null>;
   reviewsGiven: Array<string | null>;
   likedReviews: Array<string | null>;
-  likedVineyards: Array<string | null>;
+  likedVineyards: Array<VineyardInfo>;
   vistedVineyards: Array<string | null>;
   _id: string;
   name: string;

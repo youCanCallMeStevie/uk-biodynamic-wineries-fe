@@ -130,13 +130,14 @@ export const searchBioDate = async (query: SearchQuery) => {
 
 export const followAVineyard = async (vineyardId: string) => {
   try {
-    console.log("followAVineyard", vineyardId )
     const post = await axios.post(
       `${REACT_APP_API_URI}/api/vineyards/${vineyardId}/like`,
       {
         withCredentials: true,
       }
     );
+    console.log("followAVineyard", post.data )
+
     return post.data;
   } catch (error) {
     console.log(error);
@@ -146,12 +147,15 @@ export const followAVineyard = async (vineyardId: string) => {
 
 export const unfollowAVineyard = async (vineyardId: string) => {
   try {
+
     const post = await axios.put(
       `${REACT_APP_API_URI}/api/vineyards/${vineyardId}/unlike`,
       {
         withCredentials: true,
       }
     );
+    console.log("unfollowAVineyard", post.data )
+
     return post.data;
   } catch (error) {
     console.log(error);

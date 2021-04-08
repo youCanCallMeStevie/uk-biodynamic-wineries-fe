@@ -35,7 +35,7 @@ export interface SummaryProps {
   lightTopLine: boolean;
   lightText: boolean;
   lightTextDesc: boolean;
-  buttonLabel: string;
+  button: string;
   img?: any;
   start: string;
   alt: string;
@@ -48,7 +48,7 @@ function Summary({
   lightTopLine,
   lightText,
   lightTextDesc,
-  buttonLabel,
+  button,
   img,
   start,
   alt,
@@ -140,7 +140,7 @@ function Summary({
                   primary={primary}
                   onClick={() => dispatch(toggleModalActions(true, "review"))}
                 >
-                  {buttonLabel}
+                  {button}
                 </Button>
                 {/* </Link> */}
               </TextWrapper>

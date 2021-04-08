@@ -98,7 +98,6 @@ function Modal() {
     try {
       // dispatch(newReviewAction(reviewData, vineyardId));
       setReviewData(initialReviewData);
-      dispatch(toggleModalActions(false, ""));
     } catch (err) {
       console.log(err);
     }
@@ -279,7 +278,8 @@ function Modal() {
                 primary
                 onClick={(event: React.MouseEvent<HTMLElement>) => {
                   event.preventDefault();
-                  handleReview();
+                  handleReview() &&
+                    dispatch(toggleModalActions(true, "thanks"));
                 }}
               >
                 Submit Reivew
@@ -309,6 +309,24 @@ function Modal() {
             >
               See All Vineyards
             </Button>
+            <CloseModalBtn
+              onClick={() => dispatch(toggleModalActions(false, ""))}
+            />
+          </ModalContent>
+        </>
+      );
+    } else if (modalType == "thanks") {
+      return (
+        <>
+          <ModalImgWrapper>
+            <Image src={MoonImg} alt="nature and tech illustration" />
+          </ModalImgWrapper>
+          <ModalContent>
+            <h1>Thanks!</h1>
+            <h2>
+              Your review for {details?.vineyards[0].name} has been submitted
+            </h2>
+
             <CloseModalBtn
               onClick={() => dispatch(toggleModalActions(false, ""))}
             />

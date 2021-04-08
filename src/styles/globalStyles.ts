@@ -111,3 +111,9 @@ export const Input = styled.input`
   border: 1px solid #fff;
 `;
 export default GlobalStyles;
+
+export const Divider = styled.div`
+  border-bottom: 1px solid grey;
+  width: 100px;
+  margin: 0.5rem;
+`;

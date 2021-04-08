@@ -1,17 +1,19 @@
 import React, { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { UserState } from "../../store/types";
-import { Avatar, Image, Button } from "../../styles/globalStyles";
-import { useDispatch, useSelector } from "react-redux";
-import { DropdownContainer, Divider, Tab } from "./Dropdown.elements";
+import { Avatar, Image, Button, Divider } from "../../styles/globalStyles";
+import { useDispatch } from "react-redux";
+import { DropdownContainer, Subtitle } from "./Dropdown.elements";
 import { logoutAction } from "../../store/actions/userActions";
+import { useHistory } from "react-router-dom";
+
 interface DropdownProps {
   menu: string;
   user: UserState;
 }
 export default function Dropdown({ menu, user }: DropdownProps) {
   const dispatch = useDispatch();
-
+  const history = useHistory();
   const dropDownMenu = useMemo(() => {
     switch (menu) {
       case "user":
@@ -23,16 +25,18 @@ export default function Dropdown({ menu, user }: DropdownProps) {
                 alt="Profile picture of logged in user"
               />
             </Avatar>
-            <p>Hi, {user && user?.profile && user?.profile!.name}!</p>
+            <Subtitle>
+              Hi, {user && user?.profile && user?.profile!.name}!
+            </Subtitle>
             <Divider />
-            <p>Notifications</p>
-            <p>Saved Vineyards</p>
             <Link to="/me">
               {" "}
-              <Button> View / Edit Profile</Button>{" "}
+              <Button>VIEW/EDIT PROFILE</Button>{" "}
             </Link>
-            <Divider />
-            <Button primary onClick={() => dispatch(logoutAction())}>
+            <Button
+              primary
+              onClick={() => dispatch(logoutAction()) && history.push("/")}
+            >
               LOG OUT
             </Button>
           </>
@@ -47,8 +51,8 @@ export default function Dropdown({ menu, user }: DropdownProps) {
                 alt="Profile picture of logged in user"
               />
             </Avatar>
-            <p>Saved Vineyards</p>
-            <p>Reviews</p>
+            <Subtitle>Saved Vineyards</Subtitle>
+            <Subtitle>Reviews</Subtitle>
             <Link to="/me">
               {" "}
               <Button> View / Edit Winery Info</Button>{" "}
@@ -65,7 +69,7 @@ export default function Dropdown({ menu, user }: DropdownProps) {
   }, [menu]);
   return (
     <>
-      <Tab />
+      {/* <Tab /> */}
       <DropdownContainer>{dropDownMenu}</DropdownContainer>
     </>
   );

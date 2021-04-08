@@ -1,14 +1,11 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Container, Button, Image } from "../../styles/globalStyles";
-import { MoonData, VineyardData } from "../../store/types";
+import { MoonData, VineyardData, UserProfile } from "../../store/types";
 import { SaveIcon, DateSearch } from "../index";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { toggleModalActions } from "../../store/actions/modalActions";
 import { Link, useParams } from "react-router-dom";
-
-// import parse from "html-react-parser";
-import Parser from "html-styled-react-parser";
 
 import {
   InfoSec,
@@ -25,13 +22,14 @@ import {
 export interface BannerProps {
   moonInfo?: MoonData;
   details?: VineyardData;
+  user?: UserProfile;
   primary: boolean;
   lightBg: boolean;
   imgStart: string;
   lightTopLine: boolean;
   lightText: boolean;
   lightTextDesc: boolean;
-  buttonLabel: string;
+  button: string;
   description: string;
   headline: string;
   topLine: string;
@@ -47,7 +45,7 @@ function InfoBanner({
   lightTopLine,
   lightText,
   lightTextDesc,
-  buttonLabel,
+  button,
   description,
   headline,
   topLine,
@@ -56,31 +54,55 @@ function InfoBanner({
   alt,
   moonInfo,
   details,
+  user,
 }: BannerProps) {
   const dispatch = useDispatch();
   const params = useParams();
   const { vineyardId }: any = params;
-  const modalStatus = useSelector((state: RootState) => state.modal.isOpen);
   const userStatus = useSelector((state: RootState) => state.user.isLoggedIn);
-  const replacements = {
-    p: Button,
-  };
 
   let randomImg =
     details?.vineyards[0].images[
       Math.floor(Math.random() * details?.vineyards[0].images.length)
     ];
 
-  const handleReview = async () => {
-    try {
-      dispatch(toggleModalActions(true, "review"));
-    } catch (err) {
-      console.log(err);
+  const buttonToLoad = useMemo(() => {
+    if (!button) {
+      return "";
     }
-  };
+    switch (button) {
+      case "button1":
+        return <DateSearch moonInfo={moonInfo} />;
+      case "button2":
+        return (
+          <Button
+            big
+            fontBig
+            primary={primary}
+            onClick={() => dispatch(toggleModalActions(true, "moon"))}
+          >
+            Moon Info
+          </Button>
+        );
+      case "button3":
+        return (
+          <Button
+            big
+            fontBig
+            primary={primary}
+            onClick={() => dispatch(toggleModalActions(true, "review"))}
+          >
+            Reviews
+          </Button>
+        );
+
+      default:
+        return <></>;
+    }
+  }, [params, button]);
+
   return (
     <>
-      {console.log("moonInfo", moonInfo)}
       <InfoSec lightBg={lightBg}>
         <Container>
           <InfoRow imgStart={imgStart}>
@@ -91,22 +113,7 @@ function InfoBanner({
                 </TopLine>
                 <Heading lightText={lightText}>{headline}</Heading>
                 <Subtitle lightTextDesc={lightTextDesc}>{description}</Subtitle>
-                {vineyardId ? (
-                  <DateSearch moonInfo={moonInfo} />
-                ) : (
-                  <Button
-                    big
-                    fontBig
-                    primary={primary}
-                    onClick={() => dispatch(toggleModalActions(true, "moon"))}
-                  >
-                    {" "}
-                    {buttonLabel}
-                  </Button>
-                )}
-                {/* <Parser html={buttonLabel} replacements={replacements} /> */}
-                {/* {parse(buttonLabel, replacements)}
-              {parse(buttonLabel)} */}
+                {buttonToLoad}
               </TextWrapper>
             </InfoCol>
             <InfoCol>

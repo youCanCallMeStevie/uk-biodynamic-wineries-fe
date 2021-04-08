@@ -6,6 +6,8 @@ import {
   editVineyard,
   deleteVineyard,
   searchVineyards,
+  followAVineyard,
+  unfollowAVineyard
 } from "../../utils/Api/vineyardApi";
 import { Dispatch } from "redux";
 
@@ -88,25 +90,64 @@ export const getOneVineyardAction = (vineyardId: string) => async (
     });
   }
 };
+
+
+export const followVineyardAction = (vineyardId: string) => async (
+  dispatch: Dispatch<VineyardDispatchTypes>
+) => {
+  try {
+    console.log("one")
+    dispatch({
+      type: VINEYARD_LOADING,
+    });
+    console.log("two")
+    const vineyard = await followAVineyard(vineyardId);
+    if (vineyard) {
+      console.log("three")
+      dispatch(await getOneVineyard(vineyardId));
+    } else throw new Error();
+    console.log("four")
+  } catch (error) {
+    dispatch({
+      type: VINEYARD_ERROR,
+      payload: "Error following this vineyard",
+    });
+  }
+};
+
+
+export const unfollowVineyardAction = (vineyardId: string) => async (
+  dispatch: Dispatch<VineyardDispatchTypes>
+) => {
+  try {
+    dispatch({
+      type: VINEYARD_LOADING,
+    });
+    const vineyard = await unfollowAVineyard(vineyardId);
+    console.log("unfollowVineyardAction", vineyard)
+    if (vineyard) {
+      dispatch(await getOneVineyard(vineyardId));
+    } else throw new Error();
+  } catch (error) {
+    dispatch({
+      type: VINEYARD_ERROR,
+      payload: "Error unfollowing this vineyard",
+    });
+  }
+};
 export const searchVineyardsAction = (query: SearchQuery,isSearch=false) => async (
   dispatch: Dispatch<VineyardDispatchTypes>
 ) => {
   try {
-    console.log("QUERY", query);
     dispatch({
       type: VINEYARD_LOADING,
     });
     const vineyards = await searchVineyards(query);
-    console.log("vineyardAction1", vineyards);
-
     if (vineyards) {
-      console.log("vineyardAction2", vineyards);
-
       dispatch({
         type: VINEYARD_SUCCESS,
         payload:vineyards
       });
-      console.log("vineyardAction3", vineyards);
     } else throw new Error();
   } catch (error) {
     console.log(error);

@@ -1,7 +1,22 @@
 import React, { useState, useEffect } from "react";
 import {} from "./User.elements";
-import { Link, useParams } from "react-router-dom";
+import { RootState } from "../../store";
+import { InfoBanner, Toggle } from "../../Components";
 import { useDispatch, useSelector } from "react-redux";
+import { Container, Button, Image, Avatar } from "../../styles/globalStyles";
+import { useParams, Link } from "react-router-dom";
+
+import {
+  InfoSec,
+  InfoRow,
+  InfoCol,
+  TextWrapper,
+  TopLine,
+  Heading,
+  Subtitle,
+  ImgWrapper,
+  Img,
+} from "./User.elements";
 import {
   getCurrentUserAction,
   editProfileAction,
@@ -9,53 +24,52 @@ import {
   changeProfilePictureAction,
   getSelectedUserProfile,
 } from "../../store/actions/userActions";
-import { fetchSavedVineyardsAction } from "../../store/actions/vineyardActions";
+// import { fetchSavedVineyardsAction } from "../../store/actions/userActions";
+
 function User() {
-  const params = useParams();
+  const user = useSelector((state: RootState) => state.user.profile);
+  const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
+  // const params = useParams();
+  // console.log("params", params);
 
-  // const getSelectedProfile = useCallback(() => {
-  //   dispatch(getSelectedUserProfile(params.id));
-  //   dispatch(getUsersPostAction(params.id));
-  //   {
-  //     state.currentUser.selectedUser.user &&
-  //       setProfile({
-  //         username: state.currentUser.selectedUser.user.username,
-  //         name: state.currentUser.selectedUser.user.name,
-  //         lastname: state.currentUser.selectedUser.user.lastname,
-  //         bio: state.currentUser.selectedUser.user.bio,
-  //         followers: state.currentUser.selectedUser.user.followers,
-  //         following: state.currentUser.selectedUser.user.following,
-  //         imageUrl: state.currentUser.selectedUser.user.imageUrl,
-  //       });
-  //   }
-  // }, [
-  //   params,
-  //   state.currentUser.selectedUser?.user?._id,
-  //   state.currentUser.user?.currentUser?._id,
-  // ]);
-
-  // const getCurrentUserProfile = useCallback(() => {
-  //   dispatch(getCurrentUserPostsAction());
-  //   dispatch(getUsersPostAction(params.id));
-
-  //   {
-  //     state.currentUser.user.currentUser &&
-  //       setProfile({
-  //         username: state.currentUser.user.currentUser.username,
-  //         name: state.currentUser.user.currentUser.name,
-  //         lastname: state.currentUser.user.currentUser.lastname,
-  //         bio: state.currentUser.user.currentUser.bio,
-  //         followers: state.currentUser.user.currentUser.followers,
-  //         following: state.currentUser.user.currentUser.following,
-  //         imageUrl: state.currentUser.user.currentUser.imageUrl,
-  //       });
-  //   }
-  // }, [
-  //   params,
-  //   state.currentUser.user?.currentUser?._id,
-  //   state.currentUser.selectedUser?.user?._id,
-  // ]);
-  return <div>HELLLO MEEEEE</div>;
+  return (
+    <>
+      <InfoSec>
+        <Container>
+          <InfoRow>
+            <ImgWrapper>
+              <Img
+                src={user && user?.imageUrl}
+                alt={`${user && user?.name}'s profile picture`}
+              />
+            </ImgWrapper>
+            <InfoCol>
+              <TextWrapper>
+                <TopLine>@{user && user?.username}'s following</TopLine>
+                {user &&
+                  user?.likedVineyards.length > 0 &&
+                  user?.likedVineyards.map(likedVineyard => (
+                    <Link to={`/vineyard/${likedVineyard?._id}`}>
+                      <Subtitle>{likedVineyard?.name}</Subtitle>
+                    </Link>
+                  ))}
+                <Subtitle>{user?.email}</Subtitle>
+                <Subtitle>
+                  {user?.name}
+                  {user?.lastname}
+                </Subtitle>
+                <Subtitle>
+                  Public profile <Toggle /> {user?.publicProfile}
+                </Subtitle>
+                <Heading></Heading>
+              </TextWrapper>
+            </InfoCol>
+            <InfoCol></InfoCol>
+          </InfoRow>
+        </Container>
+      </InfoSec>
+    </>
+  );
 }
 
 export default User;
