@@ -4,16 +4,27 @@ import { UserState } from "../../store/types";
 import { Avatar, Image, Button, Divider } from "../../styles/globalStyles";
 import { useDispatch } from "react-redux";
 import { DropdownContainer, Subtitle } from "./Dropdown.elements";
-import { logoutAction } from "../../store/actions/userActions";
+import { getVineyardAction } from "../../store/actions/vineyardActions";
 import { useHistory } from "react-router-dom";
-
+import { logoutAction } from "../../store/actions/userActions";
 interface DropdownProps {
   menu: string;
   user: UserState;
 }
-export default function Dropdown({ menu, user }: DropdownProps) {
+
+function Dropdown({ menu, user }: DropdownProps) {
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const handleLogout = async () => {
+    try {
+      dispatch(logoutAction());
+      dispatch(getVineyardAction());
+      history.push("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const dropDownMenu = useMemo(() => {
     switch (menu) {
       case "user":
@@ -33,10 +44,7 @@ export default function Dropdown({ menu, user }: DropdownProps) {
               {" "}
               <Button>VIEW/EDIT PROFILE</Button>{" "}
             </Link>
-            <Button
-              primary
-              onClick={() => dispatch(logoutAction()) && history.push("/")}
-            >
+            <Button primary onClick={() => handleLogout()}>
               LOG OUT
             </Button>
           </>
@@ -58,7 +66,7 @@ export default function Dropdown({ menu, user }: DropdownProps) {
               <Button> View / Edit Winery Info</Button>{" "}
             </Link>
             <Divider />
-            <Button primary onClick={() => dispatch(logoutAction())}>
+            <Button primary onClick={() => handleLogout()}>
               LOG OUT
             </Button>
           </>
@@ -67,6 +75,7 @@ export default function Dropdown({ menu, user }: DropdownProps) {
         return "";
     }
   }, [menu]);
+
   return (
     <>
       {/* <Tab /> */}
@@ -74,3 +83,5 @@ export default function Dropdown({ menu, user }: DropdownProps) {
     </>
   );
 }
+
+export default Dropdown;

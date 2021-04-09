@@ -13,6 +13,7 @@ import { toggleModalActions } from "../../store/actions/modalActions";
 import RegisterImg from "../../assets/illustrations/nature_tech.svg";
 import LoginImg from "../../assets/illustrations/moon_location.svg";
 import MoonImg from "../../assets/illustrations/moon_only.svg";
+import FruitImg from "../../assets/illustrations/_fruit_day.svg";
 import ReviewImg from "../../assets/illustrations/location_marker_girl.svg";
 import { useSpring, animated } from "react-spring";
 import { RootState } from "../../store";
@@ -71,7 +72,7 @@ function Modal() {
     try {
       dispatch(loginAction(loginData));
       setLoginData(initialLoginData);
-      history.push("/");
+      // history.push("/");
       dispatch(toggleModalActions(false, ""));
     } catch (err) {
       console.log(err);
@@ -115,6 +116,68 @@ function Modal() {
       );
     }
   }, [moonInfo]);
+
+  const fruitDayToLoad = useMemo(() => {
+    if (!moonInfo?.bioDay) {
+      return "";
+    }
+    switch (moonInfo?.bioDay) {
+      case "Fruit":
+        return (
+          <>
+            <h1>Light & Fire</h1>
+            <h1>Fruit</h1>
+            <h3>Aries | Leo | Sagittarius</h3>
+            <p>
+              When the moon is in any of the fire signs, it is the most optimal
+              for tasting wine as fruit flavors are more vibrant, and the wine
+              is rich and full.
+            </p>
+            ;
+          </>
+        );
+      case "Leaf":
+        return (
+          <>
+            <h1>Water</h1>
+            <h1>Leaf</h1>
+            <h3>Pisces | Cancer | Scorpio</h3>
+            <p>
+              When the moon is in any of the water signs wines appear less
+              sweet, with a dominant, earthy minerality.
+            </p>
+          </>
+        );
+      case "Flower":
+        return (
+          <>
+            {" "}
+            <h1>Air</h1>
+            <h1>Flower</h1>
+            <h3>Gemini | Libra | Aquarius</h3>
+            <p>
+              When the moon is in any air sign it will be better days for
+              tasting aromatic wines, especially white wines with floral aromas.
+            </p>
+          </>
+        );
+      case "Root":
+        return (
+          <>
+            <h1>Earth</h1>
+            <h1>Root</h1>
+            <h3>Taurus | Virgo | Capricorn</h3>
+            <p>
+              When the moon is in any Earth sign, it is best to avoid tasting
+              wine as it's expression will appear more subtle.
+            </p>
+          </>
+        );
+
+      default:
+        return <></>;
+    }
+  }, [moonInfo?.bioDay]);
 
   const contentSection = () => {
     if (modalType == "login") {
@@ -327,6 +390,22 @@ function Modal() {
               Your review for {details?.vineyards[0].name} has been submitted
             </h2>
 
+            <CloseModalBtn
+              onClick={() => dispatch(toggleModalActions(false, ""))}
+            />
+          </ModalContent>
+        </>
+      );
+    } else if (modalType == "fruit") {
+      return (
+        <>
+          <ModalImgWrapper>
+            <Image src={FruitImg} alt="man with grapes & wine glass" />
+          </ModalImgWrapper>
+          <ModalContent>
+            <h1>What's Does{moonInfo!.bioDay} Day Mean?</h1>
+
+            {fruitDayToLoad}
             <CloseModalBtn
               onClick={() => dispatch(toggleModalActions(false, ""))}
             />

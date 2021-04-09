@@ -7,10 +7,9 @@ import {
   deleteVineyard,
   searchVineyards,
   followAVineyard,
-  unfollowAVineyard
+  unfollowAVineyard,
 } from "../../utils/Api/vineyardApi";
 import { Dispatch } from "redux";
-
 import {
   VineyardData,
   VineyardDispatchTypes,
@@ -18,11 +17,16 @@ import {
   VINEYARD_SUCCESS,
   VINEYARD_ERROR,
   SET_SEARCH_PERFORMED,
+  LOGIN_SUCCESS,
 } from "../types";
 
 import { SearchQuery } from "../../utils/interfaces";
+import { getCurrentUserApi } from "../../utils/Api/authApi";
 
-export const setSearchPerformed=(searchPerformed:boolean) => ({type:SET_SEARCH_PERFORMED,payload:searchPerformed})
+export const setSearchPerformed = (searchPerformed: boolean) => ({
+  type: SET_SEARCH_PERFORMED,
+  payload: searchPerformed,
+});
 
 export const fetchSavedVineyardsAction = () => async (
   dispatch: Dispatch<VineyardDispatchTypes>
@@ -91,22 +95,23 @@ export const getOneVineyardAction = (vineyardId: string) => async (
   }
 };
 
-
 export const followVineyardAction = (vineyardId: string) => async (
   dispatch: Dispatch<VineyardDispatchTypes>
 ) => {
   try {
-    console.log("one")
     dispatch({
       type: VINEYARD_LOADING,
     });
-    console.log("two")
     const vineyard = await followAVineyard(vineyardId);
     if (vineyard) {
-      console.log("three")
-      dispatch(await getOneVineyard(vineyardId));
+      const currentUser = await getCurrentUserApi();
+      if (currentUser) {
+        dispatch({
+          type: LOGIN_SUCCESS,
+          payload: currentUser,
+        });
+      }
     } else throw new Error();
-    console.log("four")
   } catch (error) {
     dispatch({
       type: VINEYARD_ERROR,
@@ -114,7 +119,6 @@ export const followVineyardAction = (vineyardId: string) => async (
     });
   }
 };
-
 
 export const unfollowVineyardAction = (vineyardId: string) => async (
   dispatch: Dispatch<VineyardDispatchTypes>
@@ -124,9 +128,14 @@ export const unfollowVineyardAction = (vineyardId: string) => async (
       type: VINEYARD_LOADING,
     });
     const vineyard = await unfollowAVineyard(vineyardId);
-    console.log("unfollowVineyardAction", vineyard)
     if (vineyard) {
-      dispatch(await getOneVineyard(vineyardId));
+      const currentUser = await getCurrentUserApi();
+      if (currentUser) {
+        dispatch({
+          type: LOGIN_SUCCESS,
+          payload: currentUser,
+        });
+      }
     } else throw new Error();
   } catch (error) {
     dispatch({
@@ -135,9 +144,10 @@ export const unfollowVineyardAction = (vineyardId: string) => async (
     });
   }
 };
-export const searchVineyardsAction = (query: SearchQuery,isSearch=false) => async (
-  dispatch: Dispatch<VineyardDispatchTypes>
-) => {
+export const searchVineyardsAction = (
+  query: SearchQuery,
+  isSearch = false
+) => async (dispatch: Dispatch<VineyardDispatchTypes>) => {
   try {
     dispatch({
       type: VINEYARD_LOADING,
@@ -146,7 +156,7 @@ export const searchVineyardsAction = (query: SearchQuery,isSearch=false) => asyn
     if (vineyards) {
       dispatch({
         type: VINEYARD_SUCCESS,
-        payload:vineyards
+        payload: vineyards,
       });
     } else throw new Error();
   } catch (error) {

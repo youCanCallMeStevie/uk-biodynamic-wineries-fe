@@ -4,16 +4,29 @@ import { RootState } from "../../store";
 import { LargeSearch, SmallSearch } from "../../styles/globalStyles";
 import { InfoBanner, Map, BioDays, Search } from "../../Components";
 import { homeObjOne, homeObjTwo, homeObjThree } from "./Data";
-import { getVineyardAction } from "../../store/actions/vineyardActions";
+import {
+  getVineyardAction,
+  setLoading,
+} from "../../store/actions/vineyardActions";
+import { fetchTodaysMoonAction } from "../../store/actions/moonActions";
+import { getCurrentUserAction } from "../../store/actions/userActions";
+
 function Home() {
   const details = useSelector((state: RootState) => state.vineyard);
   const moonInfo = useSelector((state: RootState) => state.moon.moonInfo);
   const position = useSelector((state: RootState) => state.map.position);
+  const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
   const dispatch = useDispatch();
 
   // useEffect(() => {
   //   dispatch(getVineyardAction());
-  // }, []);
+  // }, [isLoggedIn]);
+
+  // useEffect(() => {
+  //   dispatch(setLoading());
+  //   dispatch(getVineyardAction());
+  //   dispatch(fetchTodaysMoonAction());
+  // }, [dispatch]);
 
   return (
     <>

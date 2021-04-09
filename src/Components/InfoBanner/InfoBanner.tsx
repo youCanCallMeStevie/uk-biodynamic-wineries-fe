@@ -25,6 +25,7 @@ export interface BannerProps {
   user?: UserProfile;
   primary: boolean;
   lightBg: boolean;
+  saveIcon?: boolean;
   imgStart: string;
   lightTopLine: boolean;
   lightText: boolean;
@@ -41,6 +42,7 @@ export interface BannerProps {
 function InfoBanner({
   primary,
   lightBg,
+  saveIcon,
   imgStart,
   lightTopLine,
   lightText,
@@ -65,6 +67,18 @@ function InfoBanner({
     details?.vineyards[0].images[
       Math.floor(Math.random() * details?.vineyards[0].images.length)
     ];
+
+  const saveIconToLoad = useMemo(() => {
+    if (!saveIcon) {
+      return "";
+    }
+    switch (saveIcon) {
+      case true:
+        return vineyardId && userStatus && <SaveIcon />;
+      default:
+        return <></>;
+    }
+  }, [params, saveIcon]);
 
   const buttonToLoad = useMemo(() => {
     if (!button) {
@@ -109,7 +123,7 @@ function InfoBanner({
             <InfoCol>
               <TextWrapper>
                 <TopLine lightTopLine={lightTopLine}>
-                  {topLine} {vineyardId && userStatus ? <SaveIcon /> : ""}
+                  {topLine} {saveIconToLoad}
                 </TopLine>
                 <Heading lightText={lightText}>{headline}</Heading>
                 <Subtitle lightTextDesc={lightTextDesc}>{description}</Subtitle>

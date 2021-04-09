@@ -60,6 +60,7 @@ function SaveIcon() {
     margin-top: -0.25em;
     font-size: 35px;
     color: orange;
+    cursor: pointer;
   `;
   return (
     <>

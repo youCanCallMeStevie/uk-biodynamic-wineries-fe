@@ -10,6 +10,7 @@ type VineyardObjectMaker = (details?: VineyardData) => BannerProps
 export const vineyardObjOne: VineyardObjectMaker = (details?: VineyardData) => ({
     lightBg: true,
     primary: false,
+    saveIcon: true,
     imgStart: "",
     lightTopLine: false,
     lightTextDesc: false,
@@ -29,6 +30,8 @@ export const vineyardObjOne: VineyardObjectMaker = (details?: VineyardData) => (
 export const vineyardObjTwo: VineyardObjectMaker = (details?: VineyardData) => ({
   lightBg: false,
   primary: true,
+  saveIcon: false,
+
   imgStart: "start",
   lightTopLine: true,
   lightTextDesc: true,
@@ -60,6 +63,7 @@ export const vineyardObjTwo: VineyardObjectMaker = (details?: VineyardData) => (
 export const vineyardObjThree: VineyardObjectMaker = (details?: VineyardData) => ({
   lightBg: true,
   primary: false,
+  saveIcon: false,
   imgStart: "",
   lightTopLine: false,
   lightTextDesc: false,

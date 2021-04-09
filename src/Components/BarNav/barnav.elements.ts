@@ -125,7 +125,7 @@ export const NavItemBtn = styled.li`
   }
 `;
 
-export const NavBtnLink = styled(Link)`
+export const NavBtnLink = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;

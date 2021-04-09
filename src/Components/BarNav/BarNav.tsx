@@ -3,13 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { getVineyardAction } from "../../store/actions/vineyardActions";
 import { toggleModalActions } from "../../store/actions/modalActions";
-import {
-  getCurrentUserAction,
-  logoutAction,
-} from "../../store/actions/userActions";
+import { getCurrentUserAction } from "../../store/actions/userActions";
 import { Dropdown, Modal, Toggle } from "../index";
-import { useHistory } from "react-router-dom";
-
 import { Avatar, Image } from "../../styles/globalStyles";
 import {
   Nav,
@@ -23,11 +18,11 @@ import {
   HamburgerIcon,
 } from "./barnav.elements";
 import { Button } from "../../styles/globalStyles";
-//icons
 import { FaBars, FaTimes } from "react-icons/fa";
 import { IconContext } from "react-icons/lib";
 import { MoonIcon, BioIcon } from "../index";
-
+import { useHistory } from "react-router-dom";
+import { logoutAction } from "../../store/actions/userActions";
 const BarNav = ({ moonPhase, bioType }: any) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const [click, setClick] = useState(false);
@@ -37,12 +32,21 @@ const BarNav = ({ moonPhase, bioType }: any) => {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const handleLogout = async () => {
+    try {
+      dispatch(logoutAction());
+      dispatch(getVineyardAction());
+      history.push("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
   const loginSection = useMemo(() => {
     if (!user.isLoggedIn) {
       return (
         <>
           <NavItemBtn>
-            <NavBtnLink to="/">
+            <NavBtnLink>
               <Button
                 primary
                 onClick={() => dispatch(toggleModalActions(true, "login"))}
@@ -52,7 +56,7 @@ const BarNav = ({ moonPhase, bioType }: any) => {
             </NavBtnLink>
           </NavItemBtn>
           <NavItemBtn>
-            <NavBtnLink to="/">
+            <NavBtnLink>
               <Button
                 primary
                 onClick={() => dispatch(toggleModalActions(true, "signup"))}
@@ -131,11 +135,8 @@ const BarNav = ({ moonPhase, bioType }: any) => {
                 </NavLinks>
               </NavItem>
               {loginSection}
-              {window.innerWidth <= 960 && (
-                <Button
-                  primary
-                  onClick={() => dispatch(logoutAction()) && history.push("/")}
-                >
+              {window.innerWidth <= 960 && user.isLoggedIn && (
+                <Button primary onClick={() => handleLogout()}>
                   LOGOUT{" "}
                 </Button>
               )}

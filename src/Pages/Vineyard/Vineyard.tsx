@@ -5,6 +5,7 @@ import { InfoBanner, Map, Summary, IconBanner } from "../../Components";
 import { vineyardObjOne, vineyardObjTwo, vineyardObjThree } from "./Data";
 import { useParams } from "react-router-dom";
 import { getOneVineyardAction } from "../../store/actions/vineyardActions";
+import { getCurrentUserAction } from "../../store/actions/userActions";
 
 function Vineyard() {
   const params = useParams();
@@ -12,6 +13,7 @@ function Vineyard() {
   const details = useSelector((state: RootState) => state.vineyard.data);
   const moonInfo = useSelector((state: RootState) => state.moon.moonInfo);
   const position = useSelector((state: RootState) => state.map.position);
+  const isLoggedIn = useSelector((state: RootState) => state.user);
 
   const { vineyardId }: any = params;
 
@@ -19,7 +21,6 @@ function Vineyard() {
     dispatch(getOneVineyardAction(vineyardId));
   }, [vineyardId]);
 
-  console.log("details", details);
   return (
     <>
       <InfoBanner {...vineyardObjOne(details)} details={details} />

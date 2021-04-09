@@ -366,7 +366,8 @@ export interface VineyardState {
   export type VineyardDispatchTypes =
     | VineyardLoading
     | VineyardSuccess
-    | VineyardError | VineyardSearch;
+    | VineyardError | VineyardSearch | LoginDispatchTypes
+    ;
 
 //FAVS
 export interface AddToFavs {
