@@ -125,13 +125,16 @@ function Modal() {
       case "Fruit":
         return (
           <>
-            <h1>Light & Fire</h1>
-            <h1>Fruit</h1>
-            <h3>Aries | Leo | Sagittarius</h3>
+            <h2>Aries | Leo | Sagittarius</h2>
             <p>
-              When the moon is in any of the fire signs, it is the most optimal
-              for tasting wine as fruit flavors are more vibrant, and the wine
-              is rich and full.
+              When the moon is in any of the fire signs, and today it's in
+              {moonInfo?.zodiac}, it is the most optimal for tasting wine as
+              fruit flavors are more vibrant, and the wine is rich and full.
+            </p>
+            <p>
+              Use fruit days to harvest...well, fruits! The most ideal time for
+              the grapes to be plucked from the vines (if winemakers harvested
+              on Leaf Days, the grapes could be water logged){" "}
             </p>
             ;
           </>
@@ -139,37 +142,53 @@ function Modal() {
       case "Leaf":
         return (
           <>
-            <h1>Water</h1>
-            <h1>Leaf</h1>
-            <h3>Pisces | Cancer | Scorpio</h3>
+            <h2>Pisces | Cancer | Scorpio</h2>
             <p>
-              When the moon is in any of the water signs wines appear less
-              sweet, with a dominant, earthy minerality.
+              When the moon is in any of the water signs, and today it's in{" "}
+              {moonInfo?.zodiac}, wines can appear less sweet, with a dominant,
+              earthy minerality.
+            </p>
+            <p>
+              This is an ideal day for salads, spinach, leaf herbs (mint,basil),
+              leeks, cabbages and cauliflower as well as grass or non flowering
+              hedges. Sow leaf–plants when the moon is waxing, ideally on
+              leafdays. Fertilize when the moon is waning, (when the earth is
+              inhaling) and ideally on a leaf-day.
             </p>
           </>
         );
       case "Flower":
         return (
           <>
-            {" "}
-            <h1>Air</h1>
-            <h1>Flower</h1>
-            <h3>Gemini | Libra | Aquarius</h3>
+            <h2>Gemini | Libra | Aquarius</h2>
             <p>
-              When the moon is in any air sign it will be better days for
-              tasting aromatic wines, especially white wines with floral aromas.
+              When the moon is in any air sign, and today it's in
+              {moonInfo?.zodiac}, it will be better for tasting aromatic wines,
+              especially white wines with floral aromas like Viognier or
+              Torrontes.
+            </p>
+            <p>
+              Use flower days for harvesting flowers, flowering herbs, flowering
+              hedges, flowering trees (eg Lilac). Plant and prune whilst the
+              moon is descending, ideally on flower-days, when the sap is drawn
+              to the roots.
             </p>
           </>
         );
       case "Root":
         return (
           <>
-            <h1>Earth</h1>
-            <h1>Root</h1>
-            <h3>Taurus | Virgo | Capricorn</h3>
+            <h2>Taurus | Virgo | Capricorn</h2>
             <p>
-              When the moon is in any Earth sign, it is best to avoid tasting
-              wine as it's expression will appear more subtle.
+              When the moon is in any Earth sign, and today it's in
+              {moonInfo?.zodiac}, it is best to avoid tasting wine, as it's
+              expression will appear more subtle and uncharacteristically
+              earthy.
+            </p>
+            <p>
+              Root days are ideal for pruning, as water is sent down to the
+              roots. Also ideal for harvesting rooted vegetables like potatoes &
+              turnips
             </p>
           </>
         );
@@ -403,8 +422,8 @@ function Modal() {
             <Image src={FruitImg} alt="man with grapes & wine glass" />
           </ModalImgWrapper>
           <ModalContent>
-            <h1>What's Does{moonInfo!.bioDay} Day Mean?</h1>
-
+            <h1>What's a {moonInfo!.bioDay}</h1>
+            <h1>Day Mean?</h1>
             {fruitDayToLoad}
             <CloseModalBtn
               onClick={() => dispatch(toggleModalActions(false, ""))}

@@ -32,14 +32,14 @@ function Search({ moonInfo }: SearchProps) {
   const handleSearch = async (query: SearchQuery) => {
     try {
       await dispatch(searchVineyardsAction(query, true));
-      dispatch({ type: SET_POSITION, payload: { center: [51.509, -0.118] } });
-      dispatch({ type: SET_SEARCH_PERFORMED, payload: true });
-      setGrapes("");
-      setCity("");
-      setDate("");
-      console.log("data", data!.vineyards.length);
-      if (data!.vineyards.length == 0) {
+      console.log("data.vineyards.length", data?.vineyards.length);
+      if (data && data!.vineyards.length === 0) {
         dispatch(toggleModalActions(true, "alert"));
+      } else {
+        dispatch({ type: SET_SEARCH_PERFORMED, payload: true });
+        setGrapes("");
+        setCity("");
+        setDate("");
       }
     } catch (err) {
       console.log(err);
@@ -53,20 +53,15 @@ function Search({ moonInfo }: SearchProps) {
           <SearchWrapper>
             <DayHeading>Today's a {moonInfo?.bioDay} Day</DayHeading>
 
-            {/* <Input
-              type="datetime-local"
-              value={date && date}
-              onChange={e => setDate(e.target.value.toString())}
-            ></Input> */}
             <Input
               type="text"
-              placeholder="Sussex"
+              placeholder="Search by city or region"
               value={city && city}
               onChange={e => setCity(e.target.value)}
             ></Input>
             <Input
               type="text"
-              placeholder="grape"
+              placeholder="Search by grape"
               value={grapes && grapes}
               onChange={e => setGrapes(e.target.value)}
             ></Input>

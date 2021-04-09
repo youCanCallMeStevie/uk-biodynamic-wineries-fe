@@ -51,6 +51,7 @@ function DateSearch({ moonInfo }: DateProps) {
         //   <div></div>
         <>
           <Subtitle>
+            {console.log("searchDate?.bioDay", searchDate?.bioDay)}
             It will be {searchDate?.bioDay} Day on your visit{" "}
             {moment(searchDate?.resultsDate?.date).format(
               "dddd, MMMM Do YYYY, h:mm:ss a"
@@ -61,7 +62,7 @@ function DateSearch({ moonInfo }: DateProps) {
               `The next full moon, after your visit, will happen on ${moment(
                 searchDate?.nextFullMoon?.date
               ).format("dddd, MMMM Do YYYY, h:mm:ss a")}. `}
-            {searchDate?.bioDay !== "Fruit"
+            {searchDate && searchDate?.bioDay !== "Fruit"
               ? `If you want to wait for a fruit day to visit instead, it will be
             ${searchDate?.nextFruitDay}.`
               : `Today is a great day to visit, as wine will be at it's fullest expression.`}

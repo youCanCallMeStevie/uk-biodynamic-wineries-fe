@@ -14,7 +14,7 @@ export const Background = styled.div`
 
 export const ModalWrapper = styled.div`
   width: 800px;
-  height: 500px;
+  height: 100%;
   background: #1c2237;
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
   color: #000;
@@ -22,7 +22,7 @@ export const ModalWrapper = styled.div`
   grid-template-columns: 1fr 1fr;
   position: relative;
   z-index: 100000;
-  border-radius: 8px;
+  border-radius: 15px;
   @media screen and (max-width: 960px){
     width: 333px;
     display: flex;
@@ -36,7 +36,7 @@ export const ModalImgWrapper = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
-  background: #000;
+  background: #1c2237;
   border-radius: 10px 0 0 10px;
   img {
     margin-top: 5%;
@@ -54,18 +54,19 @@ export const ModalContent = styled.div`
   align-items: center;
   line-height: 1.8;
   color: #141414;
-  padding:10px;
+  padding:20px;
   h1 {
     margin-bottom: 18px;
     color: whitesmoke; 
-    font-size: 48px;
+    font-size: 45px;
     line-height: 1.1;
     text-align: left;
-    padding-left:18px;
+    /* padding-left:18px; */
 
   }
   h2 {
     font-size: 24px;
+    text-align: left;
     color: #c06014;
     line-height: 16px;
     margin-bottom: 16px;

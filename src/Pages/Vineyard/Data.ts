@@ -16,13 +16,13 @@ export const vineyardObjOne: VineyardObjectMaker = (details?: VineyardData) => (
     lightTextDesc: false,
     button: "button1",
     description:
-      `${details?.vineyards[0].description}`,
-    headline:     `${details?.vineyards[0].bio}`,
+      `${details?.vineyards[0]?.description}`,
+    headline:     `${details?.vineyards[0]?.bio}`,
   
     lightText: false,
-    topLine: `${details?.vineyards[0].name} in ${details?.vineyards[0].region}`,
+    topLine: `${details?.vineyards[0]?.name} in ${details?.vineyards[0]?.region}`,
     img: require(`../../assets/illustrations/_flower_day_2.svg`),
-    alt: `Random Image for ${details?.vineyards[0].name}`,
+    alt: `Random Image for ${details?.vineyards[0]?.name}`,
     start: "",
     details
   });
@@ -38,10 +38,10 @@ export const vineyardObjTwo: VineyardObjectMaker = (details?: VineyardData) => (
   button: "button2",
   description:
   ``,
-  headline: `${details?.vineyards[0].fullAddress}`,
+  headline: `${details?.vineyards[0]?.fullAddress}`,
   lightText: true,
-  topLine: `${details?.vineyards[0].name} in ${details?.vineyards[0].region}`,
-  alt: `Random Image for ${details?.vineyards[0].name}`,
+  topLine: `${details?.vineyards[0]?.name} in ${details?.vineyards[0]?.region}`,
+  alt: `Random Image for ${details?.vineyards[0]?.name}`,
   start: "true",
   details
 });
@@ -69,13 +69,13 @@ export const vineyardObjThree: VineyardObjectMaker = (details?: VineyardData) =>
   lightTextDesc: false,
   button: "button3",
   description:
-    `${details?.vineyards[0].description}`,
-  headline:     `${details?.vineyards[0].bio}`,
+    `${details?.vineyards[0]?.description}`,
+  headline:     `${details?.vineyards[0]?.bio}`,
 
   lightText: false,
-  topLine: `${details?.vineyards[0].name} in ${details?.vineyards[0].region}`,
+  topLine: `${details?.vineyards[0]?.name} in ${details?.vineyards[0]?.region}`,
   img: require(`../../assets/illustrations/_flower_day_2.svg`),
-  alt: `Random Image for ${details?.vineyards[0].name}`,
+  alt: `Random Image for ${details?.vineyards[0]?.name}`,
   start: "",
   details
 });
