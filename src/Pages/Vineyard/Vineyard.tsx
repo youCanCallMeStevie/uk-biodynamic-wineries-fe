@@ -12,12 +12,12 @@ function Vineyard() {
   const details = useSelector((state: RootState) => state.vineyard.data);
   const moonInfo = useSelector((state: RootState) => state.moon.moonInfo);
   const position = useSelector((state: RootState) => state.map.position);
-
+  const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
   const { vineyardId }: any = params;
 
   useEffect(() => {
     dispatch(getOneVineyardAction(vineyardId));
-  }, [vineyardId]);
+  }, [vineyardId, isLoggedIn]);
 
   return (
     <>

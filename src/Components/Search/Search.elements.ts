@@ -34,8 +34,9 @@ export const DayHeading = styled.h1`
 color: #c06014;
 font-size: 1.5rem;
 padding: 0.5rem;
+letter-spacing: 1.1px;
 @media screen and (max-width: 990px) {
-    font-size:16px;
+    font-size:20px;
   }
 
 `

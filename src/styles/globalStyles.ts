@@ -108,7 +108,27 @@ export const Input = styled.input`
   outline: none;
   border: none;
   font-size: 10px;
-  border: 1px solid #fff;
+  border: 2px solid #fff;
+  ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #101522;
+  font-size: 12px;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: #101522;
+  font-size: 12px;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: #101522;
+  font-size: 12px;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: #101522;
+  font-size: 12px;
+}
+  @media screen and (max-width: 990px) {
+    width: 70%;
+  }
+
 `;
 export default GlobalStyles;
 
@@ -117,3 +137,6 @@ export const Divider = styled.div`
   width: 100px;
   margin: 0.5rem;
 `;
+
+
+

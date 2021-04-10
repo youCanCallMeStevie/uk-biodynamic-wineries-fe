@@ -52,21 +52,22 @@ export const ModalContent = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  line-height: 1.8;
+  /* line-height: 1.8; */
   color: #141414;
   padding:20px;
   h1 {
-    margin-bottom: 18px;
+    margin-bottom: 16px;
+
     color: whitesmoke; 
     font-size: 45px;
-    line-height: 1.1;
-    text-align: left;
+    line-height: 1;
+    /* text-align: left; */
     /* padding-left:18px; */
 
   }
   h2 {
     font-size: 24px;
-    text-align: left;
+    /* text-align: left; */
     color: #c06014;
     line-height: 16px;
     margin-bottom: 16px;
@@ -75,13 +76,15 @@ export const ModalContent = styled.div`
   h6 {
     font-size: 18px;
     color: #c06014;
+    margin-bottom: 16px;
+
 
   };
   p {
     font-size: 18px;
     line-height: 24px;
     color: #f7f8fa;
-    padding: 10px 24px;
+    padding: 10px;
   };
   button {
     padding: 10px 24px;

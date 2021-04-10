@@ -32,19 +32,22 @@ function Search({ moonInfo }: SearchProps) {
   const handleSearch = async (query: SearchQuery) => {
     try {
       await dispatch(searchVineyardsAction(query, true));
-      console.log("data.vineyards.length", data?.vineyards.length);
-      if (data && data!.vineyards.length === 0) {
-        dispatch(toggleModalActions(true, "alert"));
-      } else {
-        dispatch({ type: SET_SEARCH_PERFORMED, payload: true });
-        setGrapes("");
-        setCity("");
-        setDate("");
-      }
+
+      dispatch({ type: SET_SEARCH_PERFORMED, payload: true });
+      setGrapes("");
+      setCity("");
+      setDate("");
     } catch (err) {
       console.log(err);
     }
   };
+
+  useEffect(() => {
+    console.log("data.vineyards.length", data?.vineyards.length);
+    if (data && data!.vineyards.length === 0) {
+      dispatch(toggleModalActions(true, "alert"));
+    }
+  }, []);
 
   return (
     <>

@@ -37,6 +37,7 @@ function Modal() {
   const modalStatus = useSelector((state: RootState) => state.modal.isOpen);
   const moonInfo = useSelector((state: RootState) => state.moon.moonInfo);
   const userInfo = useSelector((state: RootState) => state.user.profile);
+  const moment = require("moment");
 
   const initialFormData = {
     name: "",
@@ -105,7 +106,7 @@ function Modal() {
   };
   const nextFruitDayInfo = useMemo(() => {
     if (moonInfo!.bioDay == "Fruit") {
-      return <h2>Today is an ideal time for wine!</h2>;
+      return <h6>* Today is an ideal time for wine! *</h6>;
     } else {
       return (
         <p>
@@ -127,14 +128,15 @@ function Modal() {
           <>
             <h2>Aries | Leo | Sagittarius</h2>
             <p>
-              When the moon is in any of the fire signs, and today it's in
+              When the moon is in any of the fire signs, and today it's in{" "}
               {moonInfo?.zodiac}, it is the most optimal for tasting wine as
               fruit flavors are more vibrant, and the wine is rich and full.
             </p>
             <p>
-              Use fruit days to harvest...well, fruits! The most ideal time for
-              the grapes to be plucked from the vines (if winemakers harvested
-              on Leaf Days, the grapes could be water logged){" "}
+              Use fruit days to harvest...well, fruits! This day is the most
+              ideal time for the grapes to be plucked from the vines (if
+              winemakers harvested on Leaf Days, the grapes could be water
+              logged).{" "}
             </p>
             ;
           </>
@@ -162,7 +164,7 @@ function Modal() {
           <>
             <h2>Gemini | Libra | Aquarius</h2>
             <p>
-              When the moon is in any air sign, and today it's in
+              When the moon is in any air sign, and today it's in{" "}
               {moonInfo?.zodiac}, it will be better for tasting aromatic wines,
               especially white wines with floral aromas like Viognier or
               Torrontes.
@@ -180,7 +182,7 @@ function Modal() {
           <>
             <h2>Taurus | Virgo | Capricorn</h2>
             <p>
-              When the moon is in any Earth sign, and today it's in
+              When the moon is in any Earth sign, and today it's in{" "}
               {moonInfo?.zodiac}, it is best to avoid tasting wine, as it's
               expression will appear more subtle and uncharacteristically
               earthy.
@@ -314,11 +316,17 @@ function Modal() {
             <Image src={MoonImg} alt="nature and tech illustration" />
           </ModalImgWrapper>
           <ModalContent>
-            <h1>What's the moon doing?</h1>
+            <h1>What's the</h1>
+            <h1>Moon doing?</h1>
             <p>
-              The moon is currently {moonInfo!.moonPhase} and it's trajectory is
-              in {moonInfo!.trajectory}. The moon currently is in the
-              constellation of {moonInfo!.zodiac}.
+              The moon's currently in {moonInfo!.moonPhase} and it's trajectory
+              is in {moonInfo!.trajectory}. The moon is in the constellation of{" "}
+              {moonInfo!.zodiac}.{" "}
+              {moonInfo &&
+                moonInfo!.moonPhase !== "Full" &&
+                `The next Full Moon will be on ${moment(
+                  moonInfo!.nextFullMoon.date
+                ).format("dddd, MMMM Do")}`}
             </p>
             <h2>What does it mean for wine?</h2>
             <p>
@@ -381,7 +389,10 @@ function Modal() {
             <Image src={MoonImg} alt="nature and tech illustration" />
           </ModalImgWrapper>
           <ModalContent>
+            <br></br>
+            <br></br>
             <h1>No Results</h1>
+            <br></br>
             <Button
               primary
               onClick={() =>
@@ -422,8 +433,8 @@ function Modal() {
             <Image src={FruitImg} alt="man with grapes & wine glass" />
           </ModalImgWrapper>
           <ModalContent>
-            <h1>What's a {moonInfo!.bioDay}</h1>
-            <h1>Day Mean?</h1>
+            <h1>What's a</h1>
+            <h1>{moonInfo!.bioDay} Day?</h1>
             {fruitDayToLoad}
             <CloseModalBtn
               onClick={() => dispatch(toggleModalActions(false, ""))}
