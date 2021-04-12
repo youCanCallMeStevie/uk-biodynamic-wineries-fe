@@ -66,22 +66,23 @@ export const DayCard = styled.div`
 `;
 
 export const DayCardInfo = styled.div`
-  /* padding-bottom: 0px; */
   display: flex;
   flex-direction: column;
-  /* height: 400px; */
+  height: 400px;
   padding: 24px;
   align-items: center;
   color: #fff;
 `;
 
 export const DayIcon = styled.div`
-  margin: 10px 0;
+  margin-top: 10px;
   img {
     display: flex;
     height: 150px !important;
     max-width: 215px;
+    margin: 0;
     @media screen and (max-width: 960px) {
+      margin: 10px 30px;
       justify-content: center;
       max-width: 200vw;
     }

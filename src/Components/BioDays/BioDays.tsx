@@ -3,7 +3,7 @@ import React from "react";
 // import { Button } from "../../styles/globalStyles";
 import FruitLogo from "../../assets/illustrations/_fruit_day.svg";
 import FlowerLogo from "../../assets/illustrations/_flower_day.svg";
-import RootLogo from "../../assets/illustrations/_root_day.svg";
+import RootLogo from "../../assets/illustrations/natural_general_3.svg";
 import LeafLogo from "../../assets/illustrations/_leaf_day.svg";
 import { Image } from "../../styles/globalStyles";
 import {
