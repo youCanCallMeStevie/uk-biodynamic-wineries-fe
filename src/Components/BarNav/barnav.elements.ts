@@ -53,7 +53,7 @@ export const HamburgerIcon = styled.div`
 interface Click {
   // children?: Element;
   onClick: () => void;
-  click?: any;
+  click?: boolean;
 }
 
 export const NavMenu = styled.ul<Click>`
@@ -86,6 +86,9 @@ export const NavItem = styled.li`
   }
   @media screen and (max-width: 960px) {
     width: 100%;
+    img {
+      height: 100%;
+    }
     &:hover {
       border: none;
     }
@@ -99,6 +102,7 @@ export const NavLinks = styled.div`
   text-decoration: none;
   padding: 0.5rem 1rem;
   height: 100%;
+  cursor: pointer;
   p{
   font-size: 14px;
   letter-spacing: 1.1px;

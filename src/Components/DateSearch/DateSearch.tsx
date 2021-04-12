@@ -52,20 +52,32 @@ function DateSearch({ moonInfo }: DateProps) {
         <>
           <Subtitle>
             {console.log("searchDate?.bioDay", searchDate?.bioDay)}
-            It will be {searchDate?.bioDay} Day on your visit{" "}
-            {moment(searchDate?.resultsDate?.date).format(
-              "dddd, MMMM Do YYYY, h:mm:ss a"
-            )}
-            , as the moon will be in {searchDate?.zodiac} which is known for{" "}
-            {searchDate?.house}. The moon will be in {searchDate?.moonPhase}.{" "}
-            {searchDate?.moonPhase !== "Full" &&
-              `The next full moon, after your visit, will happen on ${moment(
-                searchDate?.nextFullMoon?.date
-              ).format("dddd, MMMM Do")}. `}
-            {searchDate && searchDate?.bioDay !== "Fruit"
-              ? `If you want to wait for a fruit day to visit instead, it will be
+            <p>
+              It will be a {searchDate?.bioDay} Day on your visit{" "}
+              {moment(searchDate?.resultsDate?.date).format(
+                "dddd, MMMM Do YYYY, h:mm a"
+              )}
+              , as the moon will be in {searchDate?.zodiac} which is known for{" "}
+              {searchDate?.house}. The moon will be in {searchDate?.moonPhase}.{" "}
+              {searchDate?.moonPhase !== "Full" &&
+                `The next full moon, after your visit, will happen on ${moment(
+                  searchDate?.nextFullMoon?.date
+                ).format("dddd, MMMM Do")}. `}
+            </p>
+            <br />
+            <p>
+              {searchDate &&
+                searchDate?.bioDay === "Flower" &&
+                `As today is a 'Flower Day', tasting aromatic wines,
+               such as those with floral aromas, will be in their full expression. `}
+              {searchDate &&
+                searchDate?.bioDay === "Root" &&
+                `It is highly discouraged to taste wines on Root days as their expression will be distoreted. `}
+              {searchDate && searchDate?.bioDay !== "Fruit"
+                ? `If you want to wait for a Fruit Day to visit instead, it will be
             ${searchDate?.nextFruitDay}.`
-              : `This is a great day & time to visit, as wine will be at it's fullest expression.`}
+                : `This is a great day & time to visit, as wine will be at it's fullest expression.`}
+            </p>
           </Subtitle>
         </>
       )}

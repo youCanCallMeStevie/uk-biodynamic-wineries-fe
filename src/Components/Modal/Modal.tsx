@@ -319,8 +319,8 @@ function Modal() {
             <h1>What's the</h1>
             <h1>Moon doing?</h1>
             <p>
-              The moon's currently in {moonInfo!.moonPhase} and it's trajectory
-              is in {moonInfo!.trajectory}. The moon is in the constellation of{" "}
+              The moon's currently {moonInfo!.moonPhase} and it's trajectory is
+              in {moonInfo!.trajectory}. The moon is in the constellation of{" "}
               {moonInfo!.zodiac}.{" "}
               {moonInfo &&
                 moonInfo!.moonPhase !== "Full" &&

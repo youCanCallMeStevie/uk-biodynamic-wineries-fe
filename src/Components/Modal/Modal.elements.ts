@@ -77,9 +77,10 @@ export const ModalContent = styled.div`
     font-size: 18px;
     color: #c06014;
     margin-bottom: 16px;
-
-
   };
+  a {
+    margin: 10px;
+  }
   p {
     font-size: 18px;
     line-height: 24px;
@@ -91,6 +92,8 @@ export const ModalContent = styled.div`
     background: #141414;
     color: #fff;
     border: none;
+    margin: 10px;
+
   };
   a {
     font-size: 16px;
