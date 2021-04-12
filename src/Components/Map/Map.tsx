@@ -3,7 +3,14 @@ import { useDispatch } from "react-redux";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { VineyardData, MoonData, MapData } from "../../store/types";
 import { Icon } from "leaflet";
-import { MapSec, MapSecContainer } from "./Map.elements";
+import {
+  MapSec,
+  MapSecContainer,
+  PopupImg,
+  PopupWrapper,
+  PopupCol,
+  PopupLink,
+} from "./Map.elements";
 import { Map as LeafletMap } from "leaflet";
 import { Link } from "react-router-dom";
 const mapMarker = require("../../assets/illustrations/maps_marker.svg");
@@ -53,10 +60,17 @@ function Map({ data, moonInfo, position }: MapProps, { primary }: any) {
                   ]}
                 >
                   <Popup>
-                    <Link to={`/vineyard/${vineyard._id}`}>
-                      <h3>{vineyard.name}</h3>
-                    </Link>
-                    <br /> <p>{vineyard.bio}</p>
+                    <PopupLink to={`/vineyard/${vineyard._id}`}>
+                      <PopupWrapper>
+                        <PopupCol>
+                          <h3>{vineyard.name}</h3>
+                          <p>{vineyard.bio}</p>
+                        </PopupCol>
+                        <PopupCol>
+                          <PopupImg src={vineyard.images[2]} />
+                        </PopupCol>
+                      </PopupWrapper>
+                    </PopupLink>
                   </Popup>
                 </Marker>
               ))}
