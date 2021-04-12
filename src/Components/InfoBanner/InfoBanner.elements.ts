@@ -95,6 +95,9 @@ export const Img = styled.img<BannerImg>`
   max-width: 100%;
   vertical-align: middle;
   display: inline-block;
+  @media screen and (max-width: 768px) {
   max-height: 500px;
+
   overflow: hidden;
+  }
 `
