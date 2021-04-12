@@ -96,4 +96,5 @@ export const Img = styled.img<BannerImg>`
   vertical-align: middle;
   display: inline-block;
   max-height: 500px;
+  overflow: hidden;
 `
