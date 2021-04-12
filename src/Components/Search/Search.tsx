@@ -55,7 +55,6 @@ function Search({ moonInfo }: SearchProps) {
         <Container>
           <SearchWrapper>
             <DayHeading>Today's a {moonInfo?.bioDay} Day</DayHeading>
-
             <Input
               type="text"
               placeholder="Search by city or region"

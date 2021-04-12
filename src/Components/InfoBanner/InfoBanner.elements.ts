@@ -92,9 +92,9 @@ interface BannerImg {
 export const Img = styled.img<BannerImg>`
   padding-right: 0;
   border:0;
-  width: 500px;
-  height: 500px;
-  object-fit: cover;
+  max-width: 100%;
   vertical-align: middle;
   display: inline-block;
+  max-height: 500px;
+  overflow: hidden;
 `

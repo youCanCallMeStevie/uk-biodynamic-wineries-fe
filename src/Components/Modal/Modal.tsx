@@ -106,13 +106,13 @@ function Modal() {
   };
   const nextFruitDayInfo = useMemo(() => {
     if (moonInfo!.bioDay == "Fruit") {
-      return <h6>* Today is an ideal time for wine! *</h6>;
+      return <h3>* Today is an ideal time for wine! *</h3>;
     } else {
       return (
         <p>
           {" "}
           Next fruit day (& most the best expression of wine) is:
-          <h6>{moonInfo!.nextFruitDay}</h6>
+          <h3>{moonInfo!.nextFruitDay}</h3>
         </p>
       );
     }
@@ -126,7 +126,7 @@ function Modal() {
       case "Fruit":
         return (
           <>
-            <h2>Aries | Leo | Sagittarius</h2>
+            <h3>Aries | Leo | Sagittarius</h3>
             <p>
               When the moon is in any of the fire signs, and today it's in{" "}
               {moonInfo?.zodiac}, it is the most optimal for tasting wine as
@@ -144,7 +144,7 @@ function Modal() {
       case "Leaf":
         return (
           <>
-            <h2>Pisces | Cancer | Scorpio</h2>
+            <h3>Pisces | Cancer | Scorpio</h3>
             <p>
               When the moon is in any of the water signs, and today it's in{" "}
               {moonInfo?.zodiac}, wines can appear less sweet, with a dominant,
@@ -162,7 +162,7 @@ function Modal() {
       case "Flower":
         return (
           <>
-            <h2>Gemini | Libra | Aquarius</h2>
+            <h3>Gemini | Libra | Aquarius</h3>
             <p>
               When the moon is in any air sign, and today it's in{" "}
               {moonInfo?.zodiac}, it will be better for tasting aromatic wines,
@@ -180,7 +180,7 @@ function Modal() {
       case "Root":
         return (
           <>
-            <h2>Taurus | Virgo | Capricorn</h2>
+            <h3>Taurus | Virgo | Capricorn</h3>
             <p>
               When the moon is in any Earth sign, and today it's in{" "}
               {moonInfo?.zodiac}, it is best to avoid tasting wine, as it's
@@ -328,7 +328,7 @@ function Modal() {
                   moonInfo!.nextFullMoon.date
                 ).format("dddd, MMMM Do")}`}
             </p>
-            <h2>What does it mean for wine?</h2>
+            <h3>What does it mean for wine?</h3>
             <p>
               This constelaltion represents {moonInfo!.house} & it's biodyanmic
               day is {moonInfo!.bioDay}.
@@ -416,9 +416,9 @@ function Modal() {
           </ModalImgWrapper>
           <ModalContent>
             <h1>Thanks!</h1>
-            <h2>
+            <h3>
               Your review for {details?.vineyards[0].name} has been submitted
-            </h2>
+            </h3>
 
             <CloseModalBtn
               onClick={() => dispatch(toggleModalActions(false, ""))}

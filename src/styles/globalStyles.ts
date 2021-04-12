@@ -99,7 +99,7 @@ background-color: #101522;
 `
 
 export const Input = styled.input`
-  min-width: 200px;
+  min-width: 250px;
   height: 30px;
   margin: 10px;
   border-radius: 8px;
@@ -109,6 +109,9 @@ export const Input = styled.input`
   border: none;
   font-size: 10px;
   border: 2px solid #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   color: #101522;
   font-size: 12px;

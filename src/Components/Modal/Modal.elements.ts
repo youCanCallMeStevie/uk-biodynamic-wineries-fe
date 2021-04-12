@@ -23,11 +23,12 @@ export const ModalWrapper = styled.div`
   position: relative;
   z-index: 100000;
   border-radius: 15px;
-  @media screen and (max-width: 960px){
+  @media screen and (max-width: 960px) {
     width: 333px;
     display: flex;
-justify-content: center;
-align-items: center;  }
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 export const ModalImgWrapper = styled.div`
@@ -43,7 +44,7 @@ export const ModalImgWrapper = styled.div`
     max-width: 300px;
     padding: 10px 24px;
   }
-  @media screen and (max-width: 960px){
+  @media screen and (max-width: 960px) {
     display: none;
   }
 `;
@@ -52,32 +53,26 @@ export const ModalContent = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* line-height: 1.8; */
   color: #141414;
-  padding:20px;
+  padding: 40px;
   h1 {
-    margin-bottom: 16px;
-
-    color: whitesmoke; 
+    margin-bottom: 12px;
+    color: whitesmoke;
     font-size: 45px;
     line-height: 1;
-    /* text-align: left; */
-    /* padding-left:18px; */
-
   }
-  h2 {
-    font-size: 24px;
-    /* text-align: left; */
-    color: #c06014;
+  h3 {
+    font-size: 16px;
     line-height: 16px;
-    margin-bottom: 16px;
-    line-height: 1.1;
-  };
+    letter-spacing: 1.4px;
+    color: #c06014;
+    margin: 12px 0px;
+  }
   h6 {
     font-size: 18px;
     color: #c06014;
     margin-bottom: 16px;
-  };
+  }
   a {
     margin: 10px;
   }
@@ -86,15 +81,14 @@ export const ModalContent = styled.div`
     line-height: 24px;
     color: #f7f8fa;
     padding: 10px;
-  };
+  }
   button {
     padding: 10px 24px;
     background: #141414;
     color: #fff;
     border: none;
     margin: 10px;
-
-  };
+  }
   a {
     font-size: 16px;
     text-decoration: none;
@@ -103,17 +97,15 @@ export const ModalContent = styled.div`
       color: #c06014;
       transition: all 0.3s ease;
     }
-
-
   }
-  @media screen and (max-width: 960px){
-    h1{
+  @media screen and (max-width: 960px) {
+    h1 {
       margin-top: 10px;
       margin-bottom: 10px;
-      line-height: .9;
+      line-height: 0.9;
       font-size: 38px;
-    };
-    h2{
+    }
+    h2 {
       padding-left: 20px;
     }
   }
@@ -136,5 +128,4 @@ export const SignInForm = styled.form`
   justify-content: start;
   align-items: center;
   flex-direction: column;
-
-`
+`;
