@@ -23,7 +23,7 @@ export const FooterLinksContainer = styled.div`
   }
 `;
 export const FooterLinksWrapper = styled.div`
-  display: flex;
+  display: none;
   @media screen and (max-width: 820px) {
     flex-direction: column;
     margin-top: 2rem;

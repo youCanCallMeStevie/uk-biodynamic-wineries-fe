@@ -236,7 +236,7 @@ function Modal() {
               </Button>
             </SignInForm>
             <a href={`${REACT_APP_API_URI}/api/auth/google`}>
-              or Sign Up with Google
+              or Sign-in with Google
             </a>
             <CloseModalBtn
               onClick={() => dispatch(toggleModalActions(false, ""))}
