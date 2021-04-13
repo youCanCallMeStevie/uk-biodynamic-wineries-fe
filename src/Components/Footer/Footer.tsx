@@ -60,7 +60,6 @@ function Footer({ moonPhase }: any) {
         <SocialWrapper>
           <MoonWrapper>
             <SiteLogo
-              to="/"
               onClick={() => dispatch(toggleModalActions(true, "moon"))}
             >
               <MoonIcon />

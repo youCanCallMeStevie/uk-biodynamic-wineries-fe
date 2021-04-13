@@ -78,7 +78,7 @@ export const SocialWrapper = styled.div`
   }
 `;
 
-export const SiteLogo = styled(Link)`
+export const SiteLogo = styled.div`
   color: #f3f4ed;
   justify-self: start;
   cursor: pointer;
