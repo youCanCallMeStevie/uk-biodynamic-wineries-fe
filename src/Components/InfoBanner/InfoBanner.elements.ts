@@ -84,6 +84,7 @@ export const ImgWrapper = styled.div<Position>`
   max-width: 555px;
   display: flex;
   justify-content: ${({ start }) => (start ? "flex-start" : "flex-end")};
+  overflow: hidden;
 `;
 
 interface BannerImg {
@@ -96,5 +97,5 @@ export const Img = styled.img<BannerImg>`
   vertical-align: middle;
   display: inline-block;
   max-height: 500px;
-  overflow: hidden;
+
 `

@@ -109,11 +109,10 @@ function Modal() {
       return <h3>* Today is an ideal time for wine! *</h3>;
     } else {
       return (
-        <p>
-          {" "}
-          Next fruit day (& most the best expression of wine) is:
+        <>
+          <p>Next fruit day (& most the best expression of wine) is:</p>
           <h3>{moonInfo!.nextFruitDay}</h3>
-        </p>
+        </>
       );
     }
   }, [moonInfo]);
@@ -190,7 +189,7 @@ function Modal() {
             <p>
               Root days are ideal for pruning, as water is sent down to the
               roots. Also ideal for harvesting rooted vegetables like potatoes &
-              turnips
+              turnips.
             </p>
           </>
         );
@@ -326,7 +325,7 @@ function Modal() {
                 moonInfo!.moonPhase !== "Full" &&
                 `The next Full Moon will be on ${moment(
                   moonInfo!.nextFullMoon.date
-                ).format("dddd, MMMM Do")}`}
+                ).format("dddd, MMMM Do")}.`}
             </p>
             <h3>What does it mean for wine?</h3>
             <p>
