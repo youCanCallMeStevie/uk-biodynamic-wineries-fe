@@ -20,7 +20,7 @@
     "@types/react-redux": "^7.1.18",
     "astronomy-engine": "^2.0.6",
 
-    "axios": "^0.21.3",
+    "axios": "^1.6.3",
     "dotenv": "^8.6.0",
     "file-loader": "^6.2.0",
     "html-parse": "0.0.4",
