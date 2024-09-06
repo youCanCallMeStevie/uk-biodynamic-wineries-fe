@@ -4,11 +4,11 @@
   "private": true,
   "dependencies": {
 
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^11.2.6",
+    "@testing-library/jest-dom": "^6.0.0",
+    "@testing-library/react": "^16.0.0",
 
     "@testing-library/user-event": "^12.8.3",
-    "@types/jest": "^26.0.23",
+    "@types/jest": "^28.1.2",
 
     "@types/leaflet": "^1.7.4",
     "@types/react": "^17.0.18",
@@ -20,7 +20,7 @@
     "@types/react-redux": "^7.1.18",
     "astronomy-engine": "^2.0.6",
 
-    "axios": "^0.21.3",
+    "axios": "^1.6.8",
     "dotenv": "^8.6.0",
     "file-loader": "^6.2.0",
     "html-parse": "0.0.4",
@@ -40,7 +40,7 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.3.0",
 
-    "serve": "^14.1.0",
+    "serve": "^14.1.1",
     "styled-components": "^5.3.3",
     "typescript": "^4.4.2",
 
